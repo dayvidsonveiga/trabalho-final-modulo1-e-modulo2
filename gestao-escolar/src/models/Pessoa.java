@@ -11,6 +11,7 @@ public abstract class Pessoa {
         this.endereco = endereco;
     }
 
+    public Pessoa(){}
     public Pessoa(String nome) {
         this.nome = nome;
     }

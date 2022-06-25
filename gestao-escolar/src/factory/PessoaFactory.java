@@ -5,14 +5,16 @@ import models.Pessoa;
 
 public abstract class PessoaFactory{
     Pessoa pessoa;
+    Aluno pessoaAluno;
 
-    public Pessoa adicionar(String tipo) {
+    public void adicionar(String tipo) {
         if ("Aluno".equals(tipo)) {
-            pessoa = criarPessoa(tipo);
+            pessoaAluno = criarPessoa(tipo);
+            pessoaAluno.getCurso().setAlunos(pessoaAluno);
         } else if ("Professor".equals(tipo)){
             pessoa = criarPessoa(tipo);
         }
-        return pessoa;
+        System.out.println(pessoaAluno.getCurso().getDisciplinas());
     }
     public abstract Aluno criarPessoa(String tipo);
 }

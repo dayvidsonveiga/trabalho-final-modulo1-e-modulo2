@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Curso {
     private String nome;
-    private ArrayList<Disciplina> disciplinas;
-    private ArrayList<Aluno> alunos;
+    private ArrayList<Disciplina> disciplinas = new ArrayList<>();
+    private ArrayList<Aluno> alunos = new ArrayList<>();
 
     public Curso(String nome) {
         this.nome = nome;
@@ -42,6 +42,9 @@ public class Curso {
         return alunos;
     }
 
+    public void setAlunos(Aluno alunos) {
+        this.alunos.add(alunos);
+    }
     public void setAlunos(ArrayList<Aluno> alunos) {
         this.alunos = alunos;
     }

@@ -9,6 +9,7 @@ public class Aluno extends Pessoa{
 
     private static Integer controleMatricula = 1000;
 
+    public Aluno() {}
     public Aluno(String nome) {
         super(nome);
     }

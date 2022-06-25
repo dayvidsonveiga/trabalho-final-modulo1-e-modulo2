@@ -2,13 +2,15 @@ package models;
 
 public class Colaborador extends Pessoa{
     private Double salario;
-    private Curso curso;
     private String cargo;
 
-    public Colaborador(String nome, String telefone, String email, Endereco endereco, Double salario, Curso curso, String cargo) {
+    public Colaborador(String nome) {
+        super(nome);
+    }
+
+    public Colaborador(String nome, String telefone, String email, Endereco endereco, Double salario, String cargo) {
         super(nome, telefone, email, endereco);
         this.salario = salario;
-        this.curso = curso;
         this.cargo = cargo;
     }
 
@@ -18,14 +20,6 @@ public class Colaborador extends Pessoa{
 
     public void setSalario(Double salario) {
         this.salario = salario;
-    }
-
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
     }
 
     public String getCargo() {
