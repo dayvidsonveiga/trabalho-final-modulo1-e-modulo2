@@ -1,10 +1,10 @@
 package models;
 
-public class Estudante {
+public class Estudante extends Pessoa{
     private Integer matricula, tipo;
     private Curso curso;
 
-    public Estudante(Integer matricula, Integer tipo, Curso curso) {
+    public Estudante(String nome, String telefone, String email, Endereco endereco, Integer matricula, Integer tipo, Curso curso) {
         super(nome, telefone, email, endereco);
         this.matricula = matricula;
         this.tipo = tipo;
