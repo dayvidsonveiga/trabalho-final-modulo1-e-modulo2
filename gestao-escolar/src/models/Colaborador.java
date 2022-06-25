@@ -5,7 +5,8 @@ public class Colaborador extends Pessoa{
     private Curso curso;
     private String cargo;
 
-    public Colaborador(Double salario, Curso curso, String cargo) {
+    public Colaborador(String nome, String telefone, String email, Endereco endereco, Double salario, Curso curso, String cargo) {
+        super(nome, telefone, email, endereco);
         this.salario = salario;
         this.curso = curso;
         this.cargo = cargo;
