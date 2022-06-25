@@ -1,45 +1,48 @@
 package models;
 
+import java.util.ArrayList;
+
 public class Curso {
-    private String curso;
-    Double nota1, nota2, media;
+    private String nome;
+    private ArrayList<Disciplina> disciplinas;
+    private ArrayList<Aluno> alunos;
 
-    public Curso(String curso, Double nota1, Double nota2, Double media) {
-        this.curso = curso;
-        this.nota1 = nota1;
-        this.nota2 = nota2;
-        this.media = media;
+    public Curso(String nome) {
+        this.nome = nome;
     }
 
-    public String getCurso() {
-        return curso;
+    public Curso(String nome, ArrayList<Disciplina> disciplinas) {
+        this.nome = nome;
+        this.disciplinas = disciplinas;
     }
 
-    public void setCurso(String curso) {
-        this.curso = curso;
+    public Curso(String nome, ArrayList<Disciplina> disciplinas, ArrayList<Aluno> alunos) {
+        this.nome = nome;
+        this.disciplinas = disciplinas;
+        this.alunos = alunos;
     }
 
-    public Double getNota1() {
-        return nota1;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNota1(Double nota1) {
-        this.nota1 = nota1;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Double getNota2() {
-        return nota2;
+    public ArrayList<Disciplina> getDisciplinas() {
+        return disciplinas;
     }
 
-    public void setNota2(Double nota2) {
-        this.nota2 = nota2;
+    public void setDisciplinas(ArrayList<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
     }
 
-    public Double getMedia() {
-        return media;
+    public ArrayList<Aluno> getAlunos() {
+        return alunos;
     }
 
-    public void setMedia(Double media) {
-        this.media = media;
+    public void setAlunos(ArrayList<Aluno> alunos) {
+        this.alunos = alunos;
     }
 }

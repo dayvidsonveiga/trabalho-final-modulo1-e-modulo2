@@ -1,8 +1,12 @@
 package models;
 
+import java.util.HashMap;
+
 public class Aluno extends Pessoa{
     private Integer matricula;
     private Curso curso;
+    private HashMap<Disciplina, Double> nota1, nota2, media;
+
     private static Integer controleMatricula = 1000;
 
     public Aluno(String nome) {
