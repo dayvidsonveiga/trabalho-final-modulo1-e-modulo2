@@ -5,6 +5,7 @@ public class Estudante {
     private Curso curso;
 
     public Estudante(Integer matricula, Integer tipo, Curso curso) {
+        super(nome, telefone, email, endereco);
         this.matricula = matricula;
         this.tipo = tipo;
         this.curso = curso;
