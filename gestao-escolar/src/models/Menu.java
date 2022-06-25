@@ -98,7 +98,8 @@ public class Menu {
 //        limpaTela();
         System.out.println("Digite 1 para gerenciar alunos");
         System.out.println("Digite 2 para gerenciar colaboradores");
-        System.out.println("Digite 3 para voltar ao Menu Principal");
+        System.out.println("Digite 3 para gerenciar curso");
+        System.out.println("Digite 4 para voltar ao Menu Principal");
         System.out.println("Digite 0 para sair");
         opcao = Integer.parseInt(scanner.nextLine());
         switch (opcao) {
@@ -114,6 +115,9 @@ public class Menu {
 
             }
             case 3 -> {
+                menuGerenciarCurso();
+            }
+            case 4 -> {
                 menuPrincipal();
             }
         }
@@ -173,6 +177,67 @@ public class Menu {
                 menuPrincipal();
             }
         }
+    }
+
+    public void menuGerenciarCurso() {
+//        limpaTela();
+        System.out.println("Digite 1 para adicionar um curso");
+        System.out.println("Digite 2 para atualizar as informações de um curso");
+        System.out.println("Digite 3 para remover um curso");
+        System.out.println("Digite 4 para acessar informações de um curso");
+        System.out.println("Digite 5 para voltar ao Menu Principal");
+        System.out.println("Digite 0 para sair");
+        opcao = Integer.parseInt(scanner.nextLine());
+        switch (opcao) {
+            case 0 -> {
+                controle = false;
+                break;
+            }
+            case 1 -> {
+            }
+            case 2 -> {
+            }
+            case 3 -> {
+            }
+            case 4 -> {
+                menuGerenciarDisciplina();
+            }
+            case 5 -> {
+                menuPrincipal();
+            }
+        }
+
+
+    }
+
+    public void menuGerenciarDisciplina() {
+//        limpaTela();
+        System.out.println("Digite 1 para adicionar uma disciplina");
+        System.out.println("Digite 2 para atualizar as informações de uma disciplina");
+        System.out.println("Digite 3 para remover uma disciplina");
+        System.out.println("Digite 4 para acessar informações de uma disciplina");
+        System.out.println("Digite 5 para voltar ao Menu Principal");
+        System.out.println("Digite 0 para sair");
+        opcao = Integer.parseInt(scanner.nextLine());
+        switch (opcao) {
+            case 0 -> {
+                controle = false;
+                break;
+            }
+            case 1 -> {
+            }
+            case 2 -> {
+            }
+            case 3 -> {
+            }
+            case 4 -> {
+
+            }
+            case 5 -> {
+                menuPrincipal();
+            }
+        }
+
     }
 }
 
