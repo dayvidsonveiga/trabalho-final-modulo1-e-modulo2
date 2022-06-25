@@ -1,13 +1,17 @@
 package models;
 
-public class Estudante extends Pessoa{
-    private Integer matricula, tipo;
+public class Aluno extends Pessoa{
+    private Integer matricula;
     private Curso curso;
+    private static Integer controleMatricula = 1000;
 
-    public Estudante(String nome, String telefone, String email, Endereco endereco, Integer matricula, Integer tipo, Curso curso) {
+    public Aluno(String nome) {
+        super(nome);
+    }
+
+    public Aluno(String nome, String telefone, String email, Endereco endereco, Integer tipo, Curso curso) {
         super(nome, telefone, email, endereco);
-        this.matricula = matricula;
-        this.tipo = tipo;
+        this.matricula = ++controleMatricula;
         this.curso = curso;
     }
 
@@ -17,14 +21,6 @@ public class Estudante extends Pessoa{
 
     public void setMatricula(Integer matricula) {
         this.matricula = matricula;
-    }
-
-    public Integer getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Integer tipo) {
-        this.tipo = tipo;
     }
 
     public Curso getCurso() {

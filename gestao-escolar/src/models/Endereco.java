@@ -1,16 +1,19 @@
 package models;
 
 public class Endereco {
-    private String logradouro, cidade, estado, cep, pais;
+    private String logradouro, cidade, estado, cep;
     private Integer numero;
 
-    public Endereco(String logradouro, String cidade, String estado, String cep, String pais, Integer numero) {
+    public Endereco(String logradouro, String cidade, String estado, String cep, Integer numero) {
         this.logradouro = logradouro;
         this.cidade = cidade;
         this.estado = estado;
         this.cep = cep;
-        this.pais = pais;
         this.numero = numero;
+    }
+
+    public Endereco(String logradouro) {
+        this.logradouro = logradouro;
     }
 
     public String getLogradouro() {
@@ -43,14 +46,6 @@ public class Endereco {
 
     public void setCep(String cep) {
         this.cep = cep;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
     }
 
     public Integer getNumero() {

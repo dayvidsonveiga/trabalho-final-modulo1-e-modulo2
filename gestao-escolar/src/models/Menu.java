@@ -1,5 +1,8 @@
 package models;
 
+import factory.CriarPessoa;
+import factory.PessoaFactory;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -131,6 +134,8 @@ public class Menu {
                 break;
             }
             case 1 -> {
+                PessoaFactory pessoaFactory = new CriarPessoa();
+                pessoaFactory.adicionar("Aluno");
             }
             case 2 -> {
             }
