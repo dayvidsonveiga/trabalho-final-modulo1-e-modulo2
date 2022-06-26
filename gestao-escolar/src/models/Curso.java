@@ -38,11 +38,16 @@ public class Curso {
         this.disciplinas = disciplinas;
     }
     public void setDisciplinas(Disciplina disciplinas) {
+        Boolean contem = false;
         for (int i = 0; i < this.disciplinas.size(); i++) {
-            if (this.disciplinas.get(i).getNome() == disciplinas.getNome()) {
-                System.out.println("Esta disciplina já existe no curso");
+            if (this.disciplinas.get(i).getNome().equalsIgnoreCase(disciplinas.getNome())) {
+                contem = true;
             } else {
-                this.disciplinas.add(disciplinas);
+                contem = false;
+            }
+            if (contem) {
+                System.out.println("Esta disciplina já existe no curso");
+            }else {this.disciplinas.add(disciplinas);
             }
         }
     }
