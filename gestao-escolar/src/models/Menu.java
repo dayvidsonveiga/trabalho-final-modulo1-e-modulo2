@@ -138,8 +138,8 @@ public class Menu {
                 break;
             }
             case 1 -> {
-                PessoaFactory pessoaFactory = new CriarPessoa();
-                pessoaFactory.adicionar("Aluno");
+                Aluno aluno = PessoaFactory.criarAluno();
+
             }
             case 2 -> {
             }

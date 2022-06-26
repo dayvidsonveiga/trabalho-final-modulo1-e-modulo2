@@ -1,21 +1,13 @@
 package models;
 
 public class Disciplina {
-    private String curso;
     private String nome;
     private Colaborador professor;
 
-    public Disciplina(String curso) {
-        this.curso = curso;
-    }
-
-    public Disciplina(Colaborador professor) {
-        this.professor = professor;
-    }
-
     public Disciplina(){}
-    public Disciplina(String curso, Colaborador professor) {
-        this.curso = curso;
+
+    public Disciplina(String nome, Colaborador professor) {
+        this.nome = nome;
         this.professor = professor;
     }
 
@@ -29,13 +21,6 @@ public class Disciplina {
 
     public void imprimirDisciplina() {};
 
-    public String getCurso() {
-        return curso;
-    }
-
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
 
     public Colaborador getProfessor() {
         return professor;
