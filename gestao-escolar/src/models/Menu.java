@@ -11,7 +11,7 @@ public class Menu {
     Boolean controle = true;
 
     static ArrayList<Curso> listaDeCursos = new ArrayList<>();
-    static ArrayList<Disciplina> disciplinas = new ArrayList<>();
+    static ArrayList<Disciplina> listaDeDisciplinas = new ArrayList<>();
 
     public void menuPrincipal(){
         while (controle) {
@@ -137,7 +137,7 @@ public class Menu {
                 break;
             }
             case 1 -> {
-                Aluno aluno = PessoaFactory.criarAluno();
+                PessoaFactory.criarAluno();
 
             }
             case 2 -> {
@@ -166,7 +166,7 @@ public class Menu {
                 break;
             }
             case 1 -> {
-                Colaborador colaborador = PessoaFactory.criarColaborador();
+                PessoaFactory.criarColaborador();
             }
             case 2 -> {
             }
@@ -249,8 +249,8 @@ public class Menu {
         return listaDeCursos;
     }
 
-    public static ArrayList<Disciplina> getDisciplinas() {
-        return disciplinas;
+    public static ArrayList<Disciplina> listaDeDisciplinas() {
+        return listaDeDisciplinas;
     }
 }
 

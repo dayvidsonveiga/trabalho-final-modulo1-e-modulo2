@@ -3,13 +3,14 @@ package factory;
 import models.Aluno;
 import models.Colaborador;
 import models.Endereco;
+import models.Menu;
 
 import java.util.Scanner;
 
 public class PessoaFactory {
     static Scanner scanner = new Scanner(System.in);
 
-    public static Aluno criarAluno() {
+    public static void criarAluno() {
         String curso;
         System.out.println("Digite o nome completo do Aluno:");
         Aluno aluno = new Aluno(scanner.nextLine());
@@ -28,9 +29,14 @@ public class PessoaFactory {
         aluno.getEndereco().setEstado(scanner.nextLine());
         System.out.println("Cep:");
         aluno.getEndereco().setCep(scanner.nextLine());
-        return aluno;
+        System.out.println("Escolha o curso do aluno: ");
+        for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
+        }
+        Integer opcao = Integer.parseInt(scanner.nextLine());
+        Menu.getListaDeCursos().get(opcao - 1).setAlunos(aluno);
     }
-    public static Colaborador criarColaborador() {
+    public static void criarColaborador() {
         System.out.println("Digite o nome do colaborador:");
         Colaborador colaborador = new Colaborador(scanner.nextLine());
         System.out.println("Digite o telefone do Colaborador:");
@@ -53,6 +59,10 @@ public class PessoaFactory {
         colaborador.getEndereco().setEstado(scanner.nextLine());
         System.out.println("Cep:");
         colaborador.getEndereco().setCep(scanner.nextLine());
-        return colaborador;
+        for (int i = 0; i < Menu.listaDeDisciplinas().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.listaDeDisciplinas().get(i).getNome());
+        }
+        Integer opcao = Integer.parseInt(scanner.nextLine());
+        Menu.listaDeDisciplinas().get(opcao - 1).setProfessor(colaborador);
     }
 }

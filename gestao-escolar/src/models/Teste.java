@@ -1,12 +1,11 @@
-package factoryDisciplinaCurso;
+package models;
 
 import models.Disciplina;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
-public class CriarDisciplina {
+public class Teste {
     ArrayList<Disciplina> ensinoMedio = new ArrayList<>();
     public ArrayList<Disciplina> criarDisciplina(String curso){
 
@@ -27,19 +26,7 @@ public class CriarDisciplina {
             filosofia.setNome("Filosofia");
             Collections.addAll(ensinoMedio, portugues, matematica, geografia, historia, fisica, quimica, filosofia);
             return ensinoMedio;
-        } else {
-            String nomeDoCurso;
-            Integer quantidadeDeMaterias;
-            ArrayList<Disciplina> novoCurso = new ArrayList<>();
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Nome do curso:");
-            nomeDoCurso = scanner.nextLine();
-            System.out.println("Adicionar quantas disciplinas");
-            quantidadeDeMaterias = Integer.parseInt(scanner.nextLine());
-            for (int i = 0; i < quantidadeDeMaterias; i++) {
-                System.out.println("Nome da " + i + "° matéria:");
-            }
-            return novoCurso;
+
         }
     }
 }
