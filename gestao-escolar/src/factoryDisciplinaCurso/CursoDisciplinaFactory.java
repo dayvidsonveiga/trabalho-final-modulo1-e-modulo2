@@ -31,22 +31,15 @@ public class CursoDisciplinaFactory {
         }
     }
 
-    public static editarCurso(){
-        System.out.println("Deseja adicionar esta disciplina à um curso?\n1- Sim\n 2-Não");
+    public static void editarCurso(){
+        System.out.println("Qual curso deseja editar?");
+        for (int j = 0; j < Menu.getListaDeCursos().size(); j++) {
+            System.out.println((j + 1) + " - " + Menu.getDisciplinas().get(i).getNome());
+        }
         Integer opcao = Integer.parseInt(scanner.nextLine());
-        switch (opcao) {
-            case 1 -> {
-                System.out.println("Escolha o curso: \n");
-                for (int j = 0; j < Menu.getListaDeCursos().size(); j++) {
-                    System.out.println((j + 1) + " - " + Menu.getDisciplinas().get(i).getNome());
-                }
-                opcao = Integer.parseInt(scanner.nextLine());
-                armazenarDisciplina(disciplinaNova);
-                Menu.getListaDeCursos().get(opcao - 1).setDisciplinas(disciplinaNova);
-            }
-            case 2 -> {
-                armazenarDisciplina(disciplinaNova);
-            }
+        System.out.println("Informe o novo nome para o curso");
+        String novoNomeDoCurso = scanner.nextLine();
+        Menu.getListaDeCursos().get(opcao -1 ).setNome(novoNomeDoCurso);
     }
 
     public static void criarDisciplina() {
@@ -76,6 +69,27 @@ public class CursoDisciplinaFactory {
             }
         }
     }
+
+    public static void editarDisciplina(){
+        System.out.println("Qual disciplina deseja editar?");
+        for (int j = 0; j < Menu.getDisciplinas().size(); j++) {
+            System.out.println((j + 1) + " - " + Menu.getDisciplinas().get(i).getNome());
+        }
+        Integer opcao = Integer.parseInt(scanner.nextLine());
+        System.out.println("Informe o novo nome para a disciplina");
+        String novoNomeDaDisciplina = scanner.nextLine();
+        Menu.getDisciplinas().get(opcao -1 ).setNome(novoNomeDaDisciplina);
+    }
+
+    public static void removerDisciplina(){
+        System.out.println("Qual disciplina deseja remover?");
+        for (int j = 0; j < Menu.getDisciplinas().size(); j++) {
+            System.out.println((j + 1) + " - " + Menu.getDisciplinas().get(i).getNome());
+        }
+        Integer opcao = Integer.parseInt(scanner.nextLine());
+        Menu.getDisciplinas().remove(opcao - 1);
+    }
+
 
     public static void armazenarDisciplina(Disciplina nomeDaDisciplina) {
         Boolean contem = false;

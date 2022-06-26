@@ -12,6 +12,7 @@ public class Menu {
 
     static ArrayList<Curso> listaDeCursos = new ArrayList<>();
     static ArrayList<Disciplina> disciplinas = new ArrayList<>();
+
     public void menuPrincipal(){
         while (controle) {
             System.out.println("##SEJA BEM VINDO A ESCOLA##");
