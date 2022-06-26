@@ -12,6 +12,7 @@ public class Aluno extends Pessoa{
     public Aluno() {}
     public Aluno(String nome) {
         super(nome);
+        this.matricula = ++controleMatricula;
     }
 
     public Aluno(String nome, String telefone, String email, Endereco endereco, Integer tipo, Curso curso) {

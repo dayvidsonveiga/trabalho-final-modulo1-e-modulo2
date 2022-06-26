@@ -2,7 +2,7 @@ package models;
 
 import interfaces.Gestao;
 
-public class GestaoPessoas implements Gestao {
+public class GestaoColaborador implements Gestao {
     @Override
     public void editar() {
 
