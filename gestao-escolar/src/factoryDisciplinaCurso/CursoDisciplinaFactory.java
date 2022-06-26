@@ -42,6 +42,15 @@ public class CursoDisciplinaFactory {
         Menu.getListaDeCursos().get(opcao -1 ).setNome(novoNomeDoCurso);
     }
 
+    public static void removerCurso(){
+        System.out.println("Qual disciplina curso deseja remover?");
+        for (int j = 0; j < Menu.getCursos().size(); j++) {
+            System.out.println((j + 1) + " - " + Menu.getCursos().get(j).getNome());
+        }
+        Integer opcao = Integer.parseInt(scanner.nextLine());
+        Menu.getCursos().remove(opcao - 1);
+    }
+
     public static void criarDisciplina() {
         Integer quantidadeDeMaterias;
         System.out.println("Adicionar quantas disciplinas");
