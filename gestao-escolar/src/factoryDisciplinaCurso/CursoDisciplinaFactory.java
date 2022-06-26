@@ -29,28 +29,10 @@ public class CursoDisciplinaFactory {
         }
         if (contem) {
             System.out.println("Este curso já existe");
-        }else {Menu.getListaDeCursos().add(novoCurso);
+        } else {
+            Menu.getListaDeCursos().add(novoCurso);
+            System.out.println("Curso adicionado");
         }
-    }
-
-    public static void editarCurso(){
-        System.out.println("Qual curso deseja editar?");
-        for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
-            System.out.println((i + 1) + " - " + Menu.listaDeDisciplinas().get(i).getNome());
-        }
-        Integer opcao = Integer.parseInt(scanner.nextLine());
-        System.out.println("Informe o novo nome para o curso");
-        String novoNomeDoCurso = scanner.nextLine();
-        Menu.getListaDeCursos().get(opcao -1 ).setNome(novoNomeDoCurso);
-    }
-
-    public static void removerCurso(){
-        System.out.println("Qual disciplina curso deseja remover?");
-        for (int j = 0; j < Menu.getListaDeCursos().size(); j++) {
-            System.out.println((j + 1) + " - " + Menu.getListaDeCursos().get(j).getNome());
-        }
-        Integer opcao = Integer.parseInt(scanner.nextLine());
-        Menu.listaDeDisciplinas().remove(opcao - 1);
     }
 
     public static void criarDisciplina() {
@@ -68,7 +50,7 @@ public class CursoDisciplinaFactory {
                 case 1 -> {
                     System.out.println("Escolha o curso: \n");
                     for (int j = 0; j < Menu.getListaDeCursos().size(); j++) {
-                        System.out.println((j + 1) + " - " + Menu.listaDeDisciplinas().get(i).getNome());
+                        System.out.println((j + 1) + " - " + Menu.getListaDeDisciplinas().get(i).getNome());
                     }
                     opcao = Integer.parseInt(scanner.nextLine());
                     armazenarDisciplina(disciplinaNova);
@@ -76,43 +58,24 @@ public class CursoDisciplinaFactory {
                 }
                 case 2 -> {
                     armazenarDisciplina(disciplinaNova);
+                }default -> {
+                    System.out.println("Opção inválida");
                 }
             }
         }
     }
 
-    public static void editarDisciplina(){
-        System.out.println("Qual disciplina deseja editar?");
-        for (int i = 0; i < Menu.listaDeDisciplinas().size(); i++) {
-            System.out.println((i + 1) + " - " + Menu.listaDeDisciplinas().get(i).getNome());
-        }
-        Integer opcao = Integer.parseInt(scanner.nextLine());
-        System.out.println("Informe o novo nome para a disciplina");
-        String novoNomeDaDisciplina = scanner.nextLine();
-        Menu.listaDeDisciplinas().get(opcao -1 ).setNome(novoNomeDaDisciplina);
-    }
-
-    public static void removerDisciplina(){
-        System.out.println("Qual disciplina deseja remover?");
-        for (int i = 0; i < Menu.listaDeDisciplinas().size(); i++) {
-            System.out.println((i + 1) + " - " + Menu.listaDeDisciplinas().get(i).getNome());
-        }
-        Integer opcao = Integer.parseInt(scanner.nextLine());
-        Menu.listaDeDisciplinas().remove(opcao - 1);
-    }
-
-
     public static void armazenarDisciplina(Disciplina nomeDaDisciplina) {
         Boolean contem = false;
-        for (int i = 0; i < Menu.listaDeDisciplinas().size(); i++) {
-            if (Menu.listaDeDisciplinas().get(i).getNome().equalsIgnoreCase(nomeDaDisciplina.getNome())) {
+        for (int i = 0; i < Menu.getListaDeDisciplinas().size(); i++) {
+            if (Menu.getListaDeDisciplinas().get(i).getNome().equalsIgnoreCase(nomeDaDisciplina.getNome())) {
                 contem = true;
             } else {
                 contem = false;
             }
             if (contem) {
                 System.out.println("Esta disciplina já existe");
-            }else {Menu.listaDeDisciplinas().add(nomeDaDisciplina);
+            }else {Menu.getListaDeDisciplinas().add(nomeDaDisciplina);
             }
         }
     }

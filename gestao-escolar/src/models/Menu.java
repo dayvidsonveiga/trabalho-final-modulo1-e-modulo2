@@ -9,9 +9,11 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
     Integer opcao;
     Boolean controle = true;
-
     static ArrayList<Curso> listaDeCursos = new ArrayList<>();
     static ArrayList<Disciplina> listaDeDisciplinas = new ArrayList<>();
+    GestaoCurso gestaoCurso = new GestaoCurso();
+    GestaoDisciplina gestaoDisciplina = new GestaoDisciplina();
+
 
     public void menuPrincipal(){
         while (controle) {
@@ -85,10 +87,11 @@ public class Menu {
                 controle = false;
                 break;
             }
-            case 1 -> {}
+            case 1 -> {
+                System.out.println("Em construção");
+            }
             case 2 -> {
                 menuPrincipal();
-
             }
         }
     }
@@ -138,13 +141,16 @@ public class Menu {
             }
             case 1 -> {
                 PessoaFactory.criarAluno();
-
             }
             case 2 -> {
+                System.out.println("Em construção");
             }
             case 3 -> {
+                System.out.println("Em construção");
             }
-            case 4 -> {}
+            case 4 -> {
+                System.out.println("Em construção");
+            }
             case 5 -> {
                 menuPrincipal();
             }
@@ -169,10 +175,17 @@ public class Menu {
                 PessoaFactory.criarColaborador();
             }
             case 2 -> {
+                System.out.println("Em construção");
+
             }
             case 3 -> {
+                System.out.println("Em construção");
+
             }
-            case 4 -> {}
+            case 4 -> {
+                System.out.println("Em construção");
+
+            }
             case 5 -> {
                 menuPrincipal();
             }
@@ -197,13 +210,13 @@ public class Menu {
                 CursoDisciplinaFactory.criarCurso();
             }
             case 2 -> {
-                CursoDisciplinaFactory.editarCurso();
+                gestaoCurso.editar();
             }
             case 3 -> {
-                CursoDisciplinaFactory.removerCurso();
+                gestaoCurso.remover();
             }
             case 4 -> {
-                menuGerenciarDisciplina();
+                System.out.println("Em construção");
             }
             case 5 -> {
                 menuPrincipal();
@@ -231,13 +244,13 @@ public class Menu {
                 CursoDisciplinaFactory.criarDisciplina();
             }
             case 2 -> {
-                CursoDisciplinaFactory.editarDisciplina();
+                gestaoDisciplina.editar();
             }
             case 3 -> {
-                CursoDisciplinaFactory.removerDisciplina();
+                gestaoDisciplina.remover();
             }
             case 4 -> {
-
+                System.out.println("Em construção");
             }
             case 5 -> {
                 menuPrincipal();
@@ -249,7 +262,7 @@ public class Menu {
         return listaDeCursos;
     }
 
-    public static ArrayList<Disciplina> listaDeDisciplinas() {
+    public static ArrayList<Disciplina> getListaDeDisciplinas() {
         return listaDeDisciplinas;
     }
 }

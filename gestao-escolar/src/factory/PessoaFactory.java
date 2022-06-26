@@ -11,7 +11,6 @@ public class PessoaFactory {
     static Scanner scanner = new Scanner(System.in);
 
     public static void criarAluno() {
-        String curso;
         System.out.println("Digite o nome completo do Aluno:");
         Aluno aluno = new Aluno(scanner.nextLine());
         System.out.println("Digite o telefone do Aluno:");
@@ -59,10 +58,10 @@ public class PessoaFactory {
         colaborador.getEndereco().setEstado(scanner.nextLine());
         System.out.println("Cep:");
         colaborador.getEndereco().setCep(scanner.nextLine());
-        for (int i = 0; i < Menu.listaDeDisciplinas().size(); i++) {
-            System.out.println((i + 1) + " - " + Menu.listaDeDisciplinas().get(i).getNome());
+        for (int i = 0; i < Menu.getListaDeDisciplinas().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getListaDeDisciplinas().get(i).getNome());
         }
         Integer opcao = Integer.parseInt(scanner.nextLine());
-        Menu.listaDeDisciplinas().get(opcao - 1).setProfessor(colaborador);
+        Menu.getListaDeDisciplinas().get(opcao - 1).setProfessor(colaborador);
     }
 }
