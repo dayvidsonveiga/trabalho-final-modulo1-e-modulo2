@@ -33,8 +33,8 @@ public class CursoDisciplinaFactory {
 
     public static void editarCurso(){
         System.out.println("Qual curso deseja editar?");
-        for (int j = 0; j < Menu.getListaDeCursos().size(); j++) {
-            System.out.println((j + 1) + " - " + Menu.getDisciplinas().get(i).getNome());
+        for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getDisciplinas().get(i).getNome());
         }
         Integer opcao = Integer.parseInt(scanner.nextLine());
         System.out.println("Informe o novo nome para o curso");
@@ -72,8 +72,8 @@ public class CursoDisciplinaFactory {
 
     public static void editarDisciplina(){
         System.out.println("Qual disciplina deseja editar?");
-        for (int j = 0; j < Menu.getDisciplinas().size(); j++) {
-            System.out.println((j + 1) + " - " + Menu.getDisciplinas().get(i).getNome());
+        for (int i = 0; i < Menu.getDisciplinas().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getDisciplinas().get(i).getNome());
         }
         Integer opcao = Integer.parseInt(scanner.nextLine());
         System.out.println("Informe o novo nome para a disciplina");
@@ -83,8 +83,8 @@ public class CursoDisciplinaFactory {
 
     public static void removerDisciplina(){
         System.out.println("Qual disciplina deseja remover?");
-        for (int j = 0; j < Menu.getDisciplinas().size(); j++) {
-            System.out.println((j + 1) + " - " + Menu.getDisciplinas().get(i).getNome());
+        for (int i = 0; i < Menu.getDisciplinas().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getDisciplinas().get(i).getNome());
         }
         Integer opcao = Integer.parseInt(scanner.nextLine());
         Menu.getDisciplinas().remove(opcao - 1);
