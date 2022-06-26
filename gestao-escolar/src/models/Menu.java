@@ -138,7 +138,6 @@ public class Menu {
             }
             case 1 -> {
                 Aluno aluno = PessoaFactory.criarAluno();
-                listaDeCursos.get()
 
             }
             case 2 -> {
@@ -167,6 +166,7 @@ public class Menu {
                 break;
             }
             case 1 -> {
+                Colaborador colaborador = PessoaFactory.criarColaborador();
             }
             case 2 -> {
             }
@@ -194,10 +194,13 @@ public class Menu {
                 break;
             }
             case 1 -> {
+                CursoDisciplinaFactory.criarCurso();
             }
             case 2 -> {
+                CursoDisciplinaFactory.editarCurso();
             }
             case 3 -> {
+                CursoDisciplinaFactory.removerCurso();
             }
             case 4 -> {
                 menuGerenciarDisciplina();
@@ -228,8 +231,10 @@ public class Menu {
                 CursoDisciplinaFactory.criarDisciplina();
             }
             case 2 -> {
+                CursoDisciplinaFactory.editarDisciplina();
             }
             case 3 -> {
+                CursoDisciplinaFactory.removerDisciplina();
             }
             case 4 -> {
 
