@@ -1,8 +1,8 @@
 package models;
-
-import factory.CriarPessoa;
 import factory.PessoaFactory;
+import factoryDisciplinaCurso.CursoDisciplinaFactory;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -10,10 +10,8 @@ public class Menu {
     Integer opcao;
     Boolean controle = true;
 
-//    public void limpaTela() {
-//        Runtime.getRuntime().exec("cls");
-//        Runtime.getRuntime().exec("clear");
-//    }
+    static ArrayList<Curso> listaDeCursos = new ArrayList<>();
+    static ArrayList<Disciplina> disciplinas = new ArrayList<>();
     public void menuPrincipal(){
         while (controle) {
             System.out.println("##SEJA BEM VINDO A ESCOLA##");
@@ -139,6 +137,7 @@ public class Menu {
             }
             case 1 -> {
                 Aluno aluno = PessoaFactory.criarAluno();
+                listaDeCursos.get()
 
             }
             case 2 -> {
@@ -225,6 +224,7 @@ public class Menu {
                 break;
             }
             case 1 -> {
+                CursoDisciplinaFactory.criarDisciplina();
             }
             case 2 -> {
             }
@@ -238,6 +238,13 @@ public class Menu {
             }
         }
 
+    }
+    public static ArrayList<Curso> getListaDeCursos() {
+        return listaDeCursos;
+    }
+
+    public static ArrayList<Disciplina> getDisciplinas() {
+        return disciplinas;
     }
 }
 

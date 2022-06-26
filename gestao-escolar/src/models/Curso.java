@@ -37,6 +37,15 @@ public class Curso {
     public void setDisciplinas(ArrayList<Disciplina> disciplinas) {
         this.disciplinas = disciplinas;
     }
+    public void setDisciplinas(Disciplina disciplinas) {
+        for (int i = 0; i < this.disciplinas.size(); i++) {
+            if (this.disciplinas.get(i).getNome() == disciplinas.getNome()) {
+                System.out.println("Esta disciplina já existe no curso");
+            } else {
+                this.disciplinas.add(disciplinas);
+            }
+        }
+    }
 
     public ArrayList<Aluno> getAlunos() {
         return alunos;

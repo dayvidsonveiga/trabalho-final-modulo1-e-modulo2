@@ -12,25 +12,18 @@ public class CriarDisciplina {
 
         if ("Ensino Médio".equals(curso)) {
             Disciplina portugues = new Disciplina();
-            portugues.setCurso("Ensino Médio");
             portugues.setNome("Português");
             Disciplina matematica = new Disciplina();
-            matematica.setCurso("Ensino Médio");
             matematica.setNome("Matemática");
             Disciplina geografia = new Disciplina();
-            geografia.setCurso("Ensino Médio");
             geografia.setNome("Geografia");
             Disciplina historia = new Disciplina();
-            historia.setCurso("Ensino Médio");
             historia.setNome("História");
             Disciplina fisica = new Disciplina();
-            fisica.setCurso("Ensino Médio");
             fisica.setNome("Física");
             Disciplina quimica = new Disciplina();
             quimica.setNome("Química");
-            quimica.setCurso("Ensino Médio");
             Disciplina filosofia = new Disciplina();
-            filosofia.setCurso("Ensino Médio");
             filosofia.setNome("Filosofia");
             Collections.addAll(ensinoMedio, portugues, matematica, geografia, historia, fisica, quimica, filosofia);
             return ensinoMedio;
@@ -41,13 +34,10 @@ public class CriarDisciplina {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Nome do curso:");
             nomeDoCurso = scanner.nextLine();
-            System.out.println("Quantas matérias o curso possui?");
+            System.out.println("Adicionar quantas disciplinas");
             quantidadeDeMaterias = Integer.parseInt(scanner.nextLine());
             for (int i = 0; i < quantidadeDeMaterias; i++) {
                 System.out.println("Nome da " + i + "° matéria:");
-                novoCurso.add(new Disciplina());
-                novoCurso.get(i).setNome(scanner.nextLine());
-                novoCurso.get(i).setCurso(nomeDoCurso);
             }
             return novoCurso;
         }
