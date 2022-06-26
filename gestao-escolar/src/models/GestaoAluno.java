@@ -10,20 +10,51 @@ public class GestaoAluno implements Gestao {
 
     @Override
     public void editar() {
-        System.out.println("Qual a matricula do aluno que deseja editar? \n1 - Informar matrícula \n2 - Consultar matrícula para depois informar");
-        Integer matriculaAluno = Integer.parseInt(scanner.nextLine());
-        switch (matriculaAluno) {
-            case 1 -> {
-
-            }
-            case 2 -> {
-                for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
-                    System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getAlunos().get(i).getNome());
-                }
+        Boolean controle = false;
+        Integer indexAluno = 0;
+        System.out.println("Qual o curso do aluno que deseja editar?");
+        for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
+            for (int j = 0; j < Menu.getListaDeCursos().get(i).getAlunos().size(); j++) {
+                System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getAlunos().get(i).getNome());
             }
         }
-        System.out.println("Informe a matricula");
-        Integer opcao = Integer.parseInt(scanner.nextLine());
+        System.out.println("Escolha o n° do curso");
+        Integer escolhaCurso = Integer.parseInt(scanner.nextLine());
+        System.out.println("Qual a matricula do aluno que deseja editar");
+        Integer escolhaMatricula = Integer.parseInt(scanner.nextLine());
+        for (int i = 0; i < Menu.getListaDeCursos().get(escolhaCurso).getAlunos().size(); i++) {
+            if (Menu.getListaDeCursos().get(escolhaCurso).getAlunos().get(i).getMatricula() == escolhaMatricula) {
+                controle = true;
+                indexAluno = i;
+            } else {
+                controle = false;
+            }
+        }
+
+        if (controle) {
+            Aluno alunoEscolhido = Menu.getListaDeCursos().get(escolhaCurso).getAlunos().get(indexAluno);
+            System.out.println("Digite o nome completo do Aluno:");
+            alunoEscolhido.setNome(scanner.nextLine());
+            System.out.println("Digite o telefone do Aluno:");
+            alunoEscolhido.setTelefone(scanner.nextLine());
+            System.out.println("Digite o E-mail do Aluno:");
+            alunoEscolhido.setEmail(scanner.nextLine());
+            System.out.println("Digite o endereço do Aluno:");
+            System.out.println("Logradouro:");
+            alunoEscolhido.getEndereco().setLogradouro(scanner.nextLine());
+            System.out.println("Número:");
+            alunoEscolhido.getEndereco().setNumero(Integer.parseInt(scanner.nextLine()));
+            System.out.println("Cidade:");
+            alunoEscolhido.getEndereco().setCidade(scanner.nextLine());
+            System.out.println("Estado:");
+            alunoEscolhido.getEndereco().setEstado(scanner.nextLine());
+            System.out.println("Cep:");
+            alunoEscolhido.getEndereco().setCep(scanner.nextLine());
+        } else {
+            System.out.println("Aluno não encontrado");
+        }
+
 
     }
 
@@ -32,3 +63,9 @@ public class GestaoAluno implements Gestao {
 
     }
 }
+
+
+
+
+
+
