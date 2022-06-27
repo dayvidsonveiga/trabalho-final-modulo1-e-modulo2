@@ -40,4 +40,16 @@ public class GestaoCurso implements Gestao {
         opcao = Integer.parseInt(scanner.nextLine());
         System.out.println(Menu.getListaDeCursos().get(opcao - 1));
     }
+
+    public void inserirDisciplinaNoCurso(){
+
+
+        System.out.println("Escolha o curso: \n");
+        for (int j = 0; j < Menu.getListaDeCursos().size(); j++) {
+            System.out.println((j + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
+        }
+        opcao = Integer.parseInt(scanner.nextLine());
+        armazenarDisciplina(disciplinaNova);
+        Menu.getListaDeCursos().get(opcao - 1).setDisciplinas(disciplinaNova);
+    }
 }
