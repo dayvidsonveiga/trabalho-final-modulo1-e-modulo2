@@ -149,7 +149,7 @@ public class Menu {
                 gestaoAluno.editar();
             }
             case 3 -> {
-                System.out.println("Em construção");
+                gestaoAluno.remover();
             }
             case 4 -> {
                 System.out.println("Em construção");
