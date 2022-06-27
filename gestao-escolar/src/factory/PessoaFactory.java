@@ -71,5 +71,6 @@ public class PessoaFactory {
         }
         Integer opcao = Integer.parseInt(scanner.nextLine());
         Menu.getListaDeDisciplinas().get(opcao - 1).setProfessor(colaborador);
+        Menu.getListaDeColaboradores().add(colaborador);
     }
 }

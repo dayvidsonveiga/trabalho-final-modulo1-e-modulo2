@@ -11,9 +11,13 @@ public class Menu {
     Boolean controle = true;
     static ArrayList<Curso> listaDeCursos = new ArrayList<>();
     static ArrayList<Disciplina> listaDeDisciplinas = new ArrayList<>();
+
+    static ArrayList<Pessoa> listaDeColaboradores = new ArrayList<>();
     GestaoCurso gestaoCurso = new GestaoCurso();
     GestaoDisciplina gestaoDisciplina = new GestaoDisciplina();
     GestaoAluno gestaoAluno = new GestaoAluno();
+
+    GestaoColaborador gestaoColaborador = new GestaoColaborador();
 
 
     public void menuPrincipal(){
@@ -57,6 +61,8 @@ public class Menu {
             }
             case 1 -> {
                 gestaoAluno.imprimirInformacoes();
+                System.out.println("---------------------------");
+                menuPortalDoAluno();
 
             }
             case 2 -> {
@@ -83,6 +89,9 @@ public class Menu {
             }
             case 1 -> {
                 gestaoAluno.darNota();
+                System.out.println("---------------------------");
+                menuAreaDoProfessor();
+
             }
             case 2 -> {
                 menuPrincipal();
@@ -109,15 +118,23 @@ public class Menu {
             }
             case 1 -> {
                 menuGerenciarAlunos();
+                System.out.println("---------------------------");
+                menuAreaDeGestao();
             }
             case 2 -> {
                 menuGerenciarColaboradores();
+                System.out.println("---------------------------");
+                menuAreaDeGestao();
             }
             case 3 -> {
                 menuGerenciarCurso();
+                System.out.println("---------------------------");
+                menuAreaDeGestao();
             }
             case 4 -> {
                 menuGerenciarDisciplina();
+                System.out.println("---------------------------");
+                menuAreaDeGestao();
             }
             case 5 -> {
                 menuPrincipal();
@@ -144,21 +161,29 @@ public class Menu {
             }
             case 1 -> {
                 PessoaFactory.criarAluno();
+                System.out.println("---------------------------");
+                menuGerenciarAlunos();
             }
             case 2 -> {
                 gestaoAluno.editar();
+                System.out.println("---------------------------");
+                menuGerenciarAlunos();
             }
             case 3 -> {
                 gestaoAluno.remover();
+                System.out.println("---------------------------");
+                menuGerenciarAlunos();
             }
             case 4 -> {
                 gestaoAluno.imprimirInformacoes();
+                System.out.println("---------------------------");
+                menuGerenciarAlunos();
             }
             case 5 -> {
                 menuPrincipal();
             }
             default -> {
-                menuPortalDoAluno();
+                menuGerenciarAlunos();
             }
         }
     }
@@ -179,14 +204,17 @@ public class Menu {
             }
             case 1 -> {
                 PessoaFactory.criarColaborador();
+                System.out.println("---------------------------");
+                menuGerenciarColaboradores();
             }
             case 2 -> {
-                System.out.println("Em construção");
-
+                gestaoColaborador.editar();
+                System.out.println("---------------------------");
+                menuGerenciarColaboradores();
             }
             case 3 -> {
-                System.out.println("Em construção");
-
+                gestaoColaborador.remover();
+                System.out.println("---------------------------");
             }
             case 4 -> {
                 System.out.println("Em construção");
@@ -215,21 +243,34 @@ public class Menu {
             }
             case 1 -> {
                 CursoDisciplinaFactory.criarCurso();
+                System.out.println("---------------------------");
+                menuGerenciarCurso();
             }
             case 2 -> {
                 gestaoCurso.editar();
+                System.out.println("---------------------------");
+                menuGerenciarCurso();
             }
             case 3 -> {
                 gestaoCurso.remover();
+                System.out.println("---------------------------");
+                menuGerenciarCurso();
             }
             case 4 -> {
                 gestaoCurso.imprimirInformacoesDoCurso();
+                System.out.println("---------------------------");
+                menuGerenciarCurso();
             }
             case 5 -> {
                 gestaoCurso.inserirDisciplinaNoCurso();
+                System.out.println("---------------------------");
+                menuGerenciarCurso();
             }
             case 6 -> {
                 menuPrincipal();
+            }
+            default -> {
+                menuGerenciarCurso();
             }
         }
 
@@ -252,18 +293,29 @@ public class Menu {
             }
             case 1 -> {
                 CursoDisciplinaFactory.criarDisciplina();
+                System.out.println("---------------------------");
+                menuGerenciarDisciplina();
             }
             case 2 -> {
                 gestaoDisciplina.editar();
+                System.out.println("---------------------------");
+                menuGerenciarDisciplina();
             }
             case 3 -> {
                 gestaoDisciplina.remover();
+                System.out.println("---------------------------");
+                menuGerenciarDisciplina();
             }
             case 4 -> {
                 gestaoDisciplina.imprimirInformacoes();
+                System.out.println("---------------------------");
+                menuGerenciarDisciplina();
             }
             case 5 -> {
                 menuPrincipal();
+            }
+            default -> {
+                menuGerenciarDisciplina();
             }
         }
 
@@ -274,6 +326,10 @@ public class Menu {
 
     public static ArrayList<Disciplina> getListaDeDisciplinas() {
         return listaDeDisciplinas;
+    }
+
+    public static ArrayList<Pessoa> getListaDeColaboradores() {
+        return listaDeColaboradores;
     }
 }
 

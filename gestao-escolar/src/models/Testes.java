@@ -71,6 +71,9 @@ public class Testes {
 
         Colaborador colaborador2 = new Colaborador("Rodrigo Pereira", "98659916", "rodrigo@pereira.com", endereco4, 8000.00, "Professor");
 
+        Menu.getListaDeColaboradores().add(colaborador1);
+        Menu.getListaDeColaboradores().add(colaborador2);
+
         Menu.getListaDeCursos().add(cienciaDaComputacaoCurso);
         Menu.getListaDeCursos().add(direitoCurso);
         Menu.getListaDeCursos().add(ensinoMedioCurso);
