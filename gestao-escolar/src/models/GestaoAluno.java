@@ -4,6 +4,7 @@ import interfaces.Gestao;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Set;
 
 public class GestaoAluno implements Gestao {
 
@@ -61,54 +62,75 @@ public class GestaoAluno implements Gestao {
 
     @Override
     public void remover() {
+        Boolean controle = false;
+        Integer indexAluno = 0;
+        System.out.println("Qual o curso do aluno que deseja remover?");
+        for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
+            for (int j = 0; j < Menu.getListaDeCursos().get(i).getAlunos().size(); j++) {
+                System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getAlunos().get(i).getNome());
+            }
+        }
+        System.out.println("Escolha o curso:");
+        Integer escolhaCurso = Integer.parseInt(scanner.nextLine());
+        System.out.println("Qual a matricula do aluno que deseja remover");
+        Integer escolhaMatricula = Integer.parseInt(scanner.nextLine());
+        for (int i = 0; i < Menu.getListaDeCursos().get(escolhaCurso).getAlunos().size(); i++) {
+            if (Menu.getListaDeCursos().get(escolhaCurso).getAlunos().get(i).getMatricula() == escolhaMatricula) {
+                controle = true;
+                indexAluno = i;
+            } else {
+                controle = false;
+            }
+        }
+        if (controle) {
+            Menu.getListaDeCursos().get(escolhaCurso).getAlunos().remove(indexAluno);
 
+        } else {
+            System.out.println("Aluno não encontrado");
+        }
     }
 
     public void darNota(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Escolha o curso:");
         for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
-            for (int j = 0; j < Menu.getListaDeCursos().get(i).getDisciplinas().size(); j++) {
-                System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getDisciplinas().get(i).getNome());
-            }
+                System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
         }
         Integer opcao = Integer.parseInt(scanner.nextLine());
         System.out.println("Escolha o aluno: ");
-        for (int i = 0; i < Menu.getListaDeCursos().get(opcao - i).getAlunos().size(); i++) {
-            System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(opcao - 1).getAlunos());
+        for (int i = 0; i < Menu.getListaDeCursos().get(opcao - 1).getAlunos().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(opcao - 1).getAlunos().get(i));
         }
         Integer opcao2 = Integer.parseInt(scanner.nextLine());
-
-
-
+        darNotaAux(opcao, opcao2);
     }
 
     private void darNotaAux(Integer opcao, Integer opcao2) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> disciplinas = new ArrayList<>();
         ArrayList<Double> notas = new ArrayList<>();
-        for (int i = 0; i < Menu.getListaDeCursos().get(opcao - 1).getAlunos().get(opcao2 -1).getNotas().size(); i++) {
-            Menu.getListaDeCursos().get(opcao - 1)
-                    .getAlunos()
-                    .get(opcao2 -1)
-                    .getNotas().keySet().forEach((k) -> {
-                        disciplinas.add(k);
-                    });
+        for (int i = 0; i < Menu.getListaDeCursos().get(opcao - 1).getDisciplinas().size() ; i++) {
+            disciplinas.add(Menu.getListaDeCursos().get(opcao - 1).getDisciplinas().get(i).getNome());
+        }
+        System.out.println("Escolha a disciplina:");
+        for (int i = 0; i < disciplinas.size(); i++) {
             System.out.println((i + 1) + " - " + disciplinas.get(i));
         }
-        System.out.println("Informe a disciplina:");
         Integer opcao3 = Integer.parseInt(scanner.nextLine());
         System.out.println("Informe a nota N1:");
         notas.add(Double.parseDouble(scanner.nextLine()));
         System.out.println("Informe a nota N2:");
         notas.add(Double.parseDouble(scanner.nextLine()));
         Menu.getListaDeCursos().get(opcao - 1).getAlunos().get(opcao2 -1).getNotas().put(disciplinas.get(opcao3), notas);
-        System.out.println("Cadastrar nota de outras disciplina:");
+        System.out.println("Cadastrar notas de outra disciplina:");
         System.out.println("1 - Sim");
         System.out.println("2 - Não");
         Integer opcao4 = Integer.parseInt(scanner.nextLine());
         if (opcao4.equals(1)) {
             darNotaAux(opcao, opcao2);
+        } else {
+            System.out.println("Notas adicionadas");
         }
     }
 }
