@@ -119,7 +119,7 @@ public class GestaoAluno implements Gestao, Portal {
         notas.add(Double.parseDouble(scanner.nextLine()));
         System.out.println("Informe a nota N2:");
         notas.add(Double.parseDouble(scanner.nextLine()));
-        Menu.getListaDeCursos().get(opcao - 1).getAlunos().get(opcao2 -1).getNotas().put(disciplinas.get(opcao3), notas);
+        Menu.getListaDeCursos().get(opcao - 1).getAlunos().get(opcao2 -1).getNotas().put(disciplinas.get(opcao3 - 1), notas);
         System.out.println("Cadastrar notas de outra disciplina:");
         System.out.println("1 - Sim");
         System.out.println("2 - Não");

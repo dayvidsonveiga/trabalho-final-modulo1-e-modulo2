@@ -38,10 +38,10 @@ public class GestaoDisciplina implements Gestao {
                     indexCursoDaDisciplina = i;
                     indexDisciplinaNoCurso = j;
                 }
-                }
-            if (controle) {
-                Menu.getListaDeCursos().get(indexCursoDaDisciplina).getDisciplinas().remove(indexDisciplinaNoCurso);
             }
+        }
+        if (controle) {
+            Menu.getListaDeCursos().get(indexCursoDaDisciplina).getDisciplinas().remove(indexDisciplinaNoCurso);
         }
         Menu.getListaDeDisciplinas().remove(opcao - 1);
     }

@@ -97,10 +97,19 @@ public class Testes {
         notas1.add(9.0);
         notas1.add(7.0);
 
-        Menu.getListaDeCursos().get(0).getAlunos().get(0).setNotas("Introdução a computação", notas1);
         ArrayList<Double> notas2 = new ArrayList<>();
         notas2.add(5.0);
         notas2.add(8.0);
+
+        Menu.getListaDeCursos().get(0).getAlunos().get(0).setNotas("Introdução a computação", notas1);
+        Menu.getListaDeCursos().get(0).getAlunos().get(0).setNotas("Engenharia de Software", notas2);
+        Menu.getListaDeCursos().get(0).getAlunos().get(0).setNotas("Processo de Software", notas2);
+        Menu.getListaDeCursos().get(0).getAlunos().get(0).setNotas("Arquitetura de Sistemas", notas1);
+
+
         Menu.getListaDeCursos().get(1).getAlunos().get(0).setNotas("Introdução ao Direito", notas2);
+        Menu.getListaDeCursos().get(1).getAlunos().get(0).setNotas("Direito Penal", notas1);
+        Menu.getListaDeCursos().get(1).getAlunos().get(0).setNotas("Direito Constitucional", notas2);
+        Menu.getListaDeCursos().get(1).getAlunos().get(0).setNotas("Direito Previdenciario", notas1);
     }
 }
