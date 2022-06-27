@@ -28,6 +28,21 @@ public class GestaoDisciplina implements Gestao {
             System.out.println((i + 1) + " - " + Menu.getListaDeDisciplinas().get(i).getNome());
         }
         Integer opcao = Integer.parseInt(scanner.nextLine());
+
+        Boolean controle = false;
+        int indexDisciplinaNoCurso = 0, indexCursoDaDisciplina = 0;
+        for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
+            for (int j = 0; j < Menu.getListaDeCursos().get(i).getDisciplinas().size(); j++) {
+                if (Menu.getListaDeCursos().get(i).getDisciplinas().get(j).equals(Menu.getListaDeDisciplinas().get(opcao - 1))) {
+                    controle = true;
+                    indexCursoDaDisciplina = i;
+                    indexDisciplinaNoCurso = j;
+                }
+                }
+            if (controle) {
+                Menu.getListaDeCursos().get(indexCursoDaDisciplina).getDisciplinas().remove(indexDisciplinaNoCurso);
+            }
+        }
         Menu.getListaDeDisciplinas().remove(opcao - 1);
     }
 
