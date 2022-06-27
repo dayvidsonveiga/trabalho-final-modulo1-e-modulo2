@@ -21,7 +21,8 @@ public class Menu {
             System.out.println("##SEJA BEM VINDO A ESCOLA##");
             System.out.println("---------------------------");
             System.out.println("Digite 1 para acessar Portal do Aluno");
-            System.out.println("Digite 2 para acessar Portal do Colaborador");
+            System.out.println("Digite 2 para acessar Portal do Professor");
+            System.out.println("Digite 3 para acessar Portal de Gestão");
             System.out.println("Digite 0 para sair");
             opcao = Integer.parseInt(scanner.nextLine());
             switch (opcao) {
@@ -34,6 +35,9 @@ public class Menu {
                 }
                 case 2 -> {
                     menuPortalDoColaborador();
+                }
+                case 3 -> {
+                    menuAreaDeGestao();
                 }
                 default -> {
                     System.out.println("Opção inválida");
@@ -51,7 +55,10 @@ public class Menu {
                 controle = false;
                 break;
             }
-            case 1 -> {}
+            case 1 -> {
+                gestaoAluno.imprimirInformacoes();
+
+            }
             case 2 -> {
                 menuPrincipal();
 
@@ -73,7 +80,7 @@ public class Menu {
                 break;
             }
             case 1 -> {menuAreaDoProfessor();}
-            case 2 -> {menuSysAdmin();}
+            case 2 -> {menuAreaDeGestao();}
             case 3 -> {}
         }
     }
@@ -97,7 +104,7 @@ public class Menu {
         }
     }
 
-    public void menuSysAdmin() {
+    public void menuAreaDeGestao() {
 //        limpaTela();
         System.out.println("Digite 1 para gerenciar alunos");
         System.out.println("Digite 2 para gerenciar colaboradores");

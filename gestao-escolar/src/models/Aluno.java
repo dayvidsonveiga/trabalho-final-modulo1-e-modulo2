@@ -46,6 +46,12 @@ public class Aluno extends Pessoa{
         return notas;
     }
 
+    public void getNotasImprimir() {
+         notas.keySet().forEach(chave -> {
+             System.out.println("Disciplina: " + chave + " Nota: " + notas.get(chave));
+         });
+    }
+
     @Override
     public String toString() {
         return "Nome: " + this.getNome() +
