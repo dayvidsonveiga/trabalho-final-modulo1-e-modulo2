@@ -153,10 +153,7 @@ public class GestaoAluno implements Gestao, Portal {
             }
         }
         if (controle) {
-            Menu.getListaDeCursos().get(escolhaCurso - 1).getAlunos().forEach(aluno -> {
-                System.out.println("Matrícula: " + aluno.getMatricula() + "\nNome: " + aluno.getNome());
-                aluno.getNotasImprimir();
-            });
+            Menu.getListaDeCursos().get(escolhaCurso - 1).getAlunos().get(indexAluno).getNotasImprimir();
         } else {
             System.out.println("Matrícula não encontrada");
         }
