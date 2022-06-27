@@ -2,6 +2,7 @@ package models;
 
 import interfaces.Gestao;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestaoAluno implements Gestao {
@@ -61,6 +62,52 @@ public class GestaoAluno implements Gestao {
     @Override
     public void remover() {
 
+    }
+
+    public void darNotaNota(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Escolha o curso:");
+        for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getListaDeDisciplinas().get(i).getNome());
+        }
+        Integer opcao = Integer.parseInt(scanner.nextLine());
+        System.out.println("Escolha o aluno: ");
+        for (int i = 0; i < Menu.getListaDeCursos().get(opcao - i).getAlunos().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(opcao - 1).getAlunos());
+        }
+        Integer opcao2 = Integer.parseInt(scanner.nextLine());
+
+
+
+    }
+
+    private void darNotaAux(Integer opcao, Integer opcao2) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> disciplinas = new ArrayList<>();
+        ArrayList<Double> notas = new ArrayList<>();
+        for (int i = 0; i < Menu.getListaDeCursos().get(opcao - 1).getAlunos().get(opcao2 -1).getNotas().size(); i++) {
+            Menu.getListaDeCursos().get(opcao - 1)
+                    .getAlunos()
+                    .get(opcao2 -1)
+                    .getNotas().keySet().forEach((k) -> {
+                        disciplinas.add(k);
+                    });
+            System.out.println((i + 1) + " - " + disciplinas.get(i));
+        }
+        System.out.println("Informe a disciplina:");
+        Integer opcao3 = Integer.parseInt(scanner.nextLine());
+        System.out.println("Informe a nota N1:");
+        notas.add(Double.parseDouble(scanner.nextLine()));
+        System.out.println("Informe a nota N2:");
+        notas.add(Double.parseDouble(scanner.nextLine()));
+        Menu.getListaDeCursos().get(opcao - 1).getAlunos().get(opcao2 -1).getNotas().put(disciplinas.get(opcao3), notas);
+        System.out.println("Cadastrar nota de outras disciplina:");
+        System.out.println("1 - Sim");
+        System.out.println("2 - Não");
+        Integer opcao4 = Integer.parseInt(scanner.nextLine());
+        if (opcao4.equals(1)) {
+            darNotaAux(opcao, opcao2);
+        }
     }
 }
 

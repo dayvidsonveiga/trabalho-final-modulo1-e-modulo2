@@ -5,6 +5,7 @@ import models.Colaborador;
 import models.Endereco;
 import models.Menu;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PessoaFactory {
@@ -34,6 +35,12 @@ public class PessoaFactory {
         }
         Integer opcao = Integer.parseInt(scanner.nextLine());
         Menu.getListaDeCursos().get(opcao - 1).setAlunos(aluno);
+        ArrayList<Double> notas = new ArrayList<Double>();
+        notas.add(0.0);
+        notas.add(0.0);
+        for (int i = 0; i < Menu.getListaDeCursos().get(opcao - 1).getDisciplinas().size(); i++) {
+            aluno.setNotas(Menu.getListaDeCursos().get(opcao - 1).getDisciplinas().get(i).getNome(), notas);
+        }
     }
     public static void criarColaborador() {
         System.out.println("Digite o nome do colaborador:");
