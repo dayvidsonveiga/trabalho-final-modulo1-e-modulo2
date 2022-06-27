@@ -204,7 +204,8 @@ public class Menu {
         System.out.println("Digite 2 para atualizar as informações de um curso");
         System.out.println("Digite 3 para remover um curso");
         System.out.println("Digite 4 para acessar informações de um curso");
-        System.out.println("Digite 5 para voltar ao Menu Principal");
+        System.out.println("Digite 5 para adicionar uma disciplina à um curso");
+        System.out.println("Digite 6 para voltar ao Menu Principal");
         System.out.println("Digite 0 para sair");
         opcao = Integer.parseInt(scanner.nextLine());
         switch (opcao) {
@@ -225,6 +226,9 @@ public class Menu {
                 gestaoCurso.imprimirInformacoesDoCurso();
             }
             case 5 -> {
+                gestaoCurso.inserirDisciplinaNoCurso();
+            }
+            case 6 -> {
                 menuPrincipal();
             }
         }

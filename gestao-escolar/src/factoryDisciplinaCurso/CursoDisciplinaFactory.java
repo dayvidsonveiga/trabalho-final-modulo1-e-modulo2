@@ -40,7 +40,7 @@ public class CursoDisciplinaFactory {
         System.out.println("Adicionar quantas disciplinas");
         quantidadeDeMaterias = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < quantidadeDeMaterias; i++) {
-            System.out.println("Nome da " + i + "° disciplina:");
+            System.out.println("Nome da " + (i + 1) + "° disciplina:");
             String nomeDaDisciplina = scanner.nextLine();
             Disciplina disciplinaNova = new Disciplina();
             disciplinaNova.setNome(nomeDaDisciplina);
