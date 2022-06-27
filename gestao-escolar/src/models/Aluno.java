@@ -16,14 +16,14 @@ public class Aluno extends Pessoa{
         this.matricula = ++controleMatricula;
     }
 
-    public Aluno(String nome, String telefone, String email, Endereco endereco, Integer tipo, Curso curso) {
+    public Aluno(String nome, String telefone, String email, Endereco endereco, Curso curso) {
         super(nome, telefone, email, endereco);
         this.matricula = ++controleMatricula;
         this.curso = curso;
     }
 
     public Integer getMatricula() {
-        return matricula;
+        return this.matricula;
     }
 
     public void setMatricula(Integer matricula) {
@@ -49,6 +49,6 @@ public class Aluno extends Pessoa{
     @Override
     public String toString() {
         return "Nome: " + this.getNome() +
-                " | Matrícula: " + matricula;
+                " | Matrícula: " + this.matricula;
     }
 }

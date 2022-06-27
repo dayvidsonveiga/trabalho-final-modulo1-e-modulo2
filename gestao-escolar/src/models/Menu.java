@@ -17,8 +17,6 @@ public class Menu {
 
 
     public void menuPrincipal(){
-        Testes.teste();
-
         while (controle) {
             System.out.println("##SEJA BEM VINDO A ESCOLA##");
             System.out.println("---------------------------");
