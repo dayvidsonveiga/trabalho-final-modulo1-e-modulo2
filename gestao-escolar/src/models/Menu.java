@@ -18,8 +18,9 @@ public class Menu {
 
     public void menuPrincipal(){
         while (controle) {
+            System.out.println("----------------------------");
             System.out.println("##SEJA BEM VINDO A ESCOLA##");
-            System.out.println("---------------------------");
+            System.out.println("----------------------------");
             System.out.println("Digite 1 para acessar Portal do Aluno");
             System.out.println("Digite 2 para acessar Portal do Professor");
             System.out.println("Digite 3 para acessar Portal de Gestão");
@@ -46,6 +47,9 @@ public class Menu {
         }
     }
     public void menuPortalDoAluno() {
+        System.out.println("----------------------------");
+        System.out.println("    ##PORTAL DO ALUNO##     ");
+        System.out.println("----------------------------");
         System.out.println("Digite 1 para conferir as notas:");
         System.out.println("Digite 2 para voltar");
         System.out.println("Digite 0 para sair");
@@ -72,6 +76,9 @@ public class Menu {
 
     public void menuAreaDoProfessor() {
 //        limpaTela();
+        System.out.println("----------------------------");
+        System.out.println("   ##PORTAL DO PROFESSOR##  ");
+        System.out.println("----------------------------");
         System.out.println("Digite 1 para adicionar ou editar notas de alunos:");
         System.out.println("Digite 2 para voltar para o Menu Principal");
         System.out.println("Digite 0 para sair");
@@ -95,6 +102,9 @@ public class Menu {
 
     public void menuAreaDeGestao() {
 //        limpaTela();
+        System.out.println("----------------------------");
+        System.out.println("    ##PORTAL DO GESTOR##     ");
+        System.out.println("----------------------------");
         System.out.println("Digite 1 para gerenciar alunos");
         System.out.println("Digite 2 para gerenciar colaboradores");
         System.out.println("Digite 3 para gerenciar curso");
