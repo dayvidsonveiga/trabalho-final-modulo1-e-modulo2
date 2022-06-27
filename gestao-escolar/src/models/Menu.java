@@ -225,10 +225,12 @@ public class Menu {
             case 3 -> {
                 gestaoColaborador.remover();
                 System.out.println("---------------------------");
+                menuGerenciarColaboradores();
             }
             case 4 -> {
                 gestaoColaborador.imprimirInformacoes();
                 System.out.println("---------------------------");
+                menuGerenciarColaboradores();
             }
             case 5 -> {
                 menuPrincipal();
