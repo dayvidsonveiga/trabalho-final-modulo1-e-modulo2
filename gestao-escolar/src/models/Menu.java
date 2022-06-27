@@ -146,7 +146,7 @@ public class Menu {
                 PessoaFactory.criarAluno();
             }
             case 2 -> {
-                System.out.println("Em construção");
+                gestaoAluno.editar();
             }
             case 3 -> {
                 System.out.println("Em construção");
