@@ -4,7 +4,6 @@ import interfaces.Gestao;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Set;
 
 public class GestaoAluno implements Gestao {
 
@@ -18,15 +17,14 @@ public class GestaoAluno implements Gestao {
         for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
             System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
             for (int j = 0; j < Menu.getListaDeCursos().get(i).getAlunos().size(); j++) {
-                System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getAlunos().get(i).getNome());
+                System.out.println(Menu.getListaDeCursos().get(i).getAlunos().get(j));
             }
         }
-        System.out.println("Escolha o n° do curso");
         Integer escolhaCurso = Integer.parseInt(scanner.nextLine());
         System.out.println("Qual a matricula do aluno que deseja editar");
         Integer escolhaMatricula = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < Menu.getListaDeCursos().get(escolhaCurso).getAlunos().size(); i++) {
-            if (Menu.getListaDeCursos().get(escolhaCurso).getAlunos().get(i).getMatricula() == escolhaMatricula) {
+        for (int i = 0; i < Menu.getListaDeCursos().get(escolhaCurso - 1).getAlunos().size(); i++) {
+            if (Menu.getListaDeCursos().get(escolhaCurso - 1).getAlunos().get(i).getMatricula().equals(escolhaMatricula)) {
                 controle = true;
                 indexAluno = i;
             } else {
@@ -35,7 +33,7 @@ public class GestaoAluno implements Gestao {
         }
 
         if (controle) {
-            Aluno alunoEscolhido = Menu.getListaDeCursos().get(escolhaCurso).getAlunos().get(indexAluno);
+            Aluno alunoEscolhido = Menu.getListaDeCursos().get(escolhaCurso - 1).getAlunos().get(indexAluno);
             System.out.println("Digite o nome completo do Aluno:");
             alunoEscolhido.setNome(scanner.nextLine());
             System.out.println("Digite o telefone do Aluno:");
@@ -63,20 +61,19 @@ public class GestaoAluno implements Gestao {
     @Override
     public void remover() {
         Boolean controle = false;
-        Integer indexAluno = 0;
+        int indexAluno = 0;
         System.out.println("Qual o curso do aluno que deseja remover?");
         for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
             System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
             for (int j = 0; j < Menu.getListaDeCursos().get(i).getAlunos().size(); j++) {
-                System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getAlunos().get(i).getNome());
+                System.out.println(Menu.getListaDeCursos().get(i).getAlunos().get(j));
             }
         }
-        System.out.println("Escolha o curso:");
         Integer escolhaCurso = Integer.parseInt(scanner.nextLine());
         System.out.println("Qual a matricula do aluno que deseja remover");
         Integer escolhaMatricula = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < Menu.getListaDeCursos().get(escolhaCurso).getAlunos().size(); i++) {
-            if (Menu.getListaDeCursos().get(escolhaCurso).getAlunos().get(i).getMatricula() == escolhaMatricula) {
+        for (int i = 0; i < Menu.getListaDeCursos().get(escolhaCurso - 1).getAlunos().size(); i++) {
+            if (Menu.getListaDeCursos().get(escolhaCurso - 1).getAlunos().get(i).getMatricula().equals(escolhaMatricula)) {
                 controle = true;
                 indexAluno = i;
             } else {
@@ -84,8 +81,8 @@ public class GestaoAluno implements Gestao {
             }
         }
         if (controle) {
-            Menu.getListaDeCursos().get(escolhaCurso).getAlunos().remove(indexAluno);
-
+            Menu.getListaDeCursos().get(escolhaCurso - 1).getAlunos().remove(indexAluno);
+            System.out.println("Aluno removido");
         } else {
             System.out.println("Aluno não encontrado");
         }

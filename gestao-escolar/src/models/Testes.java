@@ -62,8 +62,8 @@ public class Testes {
         Endereco endereco4 = new Endereco("Rua Demétrio Ribeiro", "Porto Alegre", "RS", "93274-150", 1000);
 
         //alunos
-        Aluno aluno1 = new Aluno("João Torres", "98667412", "joao@torres.com", endereco1, 1000, direitoCurso);
-        Aluno aluno2 = new Aluno("Roberta Vaz", "33459699", "roberta@vaz.com", endereco2, 1000, cienciaDaComputacaoCurso);
+        Aluno aluno1 = new Aluno("João Torres", "98667412", "joao@torres.com", endereco1, direitoCurso);
+        Aluno aluno2 = new Aluno("Roberta Vaz", "33459699", "roberta@vaz.com", endereco2, cienciaDaComputacaoCurso);
 
         //professores
         Colaborador colaborador1 = new Colaborador("Marina Ribeiro", "985923366", "marina@ribeiro.com", endereco3, 9600.00, "Professora");
