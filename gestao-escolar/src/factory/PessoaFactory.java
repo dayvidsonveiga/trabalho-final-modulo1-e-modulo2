@@ -41,6 +41,7 @@ public class PessoaFactory {
         for (int i = 0; i < Menu.getListaDeCursos().get(opcao - 1).getDisciplinas().size(); i++) {
             aluno.setNotas(Menu.getListaDeCursos().get(opcao - 1).getDisciplinas().get(i).getNome(), notas);
         }
+        System.out.println("Aluno cadastrado");
     }
     public static void criarColaborador() {
         System.out.println("Digite o nome do colaborador:");

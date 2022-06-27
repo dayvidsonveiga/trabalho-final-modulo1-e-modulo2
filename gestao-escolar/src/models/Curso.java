@@ -62,4 +62,9 @@ public class Curso {
     public void setAlunos(ArrayList<Aluno> alunos) {
         this.alunos = alunos;
     }
+
+    @Override
+    public String toString() {
+        return "Curso: " + nome + "\nDisciplinas: \n" + disciplinas +"\nAlunos: \n" + alunos ;
+    }
 }

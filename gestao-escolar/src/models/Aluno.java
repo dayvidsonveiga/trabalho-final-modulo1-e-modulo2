@@ -45,4 +45,10 @@ public class Aluno extends Pessoa{
     public HashMap<String, ArrayList<Double>> getNotas() {
         return notas;
     }
+
+    @Override
+    public String toString() {
+        return "Nome: " + this.getNome() +
+                " | Matrícula: " + matricula;
+    }
 }

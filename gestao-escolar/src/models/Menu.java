@@ -13,9 +13,12 @@ public class Menu {
     static ArrayList<Disciplina> listaDeDisciplinas = new ArrayList<>();
     GestaoCurso gestaoCurso = new GestaoCurso();
     GestaoDisciplina gestaoDisciplina = new GestaoDisciplina();
+    GestaoAluno gestaoAluno = new GestaoAluno();
 
 
     public void menuPrincipal(){
+        Testes.teste();
+
         while (controle) {
             System.out.println("##SEJA BEM VINDO A ESCOLA##");
             System.out.println("---------------------------");
@@ -71,14 +74,14 @@ public class Menu {
                 controle = false;
                 break;
             }
-            case 1 -> {menuAreaDoColaborador();}
+            case 1 -> {menuAreaDoProfessor();}
             case 2 -> {menuSysAdmin();}
             case 3 -> {}
         }
     }
-    public void menuAreaDoColaborador() {
+    public void menuAreaDoProfessor() {
 //        limpaTela();
-        System.out.println("Digite 1 para conferir os últimos 3 pagamentos:");
+        System.out.println("Digite 1 para adicionar ou editar notas de alunos:");
         System.out.println("Digite 2 para voltar para o Menu Principal");
         System.out.println("Digite 0 para sair");
         opcao = Integer.parseInt(scanner.nextLine());
@@ -88,7 +91,7 @@ public class Menu {
                 break;
             }
             case 1 -> {
-                System.out.println("Em construção");
+                gestaoAluno.darNota();
             }
             case 2 -> {
                 menuPrincipal();
@@ -216,7 +219,7 @@ public class Menu {
                 gestaoCurso.remover();
             }
             case 4 -> {
-                System.out.println("Em construção");
+                gestaoCurso.imprimirInformacoesDoCurso();
             }
             case 5 -> {
                 menuPrincipal();

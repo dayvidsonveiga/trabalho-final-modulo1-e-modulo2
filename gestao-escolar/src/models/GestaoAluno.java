@@ -64,11 +64,13 @@ public class GestaoAluno implements Gestao {
 
     }
 
-    public void darNotaNota(){
+    public void darNota(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Escolha o curso:");
         for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
-            System.out.println((i + 1) + " - " + Menu.getListaDeDisciplinas().get(i).getNome());
+            for (int j = 0; j < Menu.getListaDeCursos().get(i).getDisciplinas().size(); j++) {
+                System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getDisciplinas().get(i).getNome());
+            }
         }
         Integer opcao = Integer.parseInt(scanner.nextLine());
         System.out.println("Escolha o aluno: ");

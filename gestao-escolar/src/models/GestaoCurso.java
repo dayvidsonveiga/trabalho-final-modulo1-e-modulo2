@@ -27,6 +27,17 @@ public class GestaoCurso implements Gestao {
             System.out.println((j + 1) + " - " + Menu.getListaDeCursos().get(j).getNome());
         }
         Integer opcao = Integer.parseInt(scanner.nextLine());
-        Menu.getListaDeDisciplinas().remove(opcao - 1);
+        Menu.getListaDeCursos().remove(opcao - 1);
+        System.out.println("Curso removido");
+    }
+
+    public void imprimirInformacoesDoCurso() {
+        Integer opcao = 0;
+        System.out.println("Escolha o curso");
+        for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
+        }
+        opcao = Integer.parseInt(scanner.nextLine());
+        System.out.println(Menu.getListaDeCursos().get(opcao - 1));
     }
 }
