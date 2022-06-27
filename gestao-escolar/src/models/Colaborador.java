@@ -29,4 +29,9 @@ public class Colaborador extends Pessoa{
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
 }

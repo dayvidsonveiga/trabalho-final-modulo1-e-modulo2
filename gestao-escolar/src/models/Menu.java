@@ -152,7 +152,7 @@ public class Menu {
                 gestaoAluno.remover();
             }
             case 4 -> {
-                System.out.println("Em construção");
+                gestaoAluno.imprimirInformacoes();
             }
             case 5 -> {
                 menuPrincipal();
@@ -256,7 +256,7 @@ public class Menu {
                 gestaoDisciplina.remover();
             }
             case 4 -> {
-                System.out.println("Em construção");
+                gestaoDisciplina.imprimirInformacoes();
             }
             case 5 -> {
                 menuPrincipal();

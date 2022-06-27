@@ -28,7 +28,7 @@ public class Testes {
 
         //disciplinas direito
         Disciplina introDireito = new Disciplina();
-        introDireito.setNome("Introduçãoa ao Direito");
+        introDireito.setNome("Introdução ao Direito");
         Disciplina direitoPenal = new Disciplina();
         direitoPenal.setNome("Direito Penal");
         Disciplina direitoConstitucional = new Disciplina();
@@ -67,6 +67,8 @@ public class Testes {
 
         //professores
         Colaborador colaborador1 = new Colaborador("Marina Ribeiro", "985923366", "marina@ribeiro.com", endereco3, 9600.00, "Professora");
+
+
         Colaborador colaborador2 = new Colaborador("Rodrigo Pereira", "98659916", "rodrigo@pereira.com", endereco4, 8000.00, "Professor");
 
         Menu.getListaDeCursos().add(cienciaDaComputacaoCurso);
@@ -74,9 +76,28 @@ public class Testes {
         Menu.getListaDeCursos().add(ensinoMedioCurso);
         Menu.getListaDeCursos().get(0).setAlunos(aluno1);
         Menu.getListaDeCursos().get(1).setAlunos(aluno2);
+
+        for (int i = 0; i < ensinoMedio.size(); i++) {
+            Menu.getListaDeDisciplinas().add(ensinoMedio.get(i));
+        }
+        for (int i = 0; i < direito.size(); i++) {
+            Menu.getListaDeDisciplinas().add(direito.get(i));
+        }
+        for (int i = 0; i < cienciaDaComputacao.size(); i++) {
+            Menu.getListaDeDisciplinas().add(cienciaDaComputacao.get(i));
+        }
+
+        portugues.setProfessor(colaborador1);
+        matematica.setProfessor(colaborador2);
+
+        ArrayList<Double> notas1 = new ArrayList<>();
+        notas1.add(9.0);
+        notas1.add(7.0);
+
+        Menu.getListaDeCursos().get(0).getAlunos().get(0).setNotas("Introdução a computação", notas1);
+        ArrayList<Double> notas2 = new ArrayList<>();
+        notas1.add(5.0);
+        notas1.add(8.0);
+        Menu.getListaDeCursos().get(1).getAlunos().get(0).setNotas("Introdução ao Direito", notas2);
     }
-
-
-
-
 }
