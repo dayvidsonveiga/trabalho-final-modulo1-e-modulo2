@@ -96,8 +96,8 @@ public class Testes {
 
         Menu.getListaDeCursos().get(0).getAlunos().get(0).setNotas("Introdução a computação", notas1);
         ArrayList<Double> notas2 = new ArrayList<>();
-        notas1.add(5.0);
-        notas1.add(8.0);
+        notas2.add(5.0);
+        notas2.add(8.0);
         Menu.getListaDeCursos().get(1).getAlunos().get(0).setNotas("Introdução ao Direito", notas2);
     }
 }

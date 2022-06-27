@@ -48,7 +48,7 @@ public class Aluno extends Pessoa{
 
     public void getNotasImprimir() {
          notas.keySet().forEach(chave -> {
-             System.out.println("Disciplina: " + chave + " Nota: " + notas.get(chave) + " Média: " + (notas.get(chave).get(0) + notas.get(chave).get(1)));
+             System.out.println("Disciplina: " + chave + " Nota: " + notas.get(chave) + " Média: " + (notas.get(chave).get(0) + notas.get(chave).get(1)) / 2);
          });
     }
 
