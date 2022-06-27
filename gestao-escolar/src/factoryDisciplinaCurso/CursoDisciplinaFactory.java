@@ -40,7 +40,7 @@ public class CursoDisciplinaFactory {
         System.out.println("Adicionar quantas disciplinas");
         quantidadeDeMaterias = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < quantidadeDeMaterias; i++) {
-            System.out.println("Nome da " + i + "° matéria:");
+            System.out.println("Nome da " + i + "° disciplina:");
             String nomeDaDisciplina = scanner.nextLine();
             Disciplina disciplinaNova = new Disciplina();
             disciplinaNova.setNome(nomeDaDisciplina);
@@ -73,10 +73,10 @@ public class CursoDisciplinaFactory {
             } else {
                 contem = false;
             }
-            if (contem) {
-                System.out.println("Esta disciplina já existe");
-            }else {Menu.getListaDeDisciplinas().add(nomeDaDisciplina);
-            }
+        }
+        if (contem) {
+            System.out.println("Esta disciplina já existe");
+        }else {Menu.getListaDeDisciplinas().add(nomeDaDisciplina);
         }
     }
 }
