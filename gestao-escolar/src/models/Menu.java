@@ -227,8 +227,8 @@ public class Menu {
                 System.out.println("---------------------------");
             }
             case 4 -> {
-                System.out.println("Em construção");
-
+                gestaoColaborador.imprimirInformacoes();
+                System.out.println("---------------------------");
             }
             case 5 -> {
                 menuPrincipal();

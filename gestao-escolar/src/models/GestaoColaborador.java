@@ -1,10 +1,11 @@
 package models;
 
 import interfaces.Gestao;
+import interfaces.Portal;
 
 import java.util.Scanner;
 
-public class GestaoColaborador implements Gestao {
+public class GestaoColaborador implements Gestao, Portal {
     @Override
     public void editar() {
         Scanner scanner = new Scanner(System.in);
@@ -47,5 +48,24 @@ public class GestaoColaborador implements Gestao {
         }
         int indexColaborador = Integer.parseInt(scanner.nextLine());
         Menu.getListaDeColaboradores().remove(indexColaborador - 1);
+    }
+
+    @Override
+    public void imprimirInformacoes() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Escolha o colaborador: ");
+        for (int i = 0; i < Menu.getListaDeColaboradores().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getListaDeColaboradores().get(i).getNome());
+        }
+        int indexColaborador = Integer.parseInt(scanner.nextLine());
+        Colaborador colaborador = (Colaborador) Menu.getListaDeColaboradores().get(indexColaborador - 1);
+        System.out.println("Nome: " + colaborador.getNome());
+        System.out.println("Cargo: " + colaborador.getCargo());
+        System.out.println("Salário: R$" + colaborador.getSalario());
+        System.out.println("Endereço: " + colaborador.getEndereco().getLogradouro());
+        System.out.println("Número: " + colaborador.getEndereco().getNumero());
+        System.out.println("Cep: " + colaborador.getEndereco().getCep());
+        System.out.println("Cidade: " + colaborador.getEndereco().getCidade());
+        System.out.println("Estado: " + colaborador.getEndereco().getEstado());
     }
 }
