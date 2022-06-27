@@ -45,10 +45,10 @@ public class Curso {
             } else {
                 contem = false;
             }
-            if (contem) {
-                System.out.println("Esta disciplina já existe no curso");
-            }else {this.disciplinas.add(disciplinas);
-            }
+        }
+        if (contem) {
+            System.out.println("Esta disciplina já existe no curso");
+        }else {this.disciplinas.add(disciplinas);
         }
     }
 

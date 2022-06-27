@@ -41,15 +41,36 @@ public class GestaoCurso implements Gestao {
         System.out.println(Menu.getListaDeCursos().get(opcao - 1));
     }
 
-    public void inserirDisciplinaNoCurso(){
-
-
-        System.out.println("Escolha o curso: \n");
-        for (int j = 0; j < Menu.getListaDeCursos().size(); j++) {
-            System.out.println((j + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
-        }
-        opcao = Integer.parseInt(scanner.nextLine());
-        armazenarDisciplina(disciplinaNova);
-        Menu.getListaDeCursos().get(opcao - 1).setDisciplinas(disciplinaNova);
-    }
+//    public void inserirDisciplinaNoCurso(){
+//
+//
+//        Integer quantidadeDeMaterias;
+//        System.out.println("Adicionar disciplina ao curso:");
+//        quantidadeDeMaterias = Integer.parseInt(scanner.nextLine());
+//        for (int i = 0; i < quantidadeDeMaterias; i++) {
+//            System.out.println("Nome da " + i + "° disciplina:");
+//            String nomeDaDisciplina = scanner.nextLine();
+//            Disciplina disciplinaNova = new Disciplina();
+//            disciplinaNova.setNome(nomeDaDisciplina);
+//            System.out.println("Deseja adicionar esta disciplina à um curso?\n1- Sim\n2 - Não");
+//            Integer opcao = Integer.parseInt(scanner.nextLine());
+//            switch (opcao) {
+//                case 1 -> {
+//                    System.out.println("Escolha o curso: \n");
+//                    for (int j = 0; j < Menu.getListaDeCursos().size(); j++) {
+//                        System.out.println((j + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
+//                    }
+//                    opcao = Integer.parseInt(scanner.nextLine());
+//                    armazenarDisciplina(disciplinaNova);
+//                    Menu.getListaDeCursos().get(opcao - 1).setDisciplinas(disciplinaNova);
+//                }
+//                case 2 -> {
+//                    armazenarDisciplina(disciplinaNova);
+//                }default -> {
+//                    System.out.println("Opção inválida");
+//                }
+//            }
+//        }
+//    }
+//    }
 }

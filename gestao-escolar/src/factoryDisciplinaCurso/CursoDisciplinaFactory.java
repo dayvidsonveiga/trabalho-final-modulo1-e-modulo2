@@ -44,13 +44,13 @@ public class CursoDisciplinaFactory {
             String nomeDaDisciplina = scanner.nextLine();
             Disciplina disciplinaNova = new Disciplina();
             disciplinaNova.setNome(nomeDaDisciplina);
-            System.out.println("Deseja adicionar esta disciplina à um curso?\n1- Sim\n2 - Não");
+            System.out.println("Deseja adicionar esta disciplina à um curso?\n1 - Sim\n2 - Não");
             Integer opcao = Integer.parseInt(scanner.nextLine());
             switch (opcao) {
                 case 1 -> {
                     System.out.println("Escolha o curso: \n");
                     for (int j = 0; j < Menu.getListaDeCursos().size(); j++) {
-                        System.out.println((j + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
+                        System.out.println((j + 1) + " - " + Menu.getListaDeCursos().get(j).getNome());
                     }
                     opcao = Integer.parseInt(scanner.nextLine());
                     armazenarDisciplina(disciplinaNova);
