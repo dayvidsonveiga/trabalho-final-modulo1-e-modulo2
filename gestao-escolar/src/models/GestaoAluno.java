@@ -1,11 +1,12 @@
 package models;
 
 import interfaces.Gestao;
+import interfaces.Portal;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GestaoAluno implements Gestao {
+public class GestaoAluno implements Gestao, Portal {
 
     Scanner scanner = new Scanner(System.in);
 
@@ -54,8 +55,6 @@ public class GestaoAluno implements Gestao {
         } else {
             System.out.println("Aluno não encontrado");
         }
-
-
     }
 
     @Override
@@ -128,6 +127,38 @@ public class GestaoAluno implements Gestao {
             darNotaAux(opcao, opcao2);
         } else {
             System.out.println("Notas adicionadas");
+        }
+    }
+
+    @Override
+    public void imprimirInformacoes() {
+        Boolean controle = false;
+        int indexAluno = 0;
+        System.out.println("Informe o numero referente ao seu curso");
+        for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
+            System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
+            for (int j = 0; j < Menu.getListaDeCursos().get(i).getAlunos().size(); j++) {
+                System.out.println(Menu.getListaDeCursos().get(i).getAlunos().get(j));
+            }
+        }
+        Integer escolhaCurso = Integer.parseInt(scanner.nextLine());
+        System.out.println("Informe a sua matricula");
+        Integer escolhaMatricula = Integer.parseInt(scanner.nextLine());
+        for (int i = 0; i < Menu.getListaDeCursos().get(escolhaCurso - 1).getAlunos().size(); i++) {
+            if (Menu.getListaDeCursos().get(escolhaCurso - 1).getAlunos().get(i).getMatricula().equals(escolhaMatricula)) {
+                controle = true;
+                indexAluno = i;
+            } else {
+                controle = false;
+            }
+        }
+        if (controle) {
+            Menu.getListaDeCursos().get(escolhaCurso - 1).getAlunos().forEach(aluno -> {
+                System.out.println("Matrícula: " + aluno.getMatricula() + "\nNome: " + aluno.getNome());
+                aluno.getNotasImprimir();
+            });
+        } else {
+            System.out.println("Matrícula não encontrada");
         }
     }
 }
