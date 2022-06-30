@@ -327,7 +327,6 @@ public class Menu {
                 menuPrincipal();
             }
             default -> {
-                menuGerenciarDisciplina();
             }
         }
 

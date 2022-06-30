@@ -17,7 +17,6 @@ public class GestaoAluno implements Gestao, Portal {
         System.out.println("Qual o curso do aluno que deseja editar?");
         for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
             System.out.println((i + 1) + " - " + Menu.getListaDeCursos().get(i).getNome());
-
         }
         Integer escolhaCurso = Integer.parseInt(scanner.nextLine());
         System.out.println("Qual a matricula do aluno que deseja editar");
