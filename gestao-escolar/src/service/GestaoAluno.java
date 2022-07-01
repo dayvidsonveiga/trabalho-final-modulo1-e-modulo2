@@ -1,7 +1,7 @@
-package models;
+package service;
 
-import interfaces.Gestao;
-import interfaces.Portal;
+import models.Aluno;
+import view.Menu;
 
 import java.util.ArrayList;
 import java.util.Scanner;

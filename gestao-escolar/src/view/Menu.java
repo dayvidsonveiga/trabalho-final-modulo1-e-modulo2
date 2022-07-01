@@ -1,6 +1,13 @@
-package models;
-import factory.PessoaFactory;
-import factoryDisciplinaCurso.CursoDisciplinaFactory;
+package view;
+import models.Curso;
+import models.Disciplina;
+import models.Pessoa;
+import service.GestaoAluno;
+import service.GestaoColaborador;
+import service.GestaoCurso;
+import service.GestaoDisciplina;
+import service.factory.PessoaFactory;
+import service.factory.CursoDisciplinaFactory;
 
 import java.util.ArrayList;
 import java.util.Scanner;

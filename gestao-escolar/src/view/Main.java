@@ -1,4 +1,5 @@
-import models.Menu;
+package view;
+
 import models.Testes;
 public class Main {
     public static void main(String[] args) {

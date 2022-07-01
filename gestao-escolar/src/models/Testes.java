@@ -1,5 +1,7 @@
 package models;
 
+import view.Menu;
+
 import java.util.ArrayList;
 import java.util.Collections;
 

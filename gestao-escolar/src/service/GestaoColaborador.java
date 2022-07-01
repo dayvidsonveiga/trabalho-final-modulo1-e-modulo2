@@ -1,7 +1,8 @@
-package models;
+package service;
 
-import interfaces.Gestao;
-import interfaces.Portal;
+import models.Colaborador;
+import models.Endereco;
+import view.Menu;
 
 import java.util.Scanner;
 

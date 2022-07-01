@@ -1,9 +1,9 @@
-package factory;
+package service.factory;
 
 import models.Aluno;
 import models.Colaborador;
 import models.Endereco;
-import models.Menu;
+import view.Menu;
 
 import java.util.ArrayList;
 import java.util.Scanner;

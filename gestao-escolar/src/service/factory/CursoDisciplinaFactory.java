@@ -1,9 +1,9 @@
-package factoryDisciplinaCurso;
+package service.factory;
 
 import models.Aluno;
 import models.Curso;
 import models.Disciplina;
-import models.Menu;
+import view.Menu;
 
 import java.util.ArrayList;
 import java.util.Scanner;
