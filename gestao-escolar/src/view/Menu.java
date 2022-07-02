@@ -313,10 +313,10 @@ public class Menu {
                 break;
             }
             case 1 -> {
-                Disciplina disciplina = CursoDisciplinaFactory.criarDisciplina();
-                DisciplinaRepository
-                enderecoService.adicionarEndereco(colaborador.getEndereco());
-                professorService.adicionarProfessor(colaborador);
+//                Disciplina disciplina = CursoDisciplinaFactory.criarDisciplina();
+//                DisciplinaRepository
+//                enderecoService.adicionarEndereco(colaborador.getEndereco());
+//                professorService.adicionarProfessor(colaborador);
 
                 CursoDisciplinaFactory.criarDisciplina();
                 System.out.println("---------------------------");

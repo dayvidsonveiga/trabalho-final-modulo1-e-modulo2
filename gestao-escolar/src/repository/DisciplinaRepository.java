@@ -4,6 +4,7 @@ import models.Colaborador;
 import models.Disciplina;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
@@ -93,12 +94,45 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
 
     @Override
     public boolean editar(Integer id, Disciplina disciplina) throws SQLException {
-
+        return false;
     }
 
     @Override
     public List<Disciplina> listar() throws SQLException {
-        return null;
+        List<Disciplina> disciplinas = new ArrayList<>();
+
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM DISCIPLINA";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            ResultSet res = statement.executeQuery();
+            while (res.next()) {
+                disciplinas.add(getDisciplinaFromResultSet(res));
+            }
+
+            return disciplinas;
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Disciplina getDisciplinaFromResultSet(ResultSet res) throws SQLException {
+        Disciplina disciplina = new Disciplina();
+        disciplina.setIdDisciplina(res.getInt("ID_DISCIPLINA"));
+        disciplina.setNome(res.getString("NOME"));
+        disciplina.setNome(res.getString("ID_PROFESSOR"));
+        return disciplina;
     }
 
 
