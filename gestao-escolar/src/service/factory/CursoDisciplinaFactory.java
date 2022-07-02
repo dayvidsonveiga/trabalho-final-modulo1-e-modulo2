@@ -35,34 +35,15 @@ public class CursoDisciplinaFactory {
         }
     }
 
-    public static void criarDisciplina() {
-        Integer quantidadeDeMaterias;
-        System.out.println("Adicionar quantas disciplinas");
-        quantidadeDeMaterias = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < quantidadeDeMaterias; i++) {
-            System.out.println("Nome da " + (i + 1) + "° disciplina:");
-            String nomeDaDisciplina = scanner.nextLine();
-            Disciplina disciplinaNova = new Disciplina();
-            disciplinaNova.setNome(nomeDaDisciplina);
-            System.out.println("Deseja adicionar esta disciplina à um curso?\n1 - Sim\n2 - Não");
-            Integer opcao = Integer.parseInt(scanner.nextLine());
-            switch (opcao) {
-                case 1 -> {
-                    System.out.println("Escolha o curso: \n");
-                    for (int j = 0; j < Menu.getListaDeCursos().size(); j++) {
-                        System.out.println((j + 1) + " - " + Menu.getListaDeCursos().get(j).getNome());
-                    }
-                    opcao = Integer.parseInt(scanner.nextLine());
-                    armazenarDisciplina(disciplinaNova);
-                    Menu.getListaDeCursos().get(opcao - 1).setDisciplinas(disciplinaNova);
-                }
-                case 2 -> {
-                    armazenarDisciplina(disciplinaNova);
-                }default -> {
-                    System.out.println("Opção inválida");
-                }
-            }
-        }
+    public static Disciplina criarDisciplina() {
+        Boolean contem = false;
+
+        System.out.println("Digite o nome da nova Disciplina: ");
+        String nomeDaDisciplina = scanner.nextLine();
+        Disciplina disciplinaNova = new Disciplina();
+        disciplinaNova.setNome(nomeDaDisciplina);
+
+        return disciplinaNova;
     }
 
     public static void armazenarDisciplina(Disciplina nomeDaDisciplina) {
@@ -79,4 +60,25 @@ public class CursoDisciplinaFactory {
         }else {Menu.getListaDeDisciplinas().add(nomeDaDisciplina);
         }
     }
+
+//    public static void adicionarDisciplinaCurso(Disciplina disciplina, Curso curso) {
+//        System.out.println("Deseja adicionar esta disciplina à um curso?\n1 - Sim\n2 - Não");
+//        Integer opcao = Integer.parseInt(scanner.nextLine());
+//        switch (opcao) {
+//            case 1 -> {
+//                System.out.println("Escolha o curso: \n");
+//                for (int j = 0; j < Menu.getListaDeCursos().size(); j++) {
+//                    System.out.println((j + 1) + " - " + Menu.getListaDeCursos().get(j).getNome());
+//                }
+//                opcao = Integer.parseInt(scanner.nextLine());
+//                armazenarDisciplina(disciplinaNova);
+//                Menu.getListaDeCursos().get(opcao - 1).setDisciplinas(disciplinaNova);
+//            }
+//            case 2 -> {
+//                armazenarDisciplina(disciplinaNova);
+//            }default -> {
+//                System.out.println("Opção inválida");
+//            }
+//        }
+//    }
 }

@@ -1,6 +1,7 @@
 package view;
 
 import models.*;
+import repository.DisciplinaRepository;
 import service.factory.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -312,6 +313,11 @@ public class Menu {
                 break;
             }
             case 1 -> {
+                Disciplina disciplina = CursoDisciplinaFactory.criarDisciplina();
+                DisciplinaRepository
+                enderecoService.adicionarEndereco(colaborador.getEndereco());
+                professorService.adicionarProfessor(colaborador);
+
                 CursoDisciplinaFactory.criarDisciplina();
                 System.out.println("---------------------------");
                 menuGerenciarDisciplina();
