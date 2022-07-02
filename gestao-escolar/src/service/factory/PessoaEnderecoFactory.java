@@ -21,7 +21,7 @@ public class PessoaEnderecoFactory {
         System.out.println("Aluno cadastrado");
         return aluno;
     }
-    public static void criarColaborador() {
+    public static Colaborador criarColaborador() {
         System.out.println("Digite o nome do colaborador:");
         Colaborador colaborador = new Colaborador(scanner.nextLine());
         System.out.println("Digite o telefone do Colaborador:");
@@ -35,12 +35,11 @@ public class PessoaEnderecoFactory {
         colaborador.setSalario(Double.parseDouble(scanner.nextLine()));
         System.out.println("Digite o endereço do Colaborador:");
         colaborador.setEndereco(criarEndereco());
-        for (int i = 0; i < Menu.getListaDeDisciplinas().size(); i++) {
-            System.out.println((i + 1) + " - " + Menu.getListaDeDisciplinas().get(i).getNome());
-        }
-        Integer opcao = Integer.parseInt(scanner.nextLine());
-        Menu.getListaDeDisciplinas().get(opcao - 1).setProfessor(colaborador);
-        Menu.getListaDeColaboradores().add(colaborador);
+//        for (int i = 0; i < Menu.getListaDeDisciplinas().size(); i++) {
+//            System.out.println((i + 1) + " - " + Menu.getListaDeDisciplinas().get(i).getNome());
+//        }
+//        Integer opcao = Integer.parseInt(scanner.nextLine());
+        return colaborador;
     }
 
     public static Endereco criarEndereco() {

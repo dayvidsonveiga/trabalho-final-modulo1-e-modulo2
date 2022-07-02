@@ -36,7 +36,7 @@ public class EnderecoService {
             controle = db.getEstado().equals(endereco.getEstado());
             controle = db.getCep().equals(endereco.getCep());
             if (endereco.getComplemento() != null) {
-                controle = db.getComplemento().equals(endereco.getComplemento());
+                controle = db.getComplemento() == endereco.getComplemento();
             }
             if (controle) {
                 posicao = db.getIdEndereco();

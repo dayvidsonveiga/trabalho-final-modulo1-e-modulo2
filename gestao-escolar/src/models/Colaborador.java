@@ -1,6 +1,7 @@
 package models;
 
 public class Colaborador extends Pessoa{
+    private Integer idColaborador, registroTrabalho;
     private Double salario;
     private String cargo;
 
@@ -28,6 +29,22 @@ public class Colaborador extends Pessoa{
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public Integer getIdColaborador() {
+        return idColaborador;
+    }
+
+    public void setIdColaborador(Integer idColaborador) {
+        this.idColaborador = idColaborador;
+    }
+
+    public Integer getRegistroTrabalho() {
+        return registroTrabalho;
+    }
+
+    public void setRegistroTrabalho(Integer registroTrabalho) {
+        this.registroTrabalho = registroTrabalho;
     }
 
     @Override

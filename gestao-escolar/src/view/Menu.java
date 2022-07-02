@@ -1,9 +1,6 @@
 package view;
 
-import models.Aluno;
-import models.Curso;
-import models.Disciplina;
-import models.Pessoa;
+import models.*;
 import service.factory.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,6 +21,7 @@ public class Menu {
     GestaoColaborador gestaoColaborador = new GestaoColaborador();
 
     EnderecoService enderecoService = new EnderecoService();
+    ProfessorService professorService = new ProfessorService();
 
 
     public void menuPrincipal(){
@@ -220,7 +218,10 @@ public class Menu {
                 break;
             }
             case 1 -> {
-                PessoaEnderecoFactory.criarColaborador();
+                Colaborador colaborador = PessoaEnderecoFactory.criarColaborador();
+                enderecoService.adicionarEndereco(colaborador.getEndereco());
+                professorService.adicionarProfessor(colaborador);
+
                 System.out.println("---------------------------");
                 menuGerenciarColaboradores();
             }
