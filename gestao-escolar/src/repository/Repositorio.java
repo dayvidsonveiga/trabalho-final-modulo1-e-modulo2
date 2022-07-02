@@ -1,5 +1,7 @@
 package repository;
 
+import models.Endereco;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -11,7 +13,7 @@ public interface Repositorio<CHAVE, OBJETO> {
 
     boolean remover(CHAVE id) throws SQLException;
 
-    boolean editar(CHAVE id, OBJETO objeto) throws SQLException;
+    boolean editar(CHAVE id, OBJETO endereco) throws SQLException;
 
     List<OBJETO> listar() throws SQLException;
 }
