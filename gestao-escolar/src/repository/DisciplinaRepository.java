@@ -28,6 +28,7 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
         Connection con = null;
         int posicao = 0;
         try {
+
             con = ConexaoBancoDeDados.getConnection();
 
             Integer proximoID = this.getProximoId(con);
