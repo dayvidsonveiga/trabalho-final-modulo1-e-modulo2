@@ -1,6 +1,7 @@
 package service;
 
 import models.Colaborador;
+import repository.EnderecoRepository;
 import repository.ProfessorRepository;
 
 import java.sql.SQLException;
@@ -28,7 +29,10 @@ public class ProfessorService {
         List<Colaborador> professores = this.listarProfessores();
         int opcao = (Integer.parseInt(scanner.nextLine())) - 1;
         try {
+            Integer idEndereco = professores.get(opcao).getIdEndereco();
             professorRepository.remover(professores.get(opcao).getIdColaborador());
+            EnderecoService enderecoService = new EnderecoService();
+            enderecoService.removerEndereco(idEndereco);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -37,9 +41,9 @@ public class ProfessorService {
         try {
             List<Colaborador> colaboradores = professorRepository.listar();
             for (int i = 0; i < colaboradores.size(); i++) {
-                System.out.println(i + " - " + colaboradores.get(i).getNome());
-                return colaboradores;
+                System.out.println((i + 1) + " - " + colaboradores.get(i).getNome());
             }
+                return colaboradores;
         } catch (SQLException e) {
             e.printStackTrace();
         }

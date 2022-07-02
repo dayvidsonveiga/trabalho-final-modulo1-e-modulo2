@@ -1,7 +1,7 @@
 package models;
 
 public class Colaborador extends Pessoa{
-    private Integer idColaborador, registroTrabalho;
+    private Integer idColaborador, registroTrabalho, idEndereco;
     private Double salario;
     private String cargo;
 
@@ -50,5 +50,13 @@ public class Colaborador extends Pessoa{
     @Override
     public String toString() {
         return this.getNome();
+    }
+
+    public Integer getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(Integer idEndereco) {
+        this.idEndereco = idEndereco;
     }
 }
