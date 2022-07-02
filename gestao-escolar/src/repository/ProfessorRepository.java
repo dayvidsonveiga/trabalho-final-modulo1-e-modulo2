@@ -1,8 +1,11 @@
 package repository;
 
 import models.Colaborador;
+import models.Endereco;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
@@ -88,8 +91,29 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
 
     @Override
     public boolean remover(Integer id) throws SQLException {
-        return false;
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "DELETE FROM PROFESSOR WHERE ID_PROFESSOR = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            return statement.execute();
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.getCause();
+            }
+        }
     }
+
 
     @Override
     public boolean editar(Integer id, Colaborador endereco) throws SQLException {
@@ -97,7 +121,44 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
     }
 
     @Override
-    public List listar() throws SQLException {
-        return null;
+    public List<Colaborador> listar() throws SQLException {
+        List<Colaborador> colaboradores = new ArrayList<>();
+
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM PROFESSOR";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            ResultSet res = statement.executeQuery();
+            while (res.next()) {
+                colaboradores.add(getColaboradorFromResultSet(res));
+            }
+            List<Colaborador> colaboradoresOrdenadosPorNome = colaboradores.stream()
+                    .sorted(Comparator.comparing(Colaborador::getNome)).toList();
+            return colaboradoresOrdenadosPorNome;
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Colaborador getColaboradorFromResultSet(ResultSet res) throws SQLException {
+        Colaborador colaborador = new Colaborador(res.getString("NOME"));
+        colaborador.setIdColaborador(res.getInt("ID_PROFESSOR"));
+        colaborador.setTelefone(res.getString("TELEFONE"));
+        colaborador.setEmail(res.getString("EMAIL"));
+        colaborador.setRegistroTrabalho(res.getInt("REGISTRO_TRABALHO"));
+        colaborador.setCargo(res.getString("CARGO"));
+        colaborador.setSalario(res.getDouble("SALÁRIO"));
+        return colaborador;
     }
 }

@@ -231,7 +231,7 @@ public class Menu {
                 menuGerenciarColaboradores();
             }
             case 3 -> {
-                gestaoColaborador.remover();
+                professorService.removerProfessor();
                 System.out.println("---------------------------");
                 menuGerenciarColaboradores();
             }
