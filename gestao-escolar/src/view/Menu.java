@@ -23,6 +23,8 @@ public class Menu {
 
     EnderecoService enderecoService = new EnderecoService();
     ProfessorService professorService = new ProfessorService();
+    DisciplinaRepository disciplinaRepository = new DisciplinaRepository();
+    DisciplinaService disciplinaService = new DisciplinaService();
 
 
     public void menuPrincipal(){
@@ -313,12 +315,8 @@ public class Menu {
                 break;
             }
             case 1 -> {
-//                Disciplina disciplina = CursoDisciplinaFactory.criarDisciplina();
-//                DisciplinaRepository
-//                enderecoService.adicionarEndereco(colaborador.getEndereco());
-//                professorService.adicionarProfessor(colaborador);
-
-                CursoDisciplinaFactory.criarDisciplina();
+                Disciplina disciplina = CursoDisciplinaFactory.criarDisciplina();
+                disciplinaService.adicionarDisciplina(disciplina);
                 System.out.println("---------------------------");
                 menuGerenciarDisciplina();
             }
@@ -328,7 +326,7 @@ public class Menu {
                 menuGerenciarDisciplina();
             }
             case 3 -> {
-                gestaoDisciplina.remover();
+                disciplinaService.removerDisciplina();
                 System.out.println("---------------------------");
                 menuGerenciarDisciplina();
             }

@@ -29,7 +29,6 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
         Connection con = null;
         int posicao = 0;
         try {
-
             con = ConexaoBancoDeDados.getConnection();
 
             Integer proximoID = this.getProximoId(con);
@@ -37,11 +36,11 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
 
             StringBuilder sql = new StringBuilder();
 
-            sql.append("INSERT INTO VEMSER_JEAN.DISCIPLINA (ID_DISCIPLINA, NOME");
+            sql.append("INSERT INTO DISCIPLINA (ID_DISCIPLINA, NOME");
             if (disciplina.getProfessor().getIdColaborador() != null) {
-                sql.append(",ID_PROFESSOR \n VALUES (?, ?, ?)");
+                sql.append(", ID_PROFESSOR) \n VALUES (?, ?, ?)");
             } else {
-                sql.append(")\nVALUES (?, ?)");
+                sql.append(") \n VALUES (?, ?)");
             }
 
             PreparedStatement statement = con.prepareStatement(sql.toString());
@@ -55,6 +54,7 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
             statement.executeUpdate();
             return disciplina;
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new SQLException(e.getCause());
         } finally {
             try {
@@ -94,7 +94,50 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
 
     @Override
     public boolean editar(Integer id, Disciplina disciplina) throws SQLException {
-        return false;
+        Connection con = null;
+        try {
+            StringBuilder sql = new StringBuilder();
+            int index = 1;
+            int res = 0;
+            con = ConexaoBancoDeDados.getConnection();
+
+            sql.append("UPDATE disciplina SET \n");
+
+            if (disciplina.getNome() != null) {
+                sql.append(" NOME = ?,");
+            }
+
+            if (disciplina.getProfessor() != null) {
+                sql.append(" ID_PROFESSOR = ?,");
+            }
+
+            sql.deleteCharAt(sql.length() -1);
+            sql.append(" WHERE id_disciplina = ? ");
+
+            PreparedStatement statement = con.prepareStatement(sql.toString());
+
+            if (disciplina.getNome() != null) {
+                statement.setString(index++, disciplina.getNome());
+            }
+
+            if (disciplina.getProfessor().getIdColaborador() != null) {
+                statement.setInt(index++, disciplina.getProfessor().getIdColaborador());
+            }
+
+            res = statement.executeUpdate();
+
+            return res > 0;
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -135,5 +178,29 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
         return disciplina;
     }
 
+    public Boolean conferirIdDisciplina(Integer id) throws SQLException {
+        Connection con = null;
+        Boolean controle = false;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
 
+            String sql = "SELECT * FROM DISCIPLINA WHERE ID_DISCIPLINA = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet res = statement.executeQuery();
+            controle = res.next();
+            return controle;
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
