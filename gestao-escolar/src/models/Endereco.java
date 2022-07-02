@@ -1,8 +1,8 @@
 package models;
 
 public class Endereco {
-    private String logradouro, cidade, estado, cep;
-    private Integer numero;
+    private String logradouro, cidade, estado, cep, complemento;
+    private Integer numero, idEndereco;
 
     public Endereco(String logradouro, String cidade, String estado, String cep, Integer numero) {
         this.logradouro = logradouro;
@@ -54,5 +54,21 @@ public class Endereco {
 
     public void setNumero(Integer numero) {
         this.numero = numero;
+    }
+
+    public Integer getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(Integer idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 }

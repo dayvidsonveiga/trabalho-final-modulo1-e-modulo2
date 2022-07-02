@@ -1,30 +1,29 @@
 package view;
+
+import models.Aluno;
 import models.Curso;
 import models.Disciplina;
 import models.Pessoa;
-import service.GestaoAluno;
-import service.GestaoColaborador;
-import service.GestaoCurso;
-import service.GestaoDisciplina;
-import service.factory.PessoaFactory;
-import service.factory.CursoDisciplinaFactory;
-
+import service.factory.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import service.*;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     Integer opcao;
     Boolean controle = true;
-    static ArrayList<Curso> listaDeCursos = new ArrayList<>();
-    static ArrayList<Disciplina> listaDeDisciplinas = new ArrayList<>();
+    public static ArrayList<Curso> listaDeCursos = new ArrayList<>();
+    public static ArrayList<Disciplina> listaDeDisciplinas = new ArrayList<>();
 
-    static ArrayList<Pessoa> listaDeColaboradores = new ArrayList<>();
+    public static ArrayList<Pessoa> listaDeColaboradores = new ArrayList<>();
     GestaoCurso gestaoCurso = new GestaoCurso();
     GestaoDisciplina gestaoDisciplina = new GestaoDisciplina();
     GestaoAluno gestaoAluno = new GestaoAluno();
 
     GestaoColaborador gestaoColaborador = new GestaoColaborador();
+
+    EnderecoService enderecoService = new EnderecoService();
 
 
     public void menuPrincipal(){
@@ -177,7 +176,8 @@ public class Menu {
                 break;
             }
             case 1 -> {
-                PessoaFactory.criarAluno();
+                Aluno aluno = PessoaEnderecoFactory.criarAluno();
+                enderecoService.adicionarEndereco(aluno.getEndereco());
                 System.out.println("---------------------------");
                 menuGerenciarAlunos();
             }
@@ -220,7 +220,7 @@ public class Menu {
                 break;
             }
             case 1 -> {
-                PessoaFactory.criarColaborador();
+                PessoaEnderecoFactory.criarColaborador();
                 System.out.println("---------------------------");
                 menuGerenciarColaboradores();
             }
