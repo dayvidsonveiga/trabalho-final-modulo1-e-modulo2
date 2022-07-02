@@ -71,4 +71,9 @@ public class Endereco {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
+
+    @Override
+    public String toString() {
+        return idEndereco + ", " + logradouro + ", " +  numero + ", " + cidade + ", " + estado  + ", " + cep;
+    }
 }
