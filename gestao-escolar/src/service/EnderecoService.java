@@ -110,4 +110,16 @@ public class EnderecoService {
             e.getCause();
         }
     }
+
+    public void removerEndereco(Integer id){
+        try {
+            System.out.println(id);
+            Integer quantidade = enderecoRepository.conferirPessoasComIdEndereco(id);
+            if (quantidade <= 1) {
+                enderecoRepository.remover(id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -135,9 +135,9 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
             while (res.next()) {
                 colaboradores.add(getColaboradorFromResultSet(res));
             }
-            List<Colaborador> colaboradoresOrdenadosPorNome = colaboradores.stream()
-                    .sorted(Comparator.comparing(Colaborador::getNome)).toList();
-            return colaboradoresOrdenadosPorNome;
+//            List<Colaborador> colaboradoresOrdenadosPorNome = colaboradores.stream()
+//                    .sorted(Comparator.comparing(Colaborador::getNome)).toList();
+            return colaboradores;
         } catch (SQLException e) {
             throw new SQLException(e.getCause());
         } finally {
@@ -159,6 +159,7 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
         colaborador.setRegistroTrabalho(res.getInt("REGISTRO_TRABALHO"));
         colaborador.setCargo(res.getString("CARGO"));
         colaborador.setSalario(res.getDouble("SALÁRIO"));
+        colaborador.setIdEndereco(res.getInt("ID_ENDERECO"));
         return colaborador;
     }
 }
