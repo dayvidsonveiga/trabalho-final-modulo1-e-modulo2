@@ -25,6 +25,8 @@ public class Menu {
     EnderecoService enderecoService = new EnderecoService();
     ProfessorService professorService = new ProfessorService();
     DisciplinaService disciplinaService = new DisciplinaService();
+    CursoService cursoService = new CursoService();
+
 
 
     public void menuPrincipal(){
@@ -266,7 +268,7 @@ public class Menu {
                 break;
             }
             case 1 -> {
-                CursoDisciplinaFactory.criarCurso();
+                cursoService.adicionarCurso();
                 System.out.println("---------------------------");
                 menuGerenciarCurso();
             }

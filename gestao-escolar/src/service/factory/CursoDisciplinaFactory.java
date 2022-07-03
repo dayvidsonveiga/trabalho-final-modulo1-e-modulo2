@@ -15,34 +15,18 @@ import java.util.Scanner;
 public class CursoDisciplinaFactory {
     static Scanner scanner = new Scanner(System.in);
 
-    public static void criarCurso() {
+    public static Curso criarCurso() {
         System.out.println("Informe o nome do novo curso:");
         String nomeDoCurso = scanner.nextLine();
-        Boolean contem = false;
-        Curso novoCurso = new Curso(nomeDoCurso);
-        ArrayList<Disciplina> disciplinaArrayList = new ArrayList<>();
-        novoCurso.setDisciplinas(disciplinaArrayList);
-        ArrayList<Aluno> alunoArrayList = new ArrayList<>();
-        novoCurso.setAlunos(alunoArrayList);
-        for (int i = 0; i < Menu.getListaDeCursos().size(); i++) {
-            if (Menu.getListaDeCursos().get(i).getNome().equalsIgnoreCase(novoCurso.getNome())) {
-                contem = true;
-            } else {
-                contem = false;
-            }
-        }
-        if (contem) {
-            System.out.println("Este curso já existe");
-        } else {
-            Menu.getListaDeCursos().add(novoCurso);
-            System.out.println("Curso adicionado");
-        }
+        Curso novoCurso = new Curso();
+        novoCurso.setNome(nomeDoCurso);
+
+        return novoCurso;
     }
 
     public static Disciplina criarDisciplina() {
         Integer opcao = 0;
         Integer escolhaProfessor = 0;
-        int posicaoProfessor;
         System.out.println("Digite o nome da nova Disciplina: ");
         String nomeDaDisciplina = scanner.nextLine();
         Disciplina disciplinaNova = new Disciplina();
