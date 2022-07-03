@@ -53,14 +53,14 @@ public class DisciplinaService {
 
     public void atualizarDisciplina() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Informe o numero referente a disciplina que deseja atualizar: ");
 
         int controleNome = 0;
         int controleProfessor = 0;
         Integer escolhaDisciplina = 0;
-        DisciplinaService disciplinaService = new DisciplinaService();
-        disciplinaService.listarDisciplina();
+        listarDisciplina();
         escolhaDisciplina = Integer.parseInt(scanner.nextLine());
-        Disciplina disciplinaEscolhida = disciplinaService.listarDisciplina().get(escolhaDisciplina - 1);
+        Disciplina disciplinaEscolhida = listarDisciplina().get(escolhaDisciplina - 1);
 
         try {
             if (disciplinaRepository.conferirIdDisciplina(disciplinaEscolhida.getIdDisciplina())) {

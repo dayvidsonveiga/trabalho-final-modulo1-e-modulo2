@@ -48,6 +48,35 @@ public class CursoService {
         return false;
     }
 
+    public void atualizarCurso() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Informe o numero referente ao Curso que deseja atualizar: ");
+
+        int controleNome = 0;
+        Integer escolhaCurso = 0;
+        listarCurso();
+        escolhaCurso = Integer.parseInt(scanner.nextLine());
+        Curso cursoEscolhido = listarCurso().get(escolhaCurso - 1);
+
+        try {
+            if (cursoRepository.conferirIdCurso(cursoEscolhido.getIdCurso())) {
+                System.out.println("Atualizar nome do Curso? [1 - Sim / 2 - Não]");
+                controleNome = Integer.parseInt(scanner.nextLine());
+                if (controleNome == 1) {
+                    System.out.println("Informe o novo Nome do Curso: ");
+                    cursoEscolhido.setNome(scanner.nextLine());
+                } else {
+                    System.out.println("Nome atual do Curso: " + cursoEscolhido.getNome());
+                }
+
+                cursoRepository.editar(cursoEscolhido.getIdCurso(), cursoEscolhido);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
     public void removerCurso() {
         Integer escolhaCurso = 0;
         Integer cursoEscolhido = 0;

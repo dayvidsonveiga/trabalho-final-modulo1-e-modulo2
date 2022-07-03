@@ -273,7 +273,7 @@ public class Menu {
                 menuGerenciarCurso();
             }
             case 2 -> {
-                gestaoCurso.editar();
+                cursoService.atualizarCurso();
                 System.out.println("---------------------------");
                 menuGerenciarCurso();
             }

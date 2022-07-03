@@ -85,8 +85,45 @@ public class CursoRepository implements Repositorio<Integer, Curso> {
     }
 
     @Override
-    public boolean editar(Integer id, Curso endereco) throws SQLException {
-        return false;
+    public boolean editar(Integer id, Curso curso) throws SQLException {
+        Connection con = null;
+        try {
+            StringBuilder sql = new StringBuilder();
+            int index = 1;
+            int res = 0;
+            con = ConexaoBancoDeDados.getConnection();
+
+            sql.append("UPDATE CURSO \n");
+
+            if (curso.getNome() != null) {
+                sql.append("SET NOME = ?");
+            }
+
+            sql.append(" WHERE ID_CURSO = ? ");
+
+            PreparedStatement statement = con.prepareStatement(sql.toString());
+
+            if (curso.getNome() != null) {
+                statement.setString(1, curso.getNome());
+            }
+
+            statement.setInt(2, curso.getIdCurso());
+
+            res = statement.executeUpdate();
+
+            return res > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -124,5 +161,32 @@ public class CursoRepository implements Repositorio<Integer, Curso> {
         curso.setIdCurso(res.getInt("ID_CURSO"));
         curso.setNome(res.getString("NOME"));
         return curso;
+    }
+
+    public Boolean conferirIdCurso(Integer id) throws SQLException {
+        Connection con = null;
+        Boolean controle = false;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM CURSO WHERE ID_CURSO = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet res = statement.executeQuery();
+            controle = res.next();
+            return controle;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
