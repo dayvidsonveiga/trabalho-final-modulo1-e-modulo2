@@ -125,6 +125,7 @@ public class CursoService {
         escolhaDisciplina = Integer.parseInt(scanner.nextLine());
         idDisciplina = disciplinaService.listarDisciplina().get(escolhaDisciplina).getIdDisciplina();
 
+
 //        cursoXdisciplinaAdicionarDisciplinaCurso(idDisciplina, idCurso);
 
 
