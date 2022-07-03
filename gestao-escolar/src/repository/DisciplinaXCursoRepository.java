@@ -1,8 +1,11 @@
 package repository;
 
+import models.Curso;
 import models.DisciplinaXCurso;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DisciplinaXCursoRepository {
 
@@ -52,7 +55,7 @@ public class DisciplinaXCursoRepository {
         }
     }
 
-    public void removerDisciplinaDoCurso(Integer idDisciplina, Integer idCurso) throws SQLException{
+    public void removerDisciplinaDoCurso(Integer idCurso, Integer idDisciplina) throws SQLException{
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
@@ -75,6 +78,45 @@ public class DisciplinaXCursoRepository {
                 e.getCause();
             }
         }
+    }
+
+    public List<DisciplinaXCurso> listarPorCurso(Integer idCurso) throws SQLException {
+        List<DisciplinaXCurso> disciplinaXCursos = new ArrayList<>();
+
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM DISCIPLINA_X_CURSO WHERE ID_CURSO = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, idCurso);
+
+            ResultSet res = statement.executeQuery();
+            while (res.next()) {
+                disciplinaXCursos.add(getFromResultSet(res));
+            }
+
+            return disciplinaXCursos;
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private DisciplinaXCurso getFromResultSet(ResultSet res) throws SQLException {
+        DisciplinaXCurso disciplinaXCurso = new DisciplinaXCurso();
+        disciplinaXCurso.setId(res.getInt("ID_DISCIPLINA_X_CURSO"));
+        disciplinaXCurso.setIdCurso(res.getInt("ID_CURSO"));
+        disciplinaXCurso.setIdDisciplina(res.getInt("ID_DISCIPLINA"));
+        return disciplinaXCurso;
     }
 
 }

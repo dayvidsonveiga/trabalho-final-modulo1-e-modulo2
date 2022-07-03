@@ -2,6 +2,7 @@ package repository;
 
 import models.Colaborador;
 import models.Disciplina;
+import models.DisciplinaXCurso;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -231,5 +232,39 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
                 e.printStackTrace();
             }
         }
+    }
+
+    public List<Disciplina> listarPorId(List<DisciplinaXCurso> disciplinaXCurso) throws SQLException{
+            List<Disciplina> disciplinas = new ArrayList<>();
+
+            Connection con = null;
+            try {
+                con = ConexaoBancoDeDados.getConnection();
+                for (DisciplinaXCurso objeto : disciplinaXCurso) {
+                    String sql = "SELECT * FROM DISCIPLINA WHERE ID_DISCIPLINA = ?";
+
+                    PreparedStatement statement = con.prepareStatement(sql);
+                    statement.setInt(1, objeto.getIdDisciplina());
+                    ResultSet res = statement.executeQuery();
+                    while (res.next()) {
+                        disciplinas.add(getDisciplinaFromResultSet(res));
+                    }
+                }
+
+
+
+                return disciplinas;
+            } catch (SQLException e) {
+                throw new SQLException(e.getCause());
+            } finally {
+                try {
+                    if (con != null) {
+                        con.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
     }
 }

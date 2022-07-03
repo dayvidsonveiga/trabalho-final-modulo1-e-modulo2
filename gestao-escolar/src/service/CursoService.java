@@ -2,7 +2,10 @@ package service;
 
 import models.Curso;
 import models.Disciplina;
+import models.DisciplinaXCurso;
 import repository.CursoRepository;
+import repository.DisciplinaRepository;
+import repository.DisciplinaXCursoRepository;
 import service.factory.CursoDisciplinaFactory;
 
 import java.sql.SQLException;
@@ -107,28 +110,60 @@ public class CursoService {
         return null;
     }
 
-    public void adicionarDisciplinaCurso() {
+    public void adicionarDisciplinaNoCurso() {
         int escolhaCurso = 0;
-        int idCurso = 0;
         int escolhaDisciplina = 0;
-        int idDisciplina = 0;
+        int opcao = 0;
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Em qual curso deseja adicionar a disciplina: ");
-        listarCurso();
-        escolhaCurso = Integer.parseInt(scanner.nextLine());
-        idCurso = listarCurso().get(escolhaCurso - 1).getIdCurso();
-
-        System.out.println("Escolha a disciplina a ser adicionada: ");
         DisciplinaService disciplinaService = new DisciplinaService();
-        disciplinaService.listarDisciplina();
-        escolhaDisciplina = Integer.parseInt(scanner.nextLine());
-        idDisciplina = disciplinaService.listarDisciplina().get(escolhaDisciplina).getIdDisciplina();
+        DisciplinaXCurso disciplinaXCurso = new DisciplinaXCurso();
+        DisciplinaXCursoRepository disciplinaXCursoRepository = new DisciplinaXCursoRepository();
+        try {
+            System.out.println("Escolha o curso: ");
+            listarCurso();
+            escolhaCurso = Integer.parseInt(scanner.nextLine());
+            disciplinaXCurso.setIdCurso(listarCurso().get(escolhaCurso - 1).getIdCurso());
 
+            while (opcao != 2) {
+                System.out.println("Escolha a disciplina a ser adicionada: ");
+                disciplinaService.listarDisciplina();
+                escolhaDisciplina = Integer.parseInt(scanner.nextLine());
+                disciplinaXCurso.setIdDisciplina(disciplinaService.listarDisciplina().get(escolhaDisciplina).getIdDisciplina());
+                disciplinaXCursoRepository.adicionarDisciplinaNoCurso(disciplinaXCurso);
+                System.out.println("Deseja adicionar outra disciplina no mesmo curso? [1 - Sim  2 - Não]");
+            }
+        } catch (SQLException e) {
+            e.getCause();
+        }
+    }
 
-//        cursoXdisciplinaAdicionarDisciplinaCurso(idDisciplina, idCurso);
+    public void removerDisciplinaDoCurso() {
+        int escolhaCurso = 0;
+        int escolhaDisciplina = 0;
+        int opcao = 0;
+        Scanner scanner = new Scanner(System.in);
+        DisciplinaRepository disciplinaRepository = new DisciplinaRepository();
+        DisciplinaXCursoRepository disciplinaXCursoRepository = new DisciplinaXCursoRepository();
+        List<Disciplina> disciplinasDoCurso;
+        try {
+            System.out.println("Escolha o curso:");
+            listarCurso();
+            escolhaCurso = Integer.parseInt(scanner.nextLine());
 
-
+            while (opcao != 2) {
+                System.out.println("Escolha a disciplina a ser removida:");
+                disciplinasDoCurso = disciplinaRepository.listarPorId(disciplinaXCursoRepository.listarPorCurso(escolhaCurso));
+                for (int i = 0; i < disciplinasDoCurso.size(); i++) {
+                    System.out.println((i + 1) + " - " + disciplinasDoCurso.get(i).getNome());
+                }
+                escolhaDisciplina = Integer.parseInt(scanner.nextLine());
+                disciplinaXCursoRepository.removerDisciplinaDoCurso(escolhaCurso, escolhaDisciplina);
+                System.out.println("Remover outra disciplina do curso? [1 - Sim  2 - Não]");
+                opcao = Integer.parseInt(scanner.nextLine());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
