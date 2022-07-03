@@ -191,12 +191,12 @@ public class Menu {
                 menuGerenciarAlunos();
             }
             case 3 -> {
-                gestaoAluno.remover();
+                alunoService.removerAluno();
                 System.out.println("---------------------------");
                 menuGerenciarAlunos();
             }
             case 4 -> {
-                gestaoAluno.imprimirInformacoes();
+                alunoService.listarAlunos();
                 System.out.println("---------------------------");
                 menuGerenciarAlunos();
             }
