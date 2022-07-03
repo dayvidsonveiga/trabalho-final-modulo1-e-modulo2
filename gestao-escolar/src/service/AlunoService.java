@@ -1,8 +1,6 @@
 package service;
 
 import models.Aluno;
-import models.Colaborador;
-import repository.EnderecoRepository;
 import repository.AlunoRepository;
 
 import java.sql.SQLException;
@@ -24,6 +22,51 @@ public class AlunoService {
         }
     }
 
+    public void editarAluno(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Informe o ID do aluno que deseja atualizar dados: ");
+
+        int controleNome = 0;
+        int controleTelefone = 0;
+        int controleEmail = 0;
+        Integer escolhaAluno = 0;
+        listarAlunos();
+        escolhaAluno = Integer.parseInt(scanner.nextLine());
+        Aluno alunoEscolhido = listarAlunos().get(escolhaAluno);
+
+        try {
+            System.out.println("Atualizar nome do aluno? [1 - Sim / 2 - Não]");
+            controleNome = Integer.parseInt(scanner.nextLine());
+            if (controleNome == 1) {
+                System.out.println("Informe o novo Nome da Disciplina: ");
+                alunoEscolhido.setNome(scanner.nextLine());
+            } else {
+                System.out.println("Nome atual da disciplina: " + alunoEscolhido.getNome());
+            }
+
+            System.out.println("Atualizar o telefone do aluno? [1 - Sim / 2 - Não]");
+            controleTelefone = Integer.parseInt(scanner.nextLine());
+                if (controleTelefone == 1) {
+                    System.out.println("Informe o novo número de telefone: ");
+                    alunoEscolhido.setTelefone(scanner.nextLine());
+                } else {
+                    System.out.println("Número de telefone atual: " + alunoEscolhido.getTelefone());
+                }
+
+            System.out.println("Atualizar o e-mail do aluno? [1 - Sim / 2 - Não]");
+            controleEmail = Integer.parseInt(scanner.nextLine());
+            if (controleEmail == 1) {
+                System.out.println("Informe o novo e-mail: ");
+                alunoEscolhido.setEmail(scanner.nextLine());
+            } else {
+                System.out.println("E-mail atual: " + alunoEscolhido.getEmail());
+            }
+                alunoRepository.editar(alunoEscolhido.getIdAluno(), alunoEscolhido);
+            } catch (SQLException e) {
+            e.getCause();
+            }
+    }
+
     public void removerAluno() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Qual aluno deseja remover?");
@@ -41,15 +84,12 @@ public class AlunoService {
 
     public List<Aluno> listarAlunos() {
         try {
-            List<Aluno> alunos = alunoRepository.listar();
-            for (int i = 0; i < alunos.size(); i++) {
-                System.out.println((i + 1) + " - " + alunos.get(i).getNome());
-            }
-            return alunos;
+            List<Aluno> listar = alunoRepository.listar();
+            listar.forEach(System.out::println);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
-}
+    }
 
