@@ -278,7 +278,7 @@ public class Menu {
                 menuGerenciarCurso();
             }
             case 3 -> {
-                gestaoCurso.remover();
+                cursoService.removerCurso();
                 System.out.println("---------------------------");
                 menuGerenciarCurso();
             }

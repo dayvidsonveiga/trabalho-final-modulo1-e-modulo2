@@ -7,6 +7,7 @@ import service.factory.CursoDisciplinaFactory;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Scanner;
 
 public class CursoService {
 
@@ -45,6 +46,36 @@ public class CursoService {
             return true;
         }
         return false;
+    }
+
+    public void removerCurso() {
+        Integer escolhaCurso = 0;
+        Integer cursoEscolhido = 0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Qual curso deseja remover?");
+        listarCurso();
+        escolhaCurso = Integer.parseInt(scanner.nextLine());
+        cursoEscolhido = listarCurso().get(escolhaCurso - 1).getIdCurso();
+        System.out.println(cursoEscolhido);
+        try {
+            cursoRepository.remover(cursoEscolhido);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    private List<Curso> listarCurso() {
+        try {
+            List<Curso> cursos = cursoRepository.listar();
+            for (int i = 0; i < cursos.size(); i++) {
+                System.out.println((i + 1) + " - " + cursos.get(i).getNome());
+            }
+            return cursos;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
