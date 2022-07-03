@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Curso {
     private String nome;
+    private Integer IdCurso;
     private ArrayList<Disciplina> disciplinas = new ArrayList<>();
     private ArrayList<Aluno> alunos = new ArrayList<>();
 
@@ -28,6 +29,14 @@ public class Curso {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Integer getIdCurso() {
+        return IdCurso;
+    }
+
+    public void setIdCurso(Integer idCurso) {
+        IdCurso = idCurso;
     }
 
     public ArrayList<Disciplina> getDisciplinas() {

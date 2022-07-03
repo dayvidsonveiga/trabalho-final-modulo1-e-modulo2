@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Aluno extends Pessoa{
-    private Integer matricula;
+    private Integer idAluno, matricula, idCurso;
     private Curso curso;
     private HashMap<String, ArrayList<Double>> notas = new HashMap<String, ArrayList<Double>>();
 
@@ -20,6 +20,22 @@ public class Aluno extends Pessoa{
         super(nome, telefone, email, endereco);
         this.matricula = ++controleMatricula;
         this.curso = curso;
+    }
+
+    public Integer getIdAluno() {
+        return idAluno;
+    }
+
+    public void setIdAluno(Integer idAluno) {
+        this.idAluno = idAluno;
+    }
+
+    public Integer getIdCurso() {
+        return idCurso;
+    }
+
+    public void setIdCurso(Integer idCurso) {
+        this.idCurso = idCurso;
     }
 
     public Integer getMatricula() {
@@ -48,9 +64,9 @@ public class Aluno extends Pessoa{
 
     public void getNotasImprimir() {
         System.out.println("Nome: " + this.getNome());
-         notas.keySet().forEach(chave -> {
-             System.out.println("Disciplina: " + chave + " Nota: " + notas.get(chave) + " Média: " + (notas.get(chave).get(0) + notas.get(chave).get(1)) / notas.get(chave).size());
-         });
+        notas.keySet().forEach(chave -> {
+            System.out.println("Disciplina: " + chave + " Nota: " + notas.get(chave) + " Média: " + (notas.get(chave).get(0) + notas.get(chave).get(1)) / notas.get(chave).size());
+        });
     }
 
     @Override

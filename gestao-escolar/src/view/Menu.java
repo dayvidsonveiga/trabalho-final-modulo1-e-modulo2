@@ -19,6 +19,8 @@ public class Menu {
     GestaoDisciplina gestaoDisciplina = new GestaoDisciplina();
     GestaoAluno gestaoAluno = new GestaoAluno();
 
+    AlunoService alunoService = new AlunoService();
+
     GestaoColaborador gestaoColaborador = new GestaoColaborador();
 
     EnderecoService enderecoService = new EnderecoService();
@@ -179,6 +181,7 @@ public class Menu {
             case 1 -> {
                 Aluno aluno = PessoaEnderecoFactory.criarAluno();
                 enderecoService.adicionarEndereco(aluno.getEndereco());
+                alunoService.adicionarAluno(aluno);
                 System.out.println("---------------------------");
                 menuGerenciarAlunos();
             }
