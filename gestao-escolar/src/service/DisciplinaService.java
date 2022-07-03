@@ -34,12 +34,11 @@ public class DisciplinaService {
         int posicao = 0;
         List<Disciplina> disciplinasDb = disciplinaRepository.listar();
         for (Disciplina db : disciplinasDb) {
-            if (db.getNome() != null) {
-                controle = db.getNome().equals(disciplina.getNome());
-                if (controle) {
-                    posicao = db.getIdDisciplina();
-                }
+            controle = db.getNome().equals(disciplina.getNome());
+            if (controle) {
+                posicao = db.getIdDisciplina();
             }
+
         }
         if (posicao != 0) {
             disciplina.setIdDisciplina(posicao);
@@ -48,31 +47,43 @@ public class DisciplinaService {
         return false;
     }
 
-    public void atualizarDisciplina(Disciplina disciplina) {
-        int controle = 2;
-        try {
-            if (disciplinaRepository.conferirIdDisciplina(disciplina.getIdDisciplina())) {
+    public void atualizarDisciplina() {
+        Scanner scanner = new Scanner(System.in);
+        int controleNome = 0;
+        int controleProfessor = 0;
+        Integer escolhaDisciplina = 0;
+        DisciplinaService disciplinaService = new DisciplinaService();
+        disciplinaService.listarDisciplina();
+        escolhaDisciplina = Integer.parseInt(scanner.nextLine());
+        Disciplina disciplinaEscolhida = disciplinaService.listarDisciplina().get(escolhaDisciplina - 1);
 
-                Scanner scanner = new Scanner(System.in);
+        try {
+            if (disciplinaRepository.conferirIdDisciplina(disciplinaEscolhida.getIdDisciplina())) {
+
 
                 System.out.println("Atualizar nome da disciplina? [1 - Sim / 2 - Não]");
-                if (controle == 1) {
-                    System.out.println("Nome: ");
-                    disciplina.setNome(scanner.nextLine());
+                controleNome = Integer.parseInt(scanner.nextLine());
+                if (controleNome == 1) {
+                    System.out.println("Informe o novo Nome da Disciplina: ");
+                    disciplinaEscolhida.setNome(scanner.nextLine());
                 } else {
-                    System.out.println("Nome atual da disciplina: " + disciplina.getNome());
+                    System.out.println("Nome atual da disciplina: " + disciplinaEscolhida.getNome());
                 }
 
                 System.out.println("Alterar professor da disciplina? [1 - Sim / 2 - Não]");
-                if (controle == 1) {
+                controleProfessor = Integer.parseInt(scanner.nextLine());
+                if (controleProfessor == 1) {
                     System.out.println("Informe o numero referente ao professor: ");
-
-                    //Faltando setar novo professor
+                    ProfessorService professorService = new ProfessorService();
+                    professorService.listarProfessores();
+                    int escolhaProfessor = Integer.parseInt(scanner.nextLine());
+                    Colaborador professorEscolhido = professorService.listarProfessores().get(escolhaProfessor - 1);
+                    disciplinaEscolhida.setProfessor(professorEscolhido);
                 } else {
-                    System.out.println("Nome do atual professor da disciplina: " + disciplina.getProfessor());
+                    System.out.println("Nome do atual professor da disciplina: " + disciplinaEscolhida.getProfessor());
                 }
 
-                disciplinaRepository.editar(disciplina.getIdDisciplina(), disciplina);
+                disciplinaRepository.editar(disciplinaEscolhida.getIdDisciplina(), disciplinaEscolhida);
             }
         } catch (SQLException e) {
             e.getCause();
@@ -80,16 +91,32 @@ public class DisciplinaService {
     }
 
     public void removerDisciplina() {
+        Integer escolhaDisciplina = 0;
+        Integer disciplinaEscolhida = 0;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Qual disciplina deseja remover?");
-        List<Disciplina> disciplinas = this.listarDisciplina();
-        int opcao = (Integer.parseInt(scanner.nextLine())) - 1;
+        listarDisciplina();
+        escolhaDisciplina = Integer.parseInt(scanner.nextLine());
+        disciplinaEscolhida = listarDisciplina().get(escolhaDisciplina - 1).getIdDisciplina();
+        System.out.println(disciplinaEscolhida);
         try {
-            Integer idEndereco = disciplinas.get(opcao).getIdDisciplina();
-            disciplinaRepository.remover(disciplinas.get(opcao).getIdDisciplina());
+            disciplinaRepository.remover(disciplinaEscolhida);
         } catch (SQLException e) {
             e.printStackTrace();
+            e.getCause();
         }
+    }
+
+    public void imprimirInformacoesDisciplina() {
+        //Em construção
+        Integer escolhaDisciplina = 0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Sobre qual disciplina deseja saber? ");
+        listarDisciplina();
+        escolhaDisciplina = Integer.parseInt(scanner.nextLine());
+        Disciplina disciplina = listarDisciplina().get(escolhaDisciplina - 1);
+        System.out.println(disciplina.getProfessor());
+        System.out.println(disciplina.getNome());
     }
 
     public List<Disciplina> listarDisciplina() {

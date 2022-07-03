@@ -60,7 +60,6 @@ public class CursoDisciplinaFactory {
             disciplinaNova.setProfessor(null);
         }
 
-
         return disciplinaNova;
     }
 

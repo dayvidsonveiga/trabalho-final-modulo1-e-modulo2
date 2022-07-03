@@ -28,7 +28,9 @@ public class Disciplina {
         this.nome = nome;
     }
 
-    public void imprimirDisciplina() {};
+    public void imprimirDisciplina() {
+
+    }
 
 
     public Colaborador getProfessor() {

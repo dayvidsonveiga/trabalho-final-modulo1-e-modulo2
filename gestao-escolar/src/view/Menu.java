@@ -324,7 +324,8 @@ public class Menu {
                 menuGerenciarDisciplina();
             }
             case 2 -> {
-                gestaoDisciplina.editar();
+
+                disciplinaService.atualizarDisciplina();
                 System.out.println("---------------------------");
                 menuGerenciarDisciplina();
             }
@@ -334,7 +335,8 @@ public class Menu {
                 menuGerenciarDisciplina();
             }
             case 4 -> {
-                gestaoDisciplina.imprimirInformacoes();
+                System.out.println("Em construção");
+                disciplinaService.imprimirInformacoesDisciplina();
                 System.out.println("---------------------------");
                 menuGerenciarDisciplina();
             }
@@ -342,6 +344,7 @@ public class Menu {
                 menuPrincipal();
             }
             default -> {
+                System.out.println("Informe uma opção válida.");
             }
         }
 
