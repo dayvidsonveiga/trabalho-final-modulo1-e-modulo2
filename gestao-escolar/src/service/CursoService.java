@@ -114,7 +114,7 @@ public class CursoService {
         int idDisciplina = 0;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("A qual curso deseja adicionar a disciplina: ");
+        System.out.println("Em qual curso deseja adicionar a disciplina: ");
         listarCurso();
         escolhaCurso = Integer.parseInt(scanner.nextLine());
         idCurso = listarCurso().get(escolhaCurso - 1).getIdCurso();
