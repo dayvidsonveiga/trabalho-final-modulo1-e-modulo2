@@ -107,4 +107,27 @@ public class CursoService {
         return null;
     }
 
+    public void adicionarDisciplinaCurso() {
+        int escolhaCurso = 0;
+        int idCurso = 0;
+        int escolhaDisciplina = 0;
+        int idDisciplina = 0;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("A qual curso deseja adicionar a disciplina: ");
+        listarCurso();
+        escolhaCurso = Integer.parseInt(scanner.nextLine());
+        idCurso = listarCurso().get(escolhaCurso - 1).getIdCurso();
+
+        System.out.println("Escolha a disciplina a ser adicionada: ");
+        DisciplinaService disciplinaService = new DisciplinaService();
+        disciplinaService.listarDisciplina();
+        escolhaDisciplina = Integer.parseInt(scanner.nextLine());
+        idDisciplina = disciplinaService.listarDisciplina().get(escolhaDisciplina).getIdDisciplina();
+
+//        cursoXdisciplinaAdicionarDisciplinaCurso(idDisciplina, idCurso);
+
+
+    }
+
 }
