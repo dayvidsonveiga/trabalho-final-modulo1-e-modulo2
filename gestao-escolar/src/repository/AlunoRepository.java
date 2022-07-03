@@ -1,5 +1,6 @@
 package repository;
 
+import models.Colaborador;
 import repository.ConexaoBancoDeDados;
 import models.Aluno;
 import models.Endereco;
@@ -95,7 +96,27 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
 
     @Override
     public boolean remover(Integer id) throws SQLException {
-        return false;
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "DELETE FROM ALUNO WHERE ID_ALUNO = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            return statement.execute();
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.getCause();
+            }
+        }
     }
 
     @Override
@@ -105,7 +126,40 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
 
     @Override
     public List<Aluno> listar() throws SQLException {
-        return null;
+        List<Aluno> alunos = new ArrayList<>();
+
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM ALUNO";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            ResultSet res = statement.executeQuery();
+            while (res.next()) {
+                alunos.add(getAlunoFromResultSet(res));
+            }
+            return alunos;
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Aluno getAlunoFromResultSet(ResultSet res) throws SQLException {
+        Aluno aluno = new Aluno(res.getString("NOME"));
+        aluno.setIdAluno(res.getInt("ID_ALUNO"));
+        aluno.setTelefone(res.getString("TELEFONE"));
+        aluno.setEmail(res.getString("EMAIL"));
+        aluno.setMatricula(res.getInt("MATRICULA"));
+        return aluno;
     }
 
 }
