@@ -251,8 +251,6 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
                     }
                 }
 
-
-
                 return disciplinas;
             } catch (SQLException e) {
                 throw new SQLException(e.getCause());

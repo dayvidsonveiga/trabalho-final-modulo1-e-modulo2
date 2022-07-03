@@ -150,17 +150,17 @@ public class CursoService {
         List<Disciplina> disciplinasDoCurso;
         try {
             System.out.println("Escolha o curso:");
-            listarCurso();
-            escolhaCurso = Integer.parseInt(scanner.nextLine());
+            List<Curso> cursos = listarCurso();
+            escolhaCurso = Integer.parseInt(scanner.nextLine()) - 1;
 
             while (opcao != 2) {
                 System.out.println("Escolha a disciplina a ser removida:");
-                disciplinasDoCurso = disciplinaRepository.listarPorId(disciplinaXCursoRepository.listarPorCurso(escolhaCurso));
+                disciplinasDoCurso = disciplinaRepository.listarPorId(disciplinaXCursoRepository.listarPorCurso(cursos.get(escolhaCurso).getIdCurso()));
                 for (int i = 0; i < disciplinasDoCurso.size(); i++) {
                     System.out.println((i + 1) + " - " + disciplinasDoCurso.get(i).getNome());
                 }
                 escolhaDisciplina = (Integer.parseInt(scanner.nextLine())) - 1;
-                disciplinaXCursoRepository.removerDisciplinaDoCurso(escolhaCurso, escolhaDisciplina);
+                disciplinaXCursoRepository.removerDisciplinaDoCurso(cursos.get(escolhaCurso).getIdCurso(), disciplinasDoCurso.get(escolhaDisciplina).getIdDisciplina());
                 System.out.println("Remover outra disciplina do curso? [1 - Sim  2 - Não]");
                 opcao = Integer.parseInt(scanner.nextLine());
             }
