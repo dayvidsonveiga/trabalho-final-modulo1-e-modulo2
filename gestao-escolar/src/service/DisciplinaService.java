@@ -5,6 +5,7 @@ import models.Curso;
 import models.Disciplina;
 import repository.DisciplinaRepository;
 import repository.ProfessorRepository;
+import service.factory.CursoDisciplinaFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,7 +20,10 @@ public class DisciplinaService {
         disciplinaRepository = new DisciplinaRepository();
     }
 
-    public void adicionarDisciplina(Disciplina disciplina) {
+    public void adicionarDisciplina() {
+
+        Disciplina disciplina = CursoDisciplinaFactory.criarDisciplina();
+
         try {
             if (!(this.conferirSeDisciplinaExiste(disciplina))) {
                 disciplinaRepository.adicionar(disciplina);
@@ -49,6 +53,7 @@ public class DisciplinaService {
 
     public void atualizarDisciplina() {
         Scanner scanner = new Scanner(System.in);
+
         int controleNome = 0;
         int controleProfessor = 0;
         Integer escolhaDisciplina = 0;
@@ -59,7 +64,6 @@ public class DisciplinaService {
 
         try {
             if (disciplinaRepository.conferirIdDisciplina(disciplinaEscolhida.getIdDisciplina())) {
-
 
                 System.out.println("Atualizar nome da disciplina? [1 - Sim / 2 - Não]");
                 controleNome = Integer.parseInt(scanner.nextLine());
@@ -72,6 +76,7 @@ public class DisciplinaService {
 
                 System.out.println("Alterar professor da disciplina? [1 - Sim / 2 - Não]");
                 controleProfessor = Integer.parseInt(scanner.nextLine());
+
                 if (controleProfessor == 1) {
                     System.out.println("Informe o numero referente ao professor: ");
                     ProfessorService professorService = new ProfessorService();

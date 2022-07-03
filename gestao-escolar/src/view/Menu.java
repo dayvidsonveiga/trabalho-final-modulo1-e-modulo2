@@ -16,7 +16,6 @@ public class Menu {
 
     public static ArrayList<Pessoa> listaDeColaboradores = new ArrayList<>();
     GestaoCurso gestaoCurso = new GestaoCurso();
-    GestaoDisciplina gestaoDisciplina = new GestaoDisciplina();
     GestaoAluno gestaoAluno = new GestaoAluno();
 
     AlunoService alunoService = new AlunoService();
@@ -25,7 +24,6 @@ public class Menu {
 
     EnderecoService enderecoService = new EnderecoService();
     ProfessorService professorService = new ProfessorService();
-    DisciplinaRepository disciplinaRepository = new DisciplinaRepository();
     DisciplinaService disciplinaService = new DisciplinaService();
 
 
@@ -318,13 +316,11 @@ public class Menu {
                 break;
             }
             case 1 -> {
-                Disciplina disciplina = CursoDisciplinaFactory.criarDisciplina();
-                disciplinaService.adicionarDisciplina(disciplina);
+                disciplinaService.adicionarDisciplina();
                 System.out.println("---------------------------");
                 menuGerenciarDisciplina();
             }
             case 2 -> {
-
                 disciplinaService.atualizarDisciplina();
                 System.out.println("---------------------------");
                 menuGerenciarDisciplina();
