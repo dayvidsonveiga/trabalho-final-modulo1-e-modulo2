@@ -1,6 +1,7 @@
 package repository;
 
 import models.Colaborador;
+import models.Disciplina;
 import repository.ConexaoBancoDeDados;
 import models.Aluno;
 import models.Endereco;
@@ -45,6 +46,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
     @Override
     public Aluno adicionar(Aluno aluno) throws SQLException {
         Connection con = null;
+        Integer index = 1;
         int posicao = 0;
         try {
             con = ConexaoBancoDeDados.getConnection();
@@ -56,26 +58,31 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
 
             StringBuilder sql = new StringBuilder();
 
-            sql.append("INSERT INTO ALUNO (ID_ALUNO, NOME, TELEFONE, EMAIL, MATRICULA)");
-            if (aluno.getCurso().getIdCurso() != null) {
-                sql.append(",ID_CURSO) \nVALUES (?, ?, ?, ?, ?, ?)");
-            }else if (aluno.getEndereco().getIdEndereco() != null) {
-                sql.append(",ID_ENDERECO) \nVALUES (?, ?, ?, ?, ?, ?, ?)");
-            } else {
-                sql.append(")\nVALUES (?, ?, ?, ?, ?)");
+            sql.append("INSERT INTO ALUNO (ID_ALUNO, NOME, TELEFONE, EMAIL, MATRICULA");
+            if (aluno.getEndereco().getIdEndereco() == null && aluno.getCurso() == null) {
+                sql.append(" ) VALUES (?, ?, ?, ?, ?)" );
+            }
+            if (aluno.getIdCurso() != null && aluno.getEndereco().getIdEndereco() == null) {
+                sql.append(",ID_CURSO) VALUES (?, ?, ?, ?, ?, ?)");
+            }
+            if (aluno.getEndereco().getIdEndereco() != null && aluno.getIdCurso() == null) {
+                sql.append(",ID_ENDERECO) VALUES (?, ?, ?, ?, ?, ?)");
+            }
+            if (aluno.getIdCurso() != null && aluno.getEndereco().getIdEndereco() != null) {
+                sql.append(" ) VALUES (?, ?, ?, ?, ?, ?, ?)");
             }
 
             PreparedStatement statement = con.prepareStatement(sql.toString());
 
-            statement.setInt(1, aluno.getIdAluno());
-            statement.setString(2, aluno.getNome());
-            statement.setString(3, aluno.getTelefone());
-            statement.setString(4, aluno.getEmail());
-            statement.setInt(5, aluno.getMatricula());
+            statement.setInt(index++, aluno.getIdAluno());
+            statement.setString(index++, aluno.getNome());
+            statement.setString(index++, aluno.getTelefone());
+            statement.setString(index++, aluno.getEmail());
+            statement.setInt(index++, aluno.getMatricula());
             if (aluno.getIdCurso() != null) {
-                statement.setInt(6, aluno.getCurso().getIdCurso());
+                statement.setInt(index++, aluno.getIdCurso());
             } else if (aluno.getEndereco().getIdEndereco() != null) {
-                statement.setInt(7, aluno.getEndereco().getIdEndereco());
+                statement.setInt(index++, aluno.getEndereco().getIdEndereco());
             }
 
             statement.executeUpdate();
@@ -121,7 +128,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
 
     @Override
     public boolean editar(Integer id, Aluno endereco) throws SQLException {
-        return false;
+    return false;
     }
 
     @Override
