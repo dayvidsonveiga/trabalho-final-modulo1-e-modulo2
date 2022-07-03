@@ -1,7 +1,11 @@
 package service;
 
+import models.Aluno;
+import models.Colaborador;
 import models.Endereco;
+import repository.AlunoRepository;
 import repository.EnderecoRepository;
+import repository.ProfessorRepository;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -112,10 +116,12 @@ public class EnderecoService {
     }
 
     public void removerEndereco(Integer id){
+        ProfessorRepository professorRepository = new ProfessorRepository();
+        AlunoRepository alunoRepository = new AlunoRepository();
         try {
-            System.out.println(id);
-            Integer quantidade = enderecoRepository.conferirPessoasComIdEndereco(id);
-            if (quantidade <= 1) {
+            List<Aluno> quantidadeAlunosComIdEndereco = alunoRepository.conferirAlunosComIdEndereco(id);
+            List<Colaborador> quantidadeProfessoresComIdEndereco = professorRepository.conferirColaboradoresComIdEndereco(id);
+            if (quantidadeProfessoresComIdEndereco.size() + quantidadeAlunosComIdEndereco.size() == 0) {
                 enderecoRepository.remover(id);
             }
         } catch (SQLException e) {

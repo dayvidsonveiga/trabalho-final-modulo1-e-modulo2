@@ -135,8 +135,8 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
             while (res.next()) {
                 colaboradores.add(getColaboradorFromResultSet(res));
             }
-//            List<Colaborador> colaboradoresOrdenadosPorNome = colaboradores.stream()
-//                    .sorted(Comparator.comparing(Colaborador::getNome)).toList();
+            List<Colaborador> colaboradoresOrdenadosPorNome = colaboradores.stream()
+                    .sorted(Comparator.comparing(Colaborador::getNome)).toList();
             return colaboradores;
         } catch (SQLException e) {
             throw new SQLException(e.getCause());
@@ -161,5 +161,36 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
         colaborador.setSalario(res.getDouble("SALÁRIO"));
         colaborador.setIdEndereco(res.getInt("ID_ENDERECO"));
         return colaborador;
+    }
+
+    public List<Colaborador> conferirColaboradoresComIdEndereco(Integer id) throws SQLException{
+        List<Colaborador> quantidadeColaboradores = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT *" +
+                    "FROM PROFESSOR \n" +
+                    "WHERE PROFESSOR.ID_ENDERECO = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet res = statement.executeQuery();
+            while (res.next()) {
+                quantidadeColaboradores.add(getColaboradorFromResultSet(res));
+            }
+            System.out.println(quantidadeColaboradores.size());
+            return quantidadeColaboradores;
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

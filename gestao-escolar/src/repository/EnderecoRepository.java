@@ -231,35 +231,4 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco> {
             }
         }
     }
-
-    public Integer conferirPessoasComIdEndereco(Integer id) throws SQLException{
-        Connection con = null;
-        try {
-            con = ConexaoBancoDeDados.getConnection();
-
-            String sql = "SELECT (COUNT(PROFESSOR.ID_PROFESSOR) + COUNT(ALUNO.ID_ALUNO)) QUANTIDADE   \n" +
-                    "FROM PROFESSOR \n" +
-                    "JOIN ENDERECO ON PROFESSOR.ID_ENDERECO = ENDERECO.ID_ENDERECO \n" +
-                    "JOIN ALUNO ON ENDERECO.ID_ENDERECO = ALUNO.ID_ENDERECO\n" +
-                    "WHERE PROFESSOR.ID_ENDERECO = ? OR ALUNO.ID_ENDERECO = ?";
-
-            PreparedStatement statement = con.prepareStatement(sql);
-            statement.setInt(1, id);
-            statement.setInt(2, id);
-            ResultSet res = statement.executeQuery();
-            Integer quantidade = res.getInt(1);
-            System.out.println(quantidade);
-            return quantidade;
-        } catch (SQLException e) {
-            throw new SQLException(e.getCause());
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }

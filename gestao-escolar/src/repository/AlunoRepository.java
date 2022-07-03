@@ -169,5 +169,35 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
         return aluno;
     }
 
+    public List<Aluno> conferirAlunosComIdEndereco(Integer id) throws SQLException{
+        List<Aluno> quantidadeAlunos = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT *" +
+                    "FROM PROFESSOR \n" +
+                    "WHERE PROFESSOR.ID_ENDERECO = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet res = statement.executeQuery();
+            while (res.next()) {
+                quantidadeAlunos.add(getAlunoFromResultSet(res));
+            }
+            System.out.println(quantidadeAlunos.size());
+            return quantidadeAlunos;
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
 
