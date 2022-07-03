@@ -104,11 +104,11 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
             sql.append("UPDATE DISCIPLINA \nSET");
 
             if (disciplina.getNome() != null) {
-                sql.append(" NOME = ?,");
+                sql.append(" NOME = ?");
             }
 
             if (disciplina.getIdProfessor() != null) {
-                sql.append(" ID_PROFESSOR = ? \n");
+                sql.append(", ID_PROFESSOR = ? \n");
             }
 
             sql.append(" WHERE ID_DISCIPLINA = ? ");
@@ -116,14 +116,14 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
             PreparedStatement statement = con.prepareStatement(sql.toString());
 
             if (disciplina.getNome() != null) {
-                statement.setString(1, disciplina.getNome());
+                statement.setString(index++, disciplina.getNome());
             }
 
             if (disciplina.getIdProfessor() != null) {
-                statement.setInt(2, disciplina.getIdProfessor());
+                statement.setInt(index++, disciplina.getIdProfessor());
             }
 
-            statement.setInt(3, disciplina.getIdDisciplina());
+            statement.setInt(index++, disciplina.getIdDisciplina());
 
             res = statement.executeUpdate();
 
