@@ -15,8 +15,6 @@ public class Menu {
     public static ArrayList<Disciplina> listaDeDisciplinas = new ArrayList<>();
 
     public static ArrayList<Pessoa> listaDeColaboradores = new ArrayList<>();
-    GestaoCurso gestaoCurso = new GestaoCurso();
-    GestaoAluno gestaoAluno = new GestaoAluno();
 
     AlunoService alunoService = new AlunoService();
 
@@ -73,7 +71,7 @@ public class Menu {
                 break;
             }
             case 1 -> {
-                gestaoAluno.imprimirInformacoes();
+//                gestaoAluno.imprimirInformacoes();
                 System.out.println("---------------------------");
                 menuPortalDoAluno();
 
@@ -104,7 +102,7 @@ public class Menu {
                 break;
             }
             case 1 -> {
-                gestaoAluno.darNota();
+//                gestaoAluno.darNota();
                 System.out.println("---------------------------");
                 menuAreaDoProfessor();
 
@@ -186,7 +184,7 @@ public class Menu {
                 menuGerenciarAlunos();
             }
             case 2 -> {
-                gestaoAluno.editar();
+//                gestaoAluno.editar();
                 System.out.println("---------------------------");
                 menuGerenciarAlunos();
             }
@@ -283,12 +281,12 @@ public class Menu {
                 menuGerenciarCurso();
             }
             case 4 -> {
-                gestaoCurso.imprimirInformacoesDoCurso();
+//                gestaoCurso.imprimirInformacoesDoCurso();
                 System.out.println("---------------------------");
                 menuGerenciarCurso();
             }
             case 5 -> {
-                gestaoCurso.inserirDisciplinaNoCurso();
+//                gestaoCurso.inserirDisciplinaNoCurso();
                 System.out.println("---------------------------");
                 menuGerenciarCurso();
             }
