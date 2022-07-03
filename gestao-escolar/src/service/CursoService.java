@@ -120,17 +120,20 @@ public class CursoService {
         DisciplinaXCursoRepository disciplinaXCursoRepository = new DisciplinaXCursoRepository();
         try {
             System.out.println("Escolha o curso: ");
-            listarCurso();
+            List<Curso> cursos = listarCurso();
             escolhaCurso = Integer.parseInt(scanner.nextLine());
-            disciplinaXCurso.setIdCurso(listarCurso().get(escolhaCurso - 1).getIdCurso());
+            disciplinaXCurso.setIdCurso(cursos.get(escolhaCurso - 1).getIdCurso());
 
             while (opcao != 2) {
                 System.out.println("Escolha a disciplina a ser adicionada: ");
-                disciplinaService.listarDisciplina();
-                escolhaDisciplina = Integer.parseInt(scanner.nextLine());
-                disciplinaXCurso.setIdDisciplina(disciplinaService.listarDisciplina().get(escolhaDisciplina).getIdDisciplina());
+                List<Disciplina> disciplinas = disciplinaService.listarDisciplina();
+                escolhaDisciplina = Integer.parseInt(scanner.nextLine()) - 1;
+
+                disciplinaXCurso.setIdDisciplina(disciplinas.get(escolhaDisciplina).getIdDisciplina());
                 disciplinaXCursoRepository.adicionarDisciplinaNoCurso(disciplinaXCurso);
+
                 System.out.println("Deseja adicionar outra disciplina no mesmo curso? [1 - Sim  2 - Não]");
+                opcao = Integer.parseInt(scanner.nextLine());
             }
         } catch (SQLException e) {
             e.getCause();
@@ -156,7 +159,7 @@ public class CursoService {
                 for (int i = 0; i < disciplinasDoCurso.size(); i++) {
                     System.out.println((i + 1) + " - " + disciplinasDoCurso.get(i).getNome());
                 }
-                escolhaDisciplina = Integer.parseInt(scanner.nextLine());
+                escolhaDisciplina = (Integer.parseInt(scanner.nextLine())) - 1;
                 disciplinaXCursoRepository.removerDisciplinaDoCurso(escolhaCurso, escolhaDisciplina);
                 System.out.println("Remover outra disciplina do curso? [1 - Sim  2 - Não]");
                 opcao = Integer.parseInt(scanner.nextLine());
