@@ -3,13 +3,13 @@ package models;
 public class Disciplina {
     private Integer idDisciplina;
     private String nome;
-    private Colaborador professor;
+    private Integer idProfessor;
 
     public Disciplina(){}
 
-    public Disciplina(String nome, Colaborador professor) {
+    public Disciplina(String nome, Integer idProfessor) {
         this.nome = nome;
-        this.professor = professor;
+        this.idProfessor = idProfessor;
     }
 
     public Integer getIdDisciplina() {
@@ -32,13 +32,12 @@ public class Disciplina {
 
     }
 
-
-    public Colaborador getProfessor() {
-        return professor;
+    public Integer getIdProfessor() {
+        return idProfessor;
     }
 
-    public void setProfessor(Colaborador professor) {
-        this.professor = professor;
+    public void setIdProfessor(Integer idProfessor) {
+        this.idProfessor = idProfessor;
     }
 
     @Override

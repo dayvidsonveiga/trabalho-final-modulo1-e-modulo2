@@ -55,7 +55,7 @@ public class GestaoDisciplina implements Gestao {
         opcao = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < Menu.getListaDeCursos().get(opcao - 1).getDisciplinas().size(); i++) {
             System.out.println("Disciplina: " + Menu.getListaDeCursos().get(opcao - 1).getDisciplinas().get(i));
-            System.out.println("Professor: " + Menu.getListaDeCursos().get(opcao - 1).getDisciplinas().get(i).getProfessor());
+            System.out.println("Professor: " + Menu.getListaDeCursos().get(opcao - 1).getDisciplinas().get(i).getIdProfessor());
         }
     }
 }

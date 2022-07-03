@@ -37,7 +37,7 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
             StringBuilder sql = new StringBuilder();
 
             sql.append("INSERT INTO DISCIPLINA (ID_DISCIPLINA, NOME");
-            if (disciplina.getProfessor() != null) {
+            if (disciplina.getIdProfessor() != null) {
                 sql.append(", ID_PROFESSOR) \n VALUES (?, ?, ?)");
             } else {
                 sql.append(") \n VALUES (?, ?)");
@@ -47,8 +47,8 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
 
             statement.setInt(1, disciplina.getIdDisciplina());
             statement.setString(2, disciplina.getNome());
-            if (disciplina.getProfessor() != null) {
-                statement.setInt(3, disciplina.getProfessor().getIdColaborador());
+            if (disciplina.getIdProfessor() != null) {
+                statement.setInt(3, disciplina.getIdProfessor());
             }
 
             statement.executeUpdate();
@@ -107,7 +107,7 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
                 sql.append(" NOME = ?,");
             }
 
-            if (disciplina.getProfessor().getIdColaborador() != null) {
+            if (disciplina.getIdProfessor() != null) {
                 sql.append(" ID_PROFESSOR = ? \n");
             }
 
@@ -119,8 +119,8 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
                 statement.setString(1, disciplina.getNome());
             }
 
-            if (disciplina.getProfessor().getIdColaborador() != null) {
-                statement.setInt(2, disciplina.getProfessor().getIdColaborador());
+            if (disciplina.getIdProfessor() != null) {
+                statement.setInt(2, disciplina.getIdProfessor());
             }
 
             statement.setInt(3, disciplina.getIdDisciplina());

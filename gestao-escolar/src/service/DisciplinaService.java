@@ -81,11 +81,11 @@ public class DisciplinaService {
                     System.out.println("Informe o numero referente ao professor: ");
                     ProfessorService professorService = new ProfessorService();
                     professorService.listarProfessores();
-                    int escolhaProfessor = Integer.parseInt(scanner.nextLine());
-                    Colaborador professorEscolhido = professorService.listarProfessores().get(escolhaProfessor - 1);
-                    disciplinaEscolhida.setProfessor(professorEscolhido);
+                    Integer escolhaProfessor = Integer.parseInt(scanner.nextLine());
+                    Integer professorEscolhido = professorService.listarProfessores().get(escolhaProfessor - 1).getIdColaborador();
+                    disciplinaEscolhida.setIdProfessor(professorEscolhido);
                 } else {
-                    System.out.println("Nome do atual professor da disciplina: " + disciplinaEscolhida.getProfessor());
+                    System.out.println("Nome do atual professor da disciplina: " + disciplinaEscolhida.getIdProfessor());
                 }
 
                 disciplinaRepository.editar(disciplinaEscolhida.getIdDisciplina(), disciplinaEscolhida);
@@ -120,7 +120,7 @@ public class DisciplinaService {
         listarDisciplina();
         escolhaDisciplina = Integer.parseInt(scanner.nextLine());
         Disciplina disciplina = listarDisciplina().get(escolhaDisciplina - 1);
-        System.out.println(disciplina.getProfessor());
+        System.out.println(disciplina.getIdProfessor());
         System.out.println(disciplina.getNome());
     }
 

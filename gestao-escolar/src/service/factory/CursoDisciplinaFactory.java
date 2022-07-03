@@ -38,10 +38,10 @@ public class CursoDisciplinaFactory {
             ProfessorService professorService = new ProfessorService();
             professorService.listarProfessores();
             escolhaProfessor = Integer.parseInt(scanner.nextLine());
-            Colaborador professorEscolhido = professorService.listarProfessores().get(escolhaProfessor - 1);
-            disciplinaNova.setProfessor(professorEscolhido);
+            Integer professorEscolhido = professorService.listarProfessores().get(escolhaProfessor - 1).getIdColaborador();
+            disciplinaNova.setIdProfessor(professorEscolhido);
         } else {
-            disciplinaNova.setProfessor(null);
+            disciplinaNova.setIdProfessor(null);
         }
 
         return disciplinaNova;
