@@ -176,7 +176,7 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
         Disciplina disciplina = new Disciplina();
         disciplina.setIdDisciplina(res.getInt("ID_DISCIPLINA"));
         disciplina.setNome(res.getString("NOME"));
-//        disciplina.setProfessor(res.getInt());
+        disciplina.setIdProfessor(res.getInt("ID_PROFESSOR"));
         return disciplina;
     }
 
@@ -194,6 +194,33 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
             controle = res.next();
             return controle;
         } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void removerProfessor(Integer idProfessor) throws SQLException{
+        Connection con = null;
+        try {
+
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = ("UPDATE DISCIPLINA SET ID_PROFESSOR = NULL WHERE ID_PROFESSOR = ?");
+
+            PreparedStatement statement = con.prepareStatement(sql);
+
+            statement.setInt(1, idProfessor);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
             throw new SQLException(e.getCause());
         } finally {
             try {

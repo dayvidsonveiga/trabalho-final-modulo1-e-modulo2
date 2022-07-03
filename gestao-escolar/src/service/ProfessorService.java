@@ -1,6 +1,7 @@
 package service;
 
 import models.Colaborador;
+import repository.DisciplinaRepository;
 import repository.EnderecoRepository;
 import repository.ProfessorRepository;
 
@@ -28,8 +29,10 @@ public class ProfessorService {
         System.out.println("Qual colaborador deseja remover?");
         List<Colaborador> professores = this.listarProfessores();
         int opcao = (Integer.parseInt(scanner.nextLine())) - 1;
+        DisciplinaRepository disciplinaRepository = new DisciplinaRepository();
         try {
             Integer idEndereco = professores.get(opcao).getIdEndereco();
+            disciplinaRepository.removerProfessor(professores.get(opcao).getIdColaborador());
             professorRepository.remover(professores.get(opcao).getIdColaborador());
             EnderecoService enderecoService = new EnderecoService();
             enderecoService.removerEndereco(idEndereco);

@@ -185,7 +185,6 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             while (res.next()) {
                 quantidadeAlunos.add(getAlunoFromResultSet(res));
             }
-            System.out.println(quantidadeAlunos.size());
             return quantidadeAlunos;
         } catch (SQLException e) {
             throw new SQLException(e.getCause());

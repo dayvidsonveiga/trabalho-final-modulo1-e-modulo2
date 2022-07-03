@@ -179,7 +179,6 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
             while (res.next()) {
                 quantidadeColaboradores.add(getColaboradorFromResultSet(res));
             }
-            System.out.println(quantidadeColaboradores.size());
             return quantidadeColaboradores;
         } catch (SQLException e) {
             throw new SQLException(e.getCause());
