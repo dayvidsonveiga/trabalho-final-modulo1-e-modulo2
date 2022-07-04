@@ -54,13 +54,14 @@ public class EnderecoService {
     }
 
     public void atualizarEndereco(Endereco endereco) {
-        Integer controle = 2;
+        int controle = 0;
         try {
             if (enderecoRepository.conferirIdEndereco(endereco.getIdEndereco())) {
 
                 Scanner scanner = new Scanner(System.in);
 
                 System.out.println("Atualizar logradouro? [1 - Sim / 2 - Não]");
+                controle = Integer.parseInt(scanner.nextLine());
                 if (controle == 1) {
                     System.out.println("Logradouro:");
                     endereco.setLogradouro(scanner.nextLine());
@@ -69,6 +70,7 @@ public class EnderecoService {
                 }
 
                 System.out.println("Atualizar número? [1 - Sim / 2 - Não]");
+                controle = Integer.parseInt(scanner.nextLine());
                 if (controle == 1) {
                     System.out.println("Número:");
                     endereco.setNumero(Integer.parseInt(scanner.nextLine()));
@@ -77,6 +79,7 @@ public class EnderecoService {
                 }
 
                 System.out.println("Atualizar complemento? [1 - Sim / 2 - Não]");
+                controle = Integer.parseInt(scanner.nextLine());
                 if (controle == 1) {
                     System.out.println("Complemento:");
                     endereco.setComplemento(scanner.nextLine());
@@ -85,6 +88,7 @@ public class EnderecoService {
                 }
 
                 System.out.println("Atualizar cidade? [1 - Sim / 2 - Não]");
+                controle = Integer.parseInt(scanner.nextLine());
                 if (controle == 1) {
                     System.out.println("Cidade:");
                     endereco.setCidade(scanner.nextLine());
@@ -93,6 +97,7 @@ public class EnderecoService {
                 }
 
                 System.out.println("Atualizar estado? [1 - Sim / 2 - Não]");
+                controle = Integer.parseInt(scanner.nextLine());
                 if (controle == 1) {
                     System.out.println("Estado:");
                     endereco.setEstado(scanner.nextLine());
@@ -101,6 +106,7 @@ public class EnderecoService {
                 }
 
                 System.out.println("Atualizar CEP? [1 - Sim / 2 - Não]");
+                controle = Integer.parseInt(scanner.nextLine());
                 if (controle == 1) {
                     System.out.println("CEP:");
                     endereco.setCep(scanner.nextLine());

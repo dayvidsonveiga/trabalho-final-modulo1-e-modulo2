@@ -57,17 +57,15 @@ public class ProfessorService {
 
     public void editarProfessor(){
         Scanner scanner = new Scanner(System.in);
-
         int controle = 0;
-
         Integer escolhaProfessor = 0;
-
-
+        EnderecoRepository enderecoRepository = new EnderecoRepository();
+        EnderecoService enderecoService = new EnderecoService();
 
         try {
             System.out.println("Qual professor deseja atualizar os dados: ");
             List<Colaborador> professores = listarProfessores();
-            escolhaProfessor = Integer.parseInt(scanner.nextLine());
+            escolhaProfessor = Integer.parseInt(scanner.nextLine()) - 1;
             Colaborador professorEscolhido = professores.get(escolhaProfessor);
 
             System.out.println("Atualizar nome do professor? [1 - Sim / 2 - Não]");
@@ -75,9 +73,8 @@ public class ProfessorService {
             if (controle == 1) {
                 System.out.println("Nome: ");
                 professorEscolhido.setNome(scanner.nextLine());
-            } else {
-                System.out.println("Nome atual da disciplina: " + professorEscolhido.getNome());
             }
+
             System.out.println("Atualizar o telefone do professor? [1 - Sim / 2 - Não]");
             controle = Integer.parseInt(scanner.nextLine());
             if (controle == 1) {
@@ -85,7 +82,7 @@ public class ProfessorService {
                 professorEscolhido.setTelefone(scanner.nextLine());
             }
 
-            System.out.println("Atualizar o e-mail do aluno? [1 - Sim / 2 - Não]");
+            System.out.println("Atualizar o e-mail do professor? [1 - Sim / 2 - Não]");
             controle = Integer.parseInt(scanner.nextLine());
             if (controle == 1) {
                 System.out.println("E-mail: ");
@@ -96,10 +93,7 @@ public class ProfessorService {
             System.out.println("Atualizar endereço? [1 - Sim / 2 - Não]");
             controle = Integer.parseInt(scanner.nextLine());
             if (controle == 1) {
-                EnderecoRepository enderecoRepository = new EnderecoRepository();
-                EnderecoService enderecoService = new EnderecoService();
-                Endereco endereco = enderecoRepository.pegarEnderecoPorId(professorEscolhido.getIdEndereco());
-                enderecoService.atualizarEndereco(endereco);
+                enderecoService.atualizarEndereco(enderecoRepository.pegarEnderecoPorId(professorEscolhido.getIdEndereco()));
             }
         } catch (SQLException e) {
             e.getCause();

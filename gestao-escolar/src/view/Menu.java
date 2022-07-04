@@ -230,7 +230,7 @@ public class Menu {
                 menuGerenciarColaboradores();
             }
             case 2 -> {
-                gestaoColaborador.editar();
+                professorService.editarProfessor();
                 System.out.println("---------------------------");
                 menuGerenciarColaboradores();
             }

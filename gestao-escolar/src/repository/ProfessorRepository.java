@@ -43,7 +43,6 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
     @Override
     public Colaborador adicionar(Colaborador colaborador) throws SQLException {
         Connection con = null;
-        int posicao = 0;
         try {
             con = ConexaoBancoDeDados.getConnection();
 
@@ -74,7 +73,7 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
                 statement.setInt(8, colaborador.getEndereco().getIdEndereco());
             }
 
-            statement.executeUpdate();
+
             return colaborador;
         } catch (SQLException e) {
             throw new SQLException(e.getCause());
@@ -117,7 +116,44 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
 
     @Override
     public boolean editar(Integer id, Colaborador colaborador) throws SQLException {
-        return false;
+        Connection con = null;
+        int index = 1;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            StringBuilder sql = new StringBuilder();
+
+            sql.append("UPDATE PROFESSOR SET " +
+                    "NOME = ?, TELEFONE = ?, EMAIL = ?, SALÁRIO = ?");
+            if (colaborador.getIdEndereco() != null) {
+                sql.append(", ID_ENDERECO = ?");
+            }
+            sql.append(" WHERE ID_PROFESSOR = ?");
+
+            PreparedStatement statement = con.prepareStatement(sql.toString());
+
+            statement.setString(index++, colaborador.getNome());
+            statement.setString(index++, colaborador.getTelefone());
+            statement.setString(index++, colaborador.getEmail());
+            statement.setDouble(index++, colaborador.getSalario());
+            if (colaborador.getIdEndereco() != null) {
+                statement.setInt(index++, colaborador.getIdEndereco());
+            }
+            statement.setInt(index++, id);
+
+            int res = statement.executeUpdate();
+            return res > 0;
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -137,7 +173,7 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
             }
             List<Colaborador> colaboradoresOrdenadosPorNome = colaboradores.stream()
                     .sorted(Comparator.comparing(Colaborador::getNome)).toList();
-            return colaboradores;
+            return colaboradoresOrdenadosPorNome;
         } catch (SQLException e) {
             throw new SQLException(e.getCause());
         } finally {

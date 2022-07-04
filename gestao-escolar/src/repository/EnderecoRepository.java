@@ -96,7 +96,7 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco> {
             int res = 0;
             con = ConexaoBancoDeDados.getConnection();
 
-            sql.append("UPDATE contato SET \n");
+            sql.append("UPDATE ENDERECO SET \n");
 
             if (endereco.getLogradouro() != null) {
                 sql.append(" LOGRADOURO = ?,");
@@ -123,7 +123,7 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco> {
             }
 
             sql.deleteCharAt(sql.length() - 1);
-            sql.append(" WHERE id_contato = ? ");
+            sql.append(" WHERE ID_ENDERECO = ? ");
 
             PreparedStatement statement = con.prepareStatement(sql.toString());
 
@@ -150,6 +150,7 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco> {
             if (endereco.getCep() != null) {
                 statement.setString(index++, endereco.getCep());
             }
+            statement.setInt(index++, id);
 
             res = statement.executeUpdate();
 
@@ -241,9 +242,12 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco> {
 
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setInt(1, id);
+
             ResultSet res = statement.executeQuery();
+            res.next();
             Endereco endereco = getEnderecoFromResultSet(res);
             return endereco;
+
         } catch (SQLException e) {
             throw new SQLException(e.getCause());
         } finally {
