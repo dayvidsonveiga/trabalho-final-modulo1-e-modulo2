@@ -100,7 +100,7 @@ public class CursoService {
         }
     }
 
-    private List<Curso> listarCurso() {
+    public List<Curso> listarCurso() {
         try {
             List<Curso> cursos = cursoRepository.listar();
             for (int i = 0; i < cursos.size(); i++) {

@@ -59,16 +59,13 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             StringBuilder sql = new StringBuilder();
 
             sql.append("INSERT INTO ALUNO (ID_ALUNO, NOME, TELEFONE, EMAIL, MATRICULA");
-            if (aluno.getEndereco().getIdEndereco() == null && aluno.getCurso() == null) {
-                sql.append(" ) VALUES (?, ?, ?, ?, ?)" );
-            }
-            if (aluno.getIdCurso() != null && aluno.getEndereco().getIdEndereco() == null) {
+            if (aluno.getIdCurso() == null && aluno.getEndereco().getIdEndereco() == null) {
+                sql.append(") VALUES (?, ?, ?, ?, ?)" );
+            } else if (aluno.getIdCurso() != null && aluno.getEndereco().getIdEndereco() == null) {
                 sql.append(",ID_CURSO) VALUES (?, ?, ?, ?, ?, ?)");
-            }
-            if (aluno.getEndereco().getIdEndereco() != null && aluno.getIdCurso() == null) {
+            } else if (aluno.getEndereco().getIdEndereco() != null && aluno.getIdCurso() == null) {
                 sql.append(",ID_ENDERECO) VALUES (?, ?, ?, ?, ?, ?)");
-            }
-            if (aluno.getIdCurso() != null && aluno.getEndereco().getIdEndereco() != null) {
+            } else  {
                 sql.append(" ) VALUES (?, ?, ?, ?, ?, ?, ?)");
             }
 
@@ -81,7 +78,8 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             statement.setInt(index++, aluno.getMatricula());
             if (aluno.getIdCurso() != null) {
                 statement.setInt(index++, aluno.getIdCurso());
-            } else if (aluno.getEndereco().getIdEndereco() != null) {
+            }
+            if (aluno.getEndereco().getIdEndereco() != null) {
                 statement.setInt(index++, aluno.getEndereco().getIdEndereco());
             }
 

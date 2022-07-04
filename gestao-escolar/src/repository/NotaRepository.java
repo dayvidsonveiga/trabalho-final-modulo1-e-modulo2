@@ -1,6 +1,5 @@
 package repository;
 
-import models.DisciplinaXCurso;
 import models.Nota;
 
 import java.sql.*;

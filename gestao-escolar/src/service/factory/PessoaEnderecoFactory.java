@@ -3,12 +3,16 @@ package service.factory;
 import models.Aluno;
 import models.Colaborador;
 import models.Endereco;
+import service.CursoService;
 import view.Menu;
 import java.util.Scanner;
 
 public class PessoaEnderecoFactory {
     static Scanner scanner = new Scanner(System.in);
     public static Aluno criarAluno() {
+        int escolhaCurso;
+        int idCursoEscolhido;
+        CursoService cursoService = new CursoService();
 
         System.out.println("Digite o nome completo do Aluno:");
         Aluno aluno = new Aluno(scanner.nextLine());
@@ -18,6 +22,12 @@ public class PessoaEnderecoFactory {
         aluno.setEmail(scanner.nextLine());
         System.out.println("Digite o endereço do Aluno:");
         aluno.setEndereco(criarEndereco());
+        System.out.println("Informe o Curso do aluno: ");
+        cursoService.listarCurso();
+        escolhaCurso = Integer.parseInt(scanner.nextLine());
+        idCursoEscolhido = cursoService.listarCurso().get(escolhaCurso - 1).getIdCurso();
+        aluno.setIdCurso(idCursoEscolhido);
+
         System.out.println("Aluno cadastrado");
         return aluno;
     }
