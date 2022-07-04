@@ -3,6 +3,7 @@ package service;
 import models.Curso;
 import models.Disciplina;
 import models.DisciplinaXCurso;
+import repository.AlunoRepository;
 import repository.CursoRepository;
 import repository.DisciplinaRepository;
 import repository.DisciplinaXCursoRepository;
@@ -85,6 +86,7 @@ public class CursoService {
         Integer cursoEscolhido = 0;
         Scanner scanner = new Scanner(System.in);
         DisciplinaXCursoRepository disciplinaXCursoRepository = new DisciplinaXCursoRepository();
+        AlunoRepository alunoRepository = new AlunoRepository();
 
 
         try {
@@ -93,6 +95,7 @@ public class CursoService {
             escolhaCurso = Integer.parseInt(scanner.nextLine()) - 1;
             cursoEscolhido = cursos.get(escolhaCurso).getIdCurso();
             disciplinaXCursoRepository.removerPorIdCurso(cursoEscolhido);
+            alunoRepository.removerPorIdCurso(cursoEscolhido);
             cursoRepository.remover(cursoEscolhido);
         } catch (SQLException e) {
             e.printStackTrace();

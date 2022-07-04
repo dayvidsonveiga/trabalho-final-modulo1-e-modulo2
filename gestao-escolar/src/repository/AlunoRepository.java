@@ -234,5 +234,29 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             }
         }
     }
+
+    public void removerPorIdCurso(Integer id) throws SQLException {
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "UPDATE ALUNO SET ID_CURSO = NULL WHERE ID_CURSO = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            statement.execute();
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.getCause();
+            }
+        }
+    }
 }
 

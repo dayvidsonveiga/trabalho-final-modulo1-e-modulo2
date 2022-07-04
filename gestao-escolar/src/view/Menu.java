@@ -329,7 +329,6 @@ public class Menu {
                 menuGerenciarDisciplina();
             }
             case 4 -> {
-                System.out.println("Em construção");
                 disciplinaService.imprimirInformacoesDisciplina();
                 System.out.println("---------------------------");
                 menuGerenciarDisciplina();
