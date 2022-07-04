@@ -72,6 +72,7 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
                 statement.setInt(8, colaborador.getEndereco().getIdEndereco());
             }
 
+            statement.executeUpdate();
 
             return colaborador;
         } catch (SQLException e) {
