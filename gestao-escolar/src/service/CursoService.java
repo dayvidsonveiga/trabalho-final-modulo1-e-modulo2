@@ -172,4 +172,28 @@ public class CursoService {
         }
     }
 
+    public void imprimirCurso(){
+        Scanner scanner = new Scanner(System.in);
+        DisciplinaXCursoRepository disciplinaXCursoRepository = new DisciplinaXCursoRepository();
+        DisciplinaRepository disciplinaRepository = new DisciplinaRepository();
+        int escolhaCurso = 0;
+
+        try {
+            System.out.println("Escolha o curso:");
+            List<Curso> cursos = listarCurso();
+            escolhaCurso = Integer.parseInt(scanner.nextLine()) - 1;
+            System.out.println(cursos.get(escolhaCurso));
+
+            List<Disciplina> disciplinas = disciplinaRepository.listarPorId(disciplinaXCursoRepository.listarPorCurso(cursos.get(escolhaCurso).getIdCurso()));
+            System.out.println("Disciplinas: ");
+            for (int i = 0; i < disciplinas.size(); i++) {
+                System.out.println(disciplinas.get(i));
+            }
+
+        } catch (SQLException e) {
+            e.getCause();
+        }
+
+
+    }
 }

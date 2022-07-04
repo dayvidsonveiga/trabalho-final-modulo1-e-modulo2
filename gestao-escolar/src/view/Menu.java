@@ -245,7 +245,6 @@ public class Menu {
     }
 
     public void menuGerenciarCurso() {
-//        limpaTela();
         System.out.println("Digite 1 para adicionar um curso");
         System.out.println("Digite 2 para atualizar as informações de um curso");
         System.out.println("Digite 3 para remover um curso");
@@ -276,7 +275,7 @@ public class Menu {
                 menuGerenciarCurso();
             }
             case 4 -> {
-//                gestaoCurso.imprimirInformacoesDoCurso();
+                cursoService.imprimirCurso();
                 System.out.println("---------------------------");
                 menuGerenciarCurso();
             }
