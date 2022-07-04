@@ -199,6 +199,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
         aluno.setTelefone(res.getString("TELEFONE"));
         aluno.setEmail(res.getString("EMAIL"));
         aluno.setMatricula(res.getInt("MATRICULA"));
+        aluno.setIdEndereco(res.getInt("ID_ENDERECO"));
         return aluno;
     }
 

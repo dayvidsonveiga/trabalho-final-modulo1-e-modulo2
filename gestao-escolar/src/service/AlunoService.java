@@ -32,16 +32,16 @@ public class AlunoService {
         Integer escolhaAluno = 0;
         listarAlunos();
         escolhaAluno = Integer.parseInt(scanner.nextLine());
-        Aluno alunoEscolhido = listarAlunos().get(escolhaAluno);
+        Aluno alunoEscolhido = listarAlunos().get(escolhaAluno-1);
 
         try {
             System.out.println("Atualizar nome do aluno? [1 - Sim / 2 - Não]");
             controleNome = Integer.parseInt(scanner.nextLine());
             if (controleNome == 1) {
-                System.out.println("Informe o novo Nome da Disciplina: ");
+                System.out.println("Informe o novo Nome do aluno: ");
                 alunoEscolhido.setNome(scanner.nextLine());
             } else {
-                System.out.println("Nome atual da disciplina: " + alunoEscolhido.getNome());
+                System.out.println("Nome atual do aluno: " + alunoEscolhido.getNome());
             }
 
             System.out.println("Atualizar o telefone do aluno? [1 - Sim / 2 - Não]");
@@ -73,7 +73,7 @@ public class AlunoService {
         List<Aluno> alunos = this.listarAlunos();
         int opcao = (Integer.parseInt(scanner.nextLine())) - 1;
         try {
-            Integer idEndereco = alunos.get(opcao).getEndereco().getIdEndereco();
+            Integer idEndereco = alunos.get(opcao).getIdEndereco();
             alunoRepository.remover(alunos.get(opcao).getIdAluno());
             EnderecoService enderecoService = new EnderecoService();
             enderecoService.removerEndereco(idEndereco);
@@ -86,10 +86,10 @@ public class AlunoService {
         try {
             List<Aluno> listar = alunoRepository.listar();
             listar.forEach(System.out::println);
+            return listar;
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        return null;
+        }return null;
     }
     }
 

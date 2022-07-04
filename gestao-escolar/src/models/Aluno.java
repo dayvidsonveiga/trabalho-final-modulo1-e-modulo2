@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Aluno extends Pessoa{
-    private Integer idAluno, matricula, idCurso;
+    private Integer idAluno, matricula, idCurso, idEndereco;
     private Curso curso;
     private HashMap<String, ArrayList<Double>> notas = new HashMap<String, ArrayList<Double>>();
 
@@ -20,6 +20,14 @@ public class Aluno extends Pessoa{
         super(nome, telefone, email, endereco);
         this.matricula = ++controleMatricula;
         this.curso = curso;
+    }
+
+    public Integer getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(Integer idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public Integer getIdAluno() {
