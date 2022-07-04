@@ -74,6 +74,11 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return idEndereco + ", " + logradouro + ", " +  numero + ", " + cidade + ", " + estado  + ", " + cep;
+        if (this.complemento != null) {
+            return "Logradouro: " + logradouro + ", Número: " +  numero + ", Complemento: " + complemento + ", Cidade: " + cidade + ", Estado: " + estado  + ", CEP: " + cep;
+        }else {
+            return "Logradouro: " + logradouro + ", Número: " +  numero + ", Cidade: " + cidade + ", Estado: " + estado  + ", CEP: " + cep;
+        }
+
     }
 }

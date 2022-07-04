@@ -11,14 +11,8 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
     Integer opcao;
     Boolean controle = true;
-    public static ArrayList<Curso> listaDeCursos = new ArrayList<>();
-    public static ArrayList<Disciplina> listaDeDisciplinas = new ArrayList<>();
-
-    public static ArrayList<Pessoa> listaDeColaboradores = new ArrayList<>();
 
     AlunoService alunoService = new AlunoService();
-
-    GestaoColaborador gestaoColaborador = new GestaoColaborador();
 
     EnderecoService enderecoService = new EnderecoService();
     ProfessorService professorService = new ProfessorService();
@@ -240,7 +234,7 @@ public class Menu {
                 menuGerenciarColaboradores();
             }
             case 4 -> {
-                gestaoColaborador.imprimirInformacoes();
+                professorService.imprimirInformacoesProfessor();
                 System.out.println("---------------------------");
                 menuGerenciarColaboradores();
             }
@@ -349,18 +343,6 @@ public class Menu {
                 System.out.println("Informe uma opção válida.");
             }
         }
-
-    }
-    public static ArrayList<Curso> getListaDeCursos() {
-        return listaDeCursos;
-    }
-
-    public static ArrayList<Disciplina> getListaDeDisciplinas() {
-        return listaDeDisciplinas;
-    }
-
-    public static ArrayList<Pessoa> getListaDeColaboradores() {
-        return listaDeColaboradores;
     }
 }
 

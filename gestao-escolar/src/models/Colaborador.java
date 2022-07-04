@@ -49,7 +49,10 @@ public class Colaborador extends Pessoa{
 
     @Override
     public String toString() {
-        return this.getNome();
+        return "Nome: " + this.getNome() +
+                "\nCargo: " + this.getCargo() +
+                "\nRegistro: " + this.getRegistroTrabalho() +
+                "\nSalário: R$" + this.getSalario();
     }
 
     public Integer getIdEndereco() {
@@ -59,4 +62,6 @@ public class Colaborador extends Pessoa{
     public void setIdEndereco(Integer idEndereco) {
         this.idEndereco = idEndereco;
     }
+
+
 }

@@ -88,6 +88,14 @@ public class ProfessorService {
                 System.out.println("E-mail: ");
                 professorEscolhido.setEmail(scanner.nextLine());
             }
+
+            System.out.println("Atualizar o salário do professor? [1 - Sim / 2 - Não]");
+            controle = Integer.parseInt(scanner.nextLine());
+            if (controle == 1) {
+                System.out.println("Salário: ");
+                System.out.print("R$");
+                professorEscolhido.setSalario(Double.parseDouble(scanner.nextLine()));
+            }
             this.professorRepository.editar(professorEscolhido.getIdColaborador(), professorEscolhido);
 
             System.out.println("Atualizar endereço? [1 - Sim / 2 - Não]");
@@ -97,6 +105,24 @@ public class ProfessorService {
             }
         } catch (SQLException e) {
             e.getCause();
+        }
+    }
+
+    public void imprimirInformacoesProfessor() {
+        EnderecoRepository enderecoRepository = new EnderecoRepository();
+        EnderecoService enderecoService = new EnderecoService();
+        Scanner scanner = new Scanner(System.in);
+        int escolhaProfessor = 0;
+
+        try {
+            System.out.println("Escolha o colaborador: ");
+            List<Colaborador> professores = this.listarProfessores();
+            escolhaProfessor = Integer.parseInt(scanner.nextLine()) - 1;
+
+            System.out.println(professores.get(escolhaProfessor));
+            System.out.println(enderecoRepository.pegarEnderecoPorId(professores.get(escolhaProfessor).getIdEndereco()));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }
