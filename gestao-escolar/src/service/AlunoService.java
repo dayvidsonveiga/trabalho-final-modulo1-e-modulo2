@@ -28,6 +28,8 @@ public class AlunoService {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o ID do aluno que deseja atualizar dados: ");
 
+        EnderecoRepository enderecoRepository = new EnderecoRepository();
+        EnderecoService enderecoService = new EnderecoService();
         int controleNome = 0;
         int controleTelefone = 0;
         int controleEmail = 0;
@@ -67,10 +69,7 @@ public class AlunoService {
             System.out.println("Atualizar endereço? [1 - Sim / 2 - Não]");
             controleEndereco = Integer.parseInt(scanner.nextLine());
             if (controleEndereco == 1) {
-                EnderecoRepository enderecoRepository = new EnderecoRepository();
-                EnderecoService enderecoService = new EnderecoService();
-                Endereco endereco = enderecoRepository.pegarEnderecoPorId(alunoEscolhido.getIdEndereco());
-                enderecoService.atualizarEndereco(endereco);
+                enderecoService.atualizarEndereco(enderecoRepository.pegarEnderecoPorId(alunoEscolhido.getIdEndereco()));
             }
                 alunoRepository.editar(alunoEscolhido.getIdAluno(), alunoEscolhido);
             } catch (SQLException e) {
