@@ -1,5 +1,6 @@
 package repository;
 
+import models.Aluno;
 import models.Curso;
 import models.DisciplinaXCurso;
 
@@ -23,7 +24,8 @@ public class DisciplinaXCursoRepository {
             throw new SQLException(e.getCause());
         }
     }
-    public void adicionarDisciplinaNoCurso(DisciplinaXCurso disciplinaXCurso) throws SQLException{
+
+    public void adicionarDisciplinaNoCurso(DisciplinaXCurso disciplinaXCurso) throws SQLException {
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
@@ -55,7 +57,7 @@ public class DisciplinaXCursoRepository {
         }
     }
 
-    public void removerDisciplinaDoCurso(Integer idCurso, Integer idDisciplina) throws SQLException{
+    public void removerDisciplinaDoCurso(Integer idCurso, Integer idDisciplina) throws SQLException {
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
@@ -119,4 +121,51 @@ public class DisciplinaXCursoRepository {
         return disciplinaXCurso;
     }
 
+    public void removerPorIdDisciplina(Integer idDisciplina) throws SQLException {
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "DELETE FROM DISCIPLINA_X_CURSO WHERE ID_DISCIPLINA = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, idDisciplina);
+
+            statement.execute();
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.getCause();
+            }
+        }
+    }
+
+    public void removerPorIdCurso(Integer idCurso) throws SQLException {
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "DELETE FROM DISCIPLINA_X_CURSO WHERE ID_CURSO = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, idCurso);
+
+            statement.execute();
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.getCause();
+            }
+        }
+    }
 }

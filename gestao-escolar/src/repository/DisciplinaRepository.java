@@ -207,7 +207,7 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
         }
     }
 
-    public void removerProfessor(Integer idProfessor) throws SQLException{
+    public void removerProfessor(Integer idProfessor) throws SQLException {
         Connection con = null;
         try {
 
@@ -234,35 +234,34 @@ public class DisciplinaRepository implements Repositorio<Integer, Disciplina> {
         }
     }
 
-    public List<Disciplina> listarPorId(List<DisciplinaXCurso> disciplinaXCurso) throws SQLException{
-            List<Disciplina> disciplinas = new ArrayList<>();
+    public List<Disciplina> listarPorId(List<DisciplinaXCurso> disciplinaXCurso) throws SQLException {
+        List<Disciplina> disciplinas = new ArrayList<>();
 
-            Connection con = null;
-            try {
-                con = ConexaoBancoDeDados.getConnection();
-                for (DisciplinaXCurso objeto : disciplinaXCurso) {
-                    String sql = "SELECT * FROM DISCIPLINA WHERE ID_DISCIPLINA = ?";
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+            for (DisciplinaXCurso objeto : disciplinaXCurso) {
+                String sql = "SELECT * FROM DISCIPLINA WHERE ID_DISCIPLINA = ?";
 
-                    PreparedStatement statement = con.prepareStatement(sql);
-                    statement.setInt(1, objeto.getIdDisciplina());
-                    ResultSet res = statement.executeQuery();
-                    while (res.next()) {
-                        disciplinas.add(getDisciplinaFromResultSet(res));
-                    }
-                }
-
-                return disciplinas;
-            } catch (SQLException e) {
-                throw new SQLException(e.getCause());
-            } finally {
-                try {
-                    if (con != null) {
-                        con.close();
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                PreparedStatement statement = con.prepareStatement(sql);
+                statement.setInt(1, objeto.getIdDisciplina());
+                ResultSet res = statement.executeQuery();
+                while (res.next()) {
+                    disciplinas.add(getDisciplinaFromResultSet(res));
                 }
             }
 
+            return disciplinas;
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

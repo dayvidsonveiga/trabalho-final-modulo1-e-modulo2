@@ -84,12 +84,15 @@ public class CursoService {
         Integer escolhaCurso = 0;
         Integer cursoEscolhido = 0;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Qual curso deseja remover?");
-        listarCurso();
-        escolhaCurso = Integer.parseInt(scanner.nextLine());
-        cursoEscolhido = listarCurso().get(escolhaCurso - 1).getIdCurso();
-        System.out.println(cursoEscolhido);
+        DisciplinaXCursoRepository disciplinaXCursoRepository = new DisciplinaXCursoRepository();
+
+
         try {
+            System.out.println("Qual curso deseja remover?");
+            List<Curso> cursos = listarCurso();
+            escolhaCurso = Integer.parseInt(scanner.nextLine()) - 1;
+            cursoEscolhido = cursos.get(escolhaCurso).getIdCurso();
+            disciplinaXCursoRepository.removerPorIdCurso(cursoEscolhido);
             cursoRepository.remover(cursoEscolhido);
         } catch (SQLException e) {
             e.printStackTrace();

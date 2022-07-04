@@ -4,6 +4,7 @@ import models.Colaborador;
 import models.Curso;
 import models.Disciplina;
 import repository.DisciplinaRepository;
+import repository.DisciplinaXCursoRepository;
 import repository.ProfessorRepository;
 import service.factory.CursoDisciplinaFactory;
 
@@ -99,12 +100,14 @@ public class DisciplinaService {
         Integer escolhaDisciplina = 0;
         Integer disciplinaEscolhida = 0;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Qual disciplina deseja remover?");
-        listarDisciplina();
-        escolhaDisciplina = Integer.parseInt(scanner.nextLine());
-        disciplinaEscolhida = listarDisciplina().get(escolhaDisciplina - 1).getIdDisciplina();
-        System.out.println(disciplinaEscolhida);
+        DisciplinaXCursoRepository disciplinaXCursoRepository = new DisciplinaXCursoRepository();
+
         try {
+            System.out.println("Qual disciplina deseja remover?");
+            List<Disciplina> disciplinas = listarDisciplina();
+            escolhaDisciplina = Integer.parseInt(scanner.nextLine()) - 1;
+            disciplinaEscolhida = disciplinas.get(escolhaDisciplina).getIdDisciplina();
+            disciplinaXCursoRepository.removerPorIdDisciplina(disciplinaEscolhida);
             disciplinaRepository.remover(disciplinaEscolhida);
         } catch (SQLException e) {
             e.printStackTrace();
