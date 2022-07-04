@@ -1,5 +1,6 @@
 package service;
 
+import exceptions.NotaException;
 import models.Aluno;
 import models.Disciplina;
 import models.DisciplinaXCurso;
@@ -73,26 +74,41 @@ public class NotaService {
             Nota nota = notaRepository.listarPorDisciplina(idDisciplina, idAluno);
             System.out.println("Qual nota deseja adicionar: [1 - N1 | 2 - N2 | 3 - N3 | 4 - N4]");
             int opcao = Integer.parseInt(scanner.nextLine());
-            switch (opcao) {
+            try{switch (opcao) {
                 case 1 -> {
                     System.out.println("Informe a Nota 1: ");
                     nota.setNota1(Double.parseDouble(scanner.nextLine()));
+                    if (nota.getNota1()<0){
+                        throw new NotaException("O valor da nota deve ser um número positivo");
+                    }
                 }
                 case 2 -> {
                     System.out.println("Informe a Nota 2: ");
                     nota.setNota2(Double.parseDouble(scanner.nextLine()));
+                    if (nota.getNota2()<0){
+                        throw new NotaException("O valor da nota deve ser um número positivo");
+                    }
                 }
                 case 3 -> {
                     System.out.println("Informe a Nota 3: ");
                     nota.setNota3(Double.parseDouble(scanner.nextLine()));
+                    if (nota.getNota3()<0){
+                        throw new NotaException("O valor da nota deve ser um número positivo");
+                    }
                 }
                 case 4 -> {
                     System.out.println("Informe a Nota 4: ");
                     nota.setNota4(Double.parseDouble(scanner.nextLine()));
+                    if (nota.getNota4()<0){
+                        throw new NotaException("O valor da nota deve ser um número positivo");
+                    }
                 }
                 default -> {
                     System.out.println("Informe uma opção válida.");
                 }
+            }}catch(NotaException e){
+                e.getMessage();
+                e.printStackTrace();
             }
             List<Double> notas = new ArrayList<>();
             if (nota.getNota1() != null && nota.getNota1() != 0) {
@@ -119,6 +135,36 @@ public class NotaService {
             e.getCause();
         }
     }
+    public void imprimirNotas(){
+        Scanner scanner = new Scanner(System.in);
+        AlunoService alunoService = new AlunoService();
+        Integer escolhaAluno;
+        Integer idAluno;
+        Integer idCursoEscolhaAluno;
+        Integer idDisciplina;
+        DisciplinaXCursoRepository disciplinaXCursoRepository = new DisciplinaXCursoRepository();
+        DisciplinaRepository disciplinaRepository = new DisciplinaRepository();
+
+        try {
+            System.out.println("Escolha o aluno: ");
+            List<Aluno> alunos = alunoService.listarAlunos();
+            escolhaAluno = Integer.parseInt(scanner.nextLine());
+            idAluno = alunos.get(escolhaAluno - 1).getIdAluno();
+            idCursoEscolhaAluno = alunos.get(escolhaAluno - 1).getIdCurso();
+            List<Disciplina> listaDisciplina = disciplinaRepository.listarPorId(disciplinaXCursoRepository.listarPorCurso(idCursoEscolhaAluno));
+            for (int i = 0; i < listaDisciplina.size(); i++) {
+                System.out.println((i + 1) + " - " + listaDisciplina.get(i).getNome());
+                idDisciplina = listaDisciplina.get(i).getIdDisciplina();
+                Nota nota = notaRepository.listarPorDisciplina(idDisciplina, idAluno);
+                System.out.println("N1: " + nota.getNota1() + "| N2: " + nota.getNota2() + "| N3: " + nota.getNota3() + "| N4: " + nota.getNota4() );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+}
+
     public void imprimirNotas(){
         Scanner scanner = new Scanner(System.in);
         AlunoService alunoService = new AlunoService();
