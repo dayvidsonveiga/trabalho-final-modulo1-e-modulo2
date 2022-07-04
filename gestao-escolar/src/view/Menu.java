@@ -158,7 +158,6 @@ public class Menu {
     }
 
     public void menuGerenciarAlunos() {
-//        limpaTela();
         System.out.println("Digite 1 para adicionar um aluno");
         System.out.println("Digite 2 para atualizar as informações de um aluno");
         System.out.println("Digite 3 para remover um aluno");
