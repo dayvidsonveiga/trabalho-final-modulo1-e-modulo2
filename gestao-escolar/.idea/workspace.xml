@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d92cc477-2375-49d2-8223-dcefb4581159" name="Changes" comment="feat: exception" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2BReths0elKrECdOgfqcxIEDemX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jeansilva/Desktop/clone final/trabalho-final-modulo1/gestao-escolar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="view.Main" />
+      <module name="gestao-escolar" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d92cc477-2375-49d2-8223-dcefb4581159" name="Changes" comment="" />
+      <created>1656873541366</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1656873541366</updated>
+      <workItem from="1656873543525" duration="39746000" />
+      <workItem from="1656939781342" duration="3711000" />
+    </task>
+    <task id="LOCAL-00001" summary="fix: bug na classe DisciplinaRepository">
+      <created>1656874480312</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1656874480312</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix: bug na classe EnderecoRepository">
+      <created>1656880427575</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1656880427575</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix: bug ao remover Professor cadastrado em uma disciplina">
+      <created>1656882671788</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1656882671788</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: criando métodos para criar e remover relacionamento entre disciplia e curso, além da classe DisciplinaXCurso">
+      <created>1656884448847</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1656884448847</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: criando métodos para criar e remover relacionamento entre disciplia e curso, além da classe DisciplinaXCurso">
+      <created>1656887536628</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1656887536628</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix: bug no método adicionarDisciplinaNoCurso">
+      <created>1656888858775</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1656888858775</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix: bug no método removerDisciplinaDoCurso">
+      <created>1656889663017</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1656889663017</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix: bug ao remover curso ou disciplinas relacionados">
+      <created>1656895443131</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1656895443131</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix: bug ao remover curso ou disciplinas relacionados">
+      <created>1656897442172</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1656897442172</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: adicionando opção de atualizar endereço">
+      <created>1656898047202</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1656898047202</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix: atualizar endereco">
+      <created>1656905369843</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1656905369843</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix: atualizar endereco">
+      <created>1656905668154</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1656905668154</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: implementando imprimir Colaborador">
+      <created>1656907609600</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1656907609600</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix: remover aluno e disciplina">
+      <created>1656909006054</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1656909006054</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix: remover aluno e disciplina">
+      <created>1656910200682</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1656910200682</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fix: remover aluno e disciplina">
+      <created>1656910840817</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1656910840817</updated>
+    </task>
+    <task id="LOCAL-00017" summary="fix: toString aluno">
+      <created>1656910862498</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1656910862498</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fix: toString aluno">
+      <created>1656910934176</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1656910934176</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fix: bug criar aluno">
+      <created>1656911771212</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1656911771212</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat: imprimir infos curso">
+      <created>1656912564360</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1656912564360</updated>
+    </task>
+    <task id="LOCAL-00021" summary="feat: imprimir infos Disciplina">
+      <created>1656914395085</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1656914395085</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fix: bug Curso">
+      <created>1656918124539</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1656918124539</updated>
+    </task>
+    <task id="LOCAL-00023" summary="feat: imprimir notas do aluno">
+      <created>1656940895382</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1656940895382</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat: imprimir notas do aluno">
+      <created>1656941352304</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1656941352304</updated>
+    </task>
+    <task id="LOCAL-00025" summary="feat: exception">
+      <created>1656943119859</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1656943119859</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat: exception">
+      <created>1656943163094</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1656943163094</updated>
+    </task>
+    <task id="LOCAL-00027" summary="feat: exception">
+      <created>1656943240399</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1656943240399</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix: bug na classe DisciplinaRepository" />
+    <MESSAGE value="fix: bug na classe EnderecoRepository" />
+    <MESSAGE value="fix: bug ao remover Professor cadastrado em uma disciplina" />
+    <MESSAGE value="feat: criando métodos para criar e remover relacionamento entre disciplia e curso, além da classe DisciplinaXCurso" />
+    <MESSAGE value="fix: bug no método adicionarDisciplinaNoCurso" />
+    <MESSAGE value="fix: bug no método removerDisciplinaDoCurso" />
+    <MESSAGE value="fix: bug ao remover curso ou disciplinas relacionados" />
+    <MESSAGE value="feat: adicionando opção de atualizar endereço" />
+    <MESSAGE value="fix: atualizar endereco" />
+    <MESSAGE value="feat: implementando imprimir Colaborador" />
+    <MESSAGE value="fix: remover aluno e disciplina" />
+    <MESSAGE value="fix: toString aluno" />
+    <MESSAGE value="fix: bug criar aluno" />
+    <MESSAGE value="feat: imprimir infos curso" />
+    <MESSAGE value="feat: imprimir infos Disciplina" />
+    <MESSAGE value="fix: bug Curso" />
+    <MESSAGE value="feat: imprimir notas do aluno" />
+    <MESSAGE value="feat: exception" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: exception" />
+  </component>
+</project>
