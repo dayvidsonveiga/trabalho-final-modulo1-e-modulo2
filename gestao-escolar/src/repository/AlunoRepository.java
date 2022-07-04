@@ -61,12 +61,15 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             sql.append("INSERT INTO ALUNO (ID_ALUNO, NOME, TELEFONE, EMAIL, MATRICULA");
             if (aluno.getIdCurso() == null && aluno.getEndereco().getIdEndereco() == null) {
                 sql.append(") VALUES (?, ?, ?, ?, ?)" );
-            } else if (aluno.getIdCurso() != null && aluno.getEndereco().getIdEndereco() == null) {
+            }
+            if (aluno.getIdCurso() != null && aluno.getEndereco().getIdEndereco() == null) {
                 sql.append(",ID_CURSO) VALUES (?, ?, ?, ?, ?, ?)");
-            } else if (aluno.getEndereco().getIdEndereco() != null && aluno.getIdCurso() == null) {
+            }
+            if (aluno.getIdCurso() == null && aluno.getEndereco().getIdEndereco() != null) {
                 sql.append(",ID_ENDERECO) VALUES (?, ?, ?, ?, ?, ?)");
-            } else  {
-                sql.append(" ) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            }
+            if (aluno.getIdCurso() != null && aluno.getEndereco().getIdEndereco() != null) {
+                sql.append(", ID_CURSO, ID_ENDERECO) VALUES (?, ?, ?, ?, ?, ?, ?)");
             }
 
             PreparedStatement statement = con.prepareStatement(sql.toString());
