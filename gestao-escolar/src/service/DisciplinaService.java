@@ -5,6 +5,7 @@ import models.Curso;
 import models.Disciplina;
 import repository.DisciplinaRepository;
 import repository.DisciplinaXCursoRepository;
+import repository.NotaRepository;
 import repository.ProfessorRepository;
 import service.factory.CursoDisciplinaFactory;
 
@@ -108,6 +109,8 @@ public class DisciplinaService {
             escolhaDisciplina = Integer.parseInt(scanner.nextLine()) - 1;
             disciplinaEscolhida = disciplinas.get(escolhaDisciplina).getIdDisciplina();
             disciplinaXCursoRepository.removerPorIdDisciplina(disciplinaEscolhida);
+            NotaRepository notaRepository = new NotaRepository();
+            notaRepository.removerNotaPorIdDisciplina(disciplinaEscolhida);
             disciplinaRepository.remover(disciplinaEscolhida);
         } catch (SQLException e) {
             e.printStackTrace();

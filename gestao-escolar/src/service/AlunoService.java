@@ -4,6 +4,7 @@ import models.Aluno;
 import models.Endereco;
 import repository.AlunoRepository;
 import repository.EnderecoRepository;
+import repository.NotaRepository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -97,6 +98,8 @@ public class AlunoService {
         int opcao = (Integer.parseInt(scanner.nextLine())) - 1;
         try {
             Integer idEndereco = alunos.get(opcao).getIdEndereco();
+            NotaRepository notaRepository = new NotaRepository();
+            notaRepository.removerNotaPorIdAluno(alunos.get(opcao).getIdAluno());
             alunoRepository.remover(alunos.get(opcao).getIdAluno());
             EnderecoService enderecoService = new EnderecoService();
             enderecoService.removerEndereco(idEndereco);

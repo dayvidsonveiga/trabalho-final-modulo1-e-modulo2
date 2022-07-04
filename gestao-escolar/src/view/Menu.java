@@ -302,7 +302,6 @@ public class Menu {
     }
 
     public void menuGerenciarDisciplina() {
-//        limpaTela();
         System.out.println("Digite 1 para adicionar uma disciplina");
         System.out.println("Digite 2 para atualizar as informações de uma disciplina");
         System.out.println("Digite 3 para remover uma disciplina");
