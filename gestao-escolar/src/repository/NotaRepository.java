@@ -61,30 +61,7 @@ public class NotaRepository {
         }
     }
 
-    public void removerDisciplinaDoAluno(Integer idAluno, Integer idDisciplina) throws SQLException {
-        Connection con = null;
-        try {
-            con = ConexaoBancoDeDados.getConnection();
 
-            String sql = "DELETE FROM NOTAS WHERE ID_ALUNO = ? AND ID_DISCIPLINA = ?";
-
-            PreparedStatement statement = con.prepareStatement(sql);
-            statement.setInt(1, idAluno);
-            statement.setInt(2, idDisciplina);
-
-            statement.execute();
-        } catch (SQLException e) {
-            throw new SQLException(e.getCause());
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.getCause();
-            }
-        }
-    }
 
     public List<Nota> listarPorAluno(Integer idAluno) throws SQLException {
         List<Nota> notas = new ArrayList<>();
@@ -131,7 +108,7 @@ public class NotaRepository {
         return nota;
     }
 
-    public void removerPorIdDisciplina(Integer idDisciplina) throws SQLException {
+    public void removerNotaPorIdDisciplina(Integer idDisciplina) throws SQLException {
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
@@ -155,7 +132,7 @@ public class NotaRepository {
         }
     }
 
-    public void removerPorIdAluno(Integer idAluno) throws SQLException {
+    public void removerNotaPorIdAluno(Integer idAluno) throws SQLException {
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
