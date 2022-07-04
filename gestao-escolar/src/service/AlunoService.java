@@ -110,9 +110,11 @@ public class AlunoService {
 
     public List<Aluno> listarAlunos() {
         try {
-            List<Aluno> listar = alunoRepository.listar();
-            listar.forEach(System.out::println);
-            return listar;
+            List<Aluno> lista = alunoRepository.listar();
+            for (int i = 0; i < lista.size(); i++) {
+                System.out.println((i + 1) + " - " + lista.get(i).getNome());
+            }
+            return lista;
         } catch (SQLException e) {
             e.printStackTrace();
         }return null;

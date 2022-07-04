@@ -180,7 +180,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             while (res.next()) {
                 alunos.add(getAlunoFromResultSet(res));
             }
-            return alunos;
+            return alunos.stream().sorted(Comparator.comparing(Aluno::getNome)).toList();
         } catch (SQLException e) {
             throw new SQLException(e.getCause());
         } finally {
@@ -211,8 +211,8 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             con = ConexaoBancoDeDados.getConnection();
 
             String sql = "SELECT *" +
-                    "FROM PROFESSOR \n" +
-                    "WHERE PROFESSOR.ID_ENDERECO = ?";
+                    "FROM ALUNO \n" +
+                    "WHERE ALUNO.ID_ENDERECO = ?";
 
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setInt(1, id);
