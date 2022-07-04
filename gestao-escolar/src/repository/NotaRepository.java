@@ -1,5 +1,6 @@
 package repository;
 
+import models.DisciplinaXCurso;
 import models.Nota;
 
 import java.sql.*;
@@ -23,7 +24,7 @@ public class NotaRepository {
         }
     }
 
-    public void atribuirDisciplinaNoAluno(Nota nota) throws SQLException {
+    public void adicionerNotasAluno(Nota nota) throws SQLException {
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
@@ -31,14 +32,19 @@ public class NotaRepository {
             Integer proximoID = this.getProximoId(con);
             nota.setIdNota(proximoID);
 
-            String sql = "INSERT INTO NOTA (ID_NOTAS, ID_DISCIPLINA, ID_ALUNO)" +
-                    " VALUES (?, ?, ?)";
+            String sql = "INSERT INTO NOTAS (ID_NOTAS, N1, N2, N3, N4, MEDIA, ID_DISCIPLINA, ID_ALUNO)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement statement = con.prepareStatement(sql);
 
             statement.setInt(1, nota.getIdNota());
-            statement.setInt(2, nota.getIdDisciplina());
-            statement.setInt(3, nota.getIdAluno());
+            statement.setDouble(2, nota.getNota1());
+            statement.setDouble(3, nota.getNota2());
+            statement.setDouble(4, nota.getNota3());
+            statement.setDouble(5, nota.getNota4());
+            statement.setDouble(6, nota.getMedia());
+            statement.setInt(7, nota.getIdDisciplina());
+            statement.setInt(8, nota.getIdAluno());
 
             statement.executeUpdate();
         } catch (SQLException e) {

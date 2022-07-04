@@ -18,7 +18,20 @@ public class AlunoService {
 
     public void adicionarAluno(Aluno aluno) {
         try {
-            alunoRepository.adicionar(aluno);
+            Scanner scanner = new Scanner(System.in);
+            int escolhaCurso;
+            int idCursoEscolhido;
+            CursoService cursoService = new CursoService();
+            NotaService notaService = new NotaService();
+
+            Aluno aluno1 = alunoRepository.adicionar(aluno);
+            System.out.println("Informe o Curso do aluno: ");
+            cursoService.listarCurso();
+            escolhaCurso = Integer.parseInt(scanner.nextLine());
+            idCursoEscolhido = cursoService.listarCurso().get(escolhaCurso - 1).getIdCurso();
+            aluno.setIdCurso(idCursoEscolhido);
+
+            notaService.adicionerNotasAluno(idCursoEscolhido, aluno1.getIdAluno());
         } catch (SQLException e) {
             e.getCause();
         }
