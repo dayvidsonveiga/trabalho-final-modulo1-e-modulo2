@@ -18,6 +18,7 @@ public class Menu {
     ProfessorService professorService = new ProfessorService();
     DisciplinaService disciplinaService = new DisciplinaService();
     CursoService cursoService = new CursoService();
+    NotaService notaService = new NotaService();
 
 
 
@@ -96,7 +97,7 @@ public class Menu {
                 break;
             }
             case 1 -> {
-//                gestaoAluno.darNota();
+                notaService.atualizarNotasAluno();
                 System.out.println("---------------------------");
                 menuAreaDoProfessor();
 
