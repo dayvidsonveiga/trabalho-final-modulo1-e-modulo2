@@ -127,8 +127,41 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
     }
 
     @Override
-    public boolean editar(Integer id, Aluno endereco) throws SQLException {
-    return false;
+    public boolean editar(Integer id, Aluno aluno) throws SQLException {
+        Integer index = 1;
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            StringBuilder sql = new StringBuilder();
+            sql.append("UPDATE ALUNO SET ");
+            sql.append(" NOME = ?,");
+            sql.append(" TELEFONE = ?,");
+            sql.append(" EMAIL = ? ");
+            sql.append(" WHERE ID_ALUNO = ? ");
+
+            PreparedStatement stmt = con.prepareStatement(sql.toString());
+
+            stmt.setString(index++, aluno.getNome());
+            stmt.setString(index++, aluno.getTelefone());
+            stmt.setString(index++, aluno.getEmail());
+            stmt.setInt(index++, aluno.getMatricula());
+            stmt.setInt(index++, aluno.getIdAluno());
+
+            int res = stmt.executeUpdate();
+
+            return res > 0;
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
