@@ -110,7 +110,6 @@ public class ProfessorService {
 
     public void imprimirInformacoesProfessor() {
         EnderecoRepository enderecoRepository = new EnderecoRepository();
-        EnderecoService enderecoService = new EnderecoService();
         Scanner scanner = new Scanner(System.in);
         int escolhaProfessor = 0;
 

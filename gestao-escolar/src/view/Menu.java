@@ -188,7 +188,7 @@ public class Menu {
                 menuGerenciarAlunos();
             }
             case 4 -> {
-                alunoService.listarAlunos();
+                alunoService.imprimirInformacoesDoAluno();
                 System.out.println("---------------------------");
                 menuGerenciarAlunos();
             }

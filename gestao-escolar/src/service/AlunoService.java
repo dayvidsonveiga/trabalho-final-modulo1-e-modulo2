@@ -38,7 +38,7 @@ public class AlunoService {
         }
     }
 
-    public void editarAluno(){
+    public void editarAluno() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o ID do aluno que deseja atualizar dados: ");
 
@@ -51,7 +51,7 @@ public class AlunoService {
         Integer escolhaAluno = 0;
         listarAlunos();
         escolhaAluno = Integer.parseInt(scanner.nextLine());
-        Aluno alunoEscolhido = listarAlunos().get(escolhaAluno-1);
+        Aluno alunoEscolhido = listarAlunos().get(escolhaAluno - 1);
 
         try {
             System.out.println("Atualizar nome do aluno? [1 - Sim / 2 - Não]");
@@ -65,12 +65,12 @@ public class AlunoService {
 
             System.out.println("Atualizar o telefone do aluno? [1 - Sim / 2 - Não]");
             controleTelefone = Integer.parseInt(scanner.nextLine());
-                if (controleTelefone == 1) {
-                    System.out.println("Informe o novo número de telefone: ");
-                    alunoEscolhido.setTelefone(scanner.nextLine());
-                } else {
-                    System.out.println("Número de telefone atual: " + alunoEscolhido.getTelefone());
-                }
+            if (controleTelefone == 1) {
+                System.out.println("Informe o novo número de telefone: ");
+                alunoEscolhido.setTelefone(scanner.nextLine());
+            } else {
+                System.out.println("Número de telefone atual: " + alunoEscolhido.getTelefone());
+            }
 
             System.out.println("Atualizar o e-mail do aluno? [1 - Sim / 2 - Não]");
             controleEmail = Integer.parseInt(scanner.nextLine());
@@ -85,10 +85,10 @@ public class AlunoService {
             if (controleEndereco == 1) {
                 enderecoService.atualizarEndereco(enderecoRepository.pegarEnderecoPorId(alunoEscolhido.getIdEndereco()));
             }
-                alunoRepository.editar(alunoEscolhido.getIdAluno(), alunoEscolhido);
-            } catch (SQLException e) {
+            alunoRepository.editar(alunoEscolhido.getIdAluno(), alunoEscolhido);
+        } catch (SQLException e) {
             e.getCause();
-            }
+        }
     }
 
     public void removerAluno() {
@@ -117,7 +117,24 @@ public class AlunoService {
             return lista;
         } catch (SQLException e) {
             e.printStackTrace();
-        }return null;
+        }
+        return null;
     }
+
+    public void imprimirInformacoesDoAluno() {
+        EnderecoRepository enderecoRepository = new EnderecoRepository();
+        Scanner scanner = new Scanner(System.in);
+        int escolhaAluno = 0;
+
+        try {
+            System.out.println("Escolha o aluno:");
+            List<Aluno> alunos = listarAlunos();
+            escolhaAluno = Integer.parseInt(scanner.nextLine()) - 1;
+            System.out.println(alunos.get(escolhaAluno));
+            System.out.println(enderecoRepository.pegarEnderecoPorId(alunos.get(escolhaAluno).getIdEndereco()));
+        } catch (SQLException e) {
+            e.getCause();
+        }
     }
+}
 
