@@ -2,6 +2,7 @@ package service;
 
 import models.Aluno;
 import models.Colaborador;
+import models.Endereco;
 import repository.DisciplinaRepository;
 import repository.EnderecoRepository;
 import repository.ProfessorRepository;
@@ -95,8 +96,10 @@ public class ProfessorService {
             System.out.println("Atualizar endereço? [1 - Sim / 2 - Não]");
             controle = Integer.parseInt(scanner.nextLine());
             if (controle == 1) {
-                System.out.println("E-mail: ");
-                professorEscolhido.setEmail(scanner.nextLine());
+                EnderecoRepository enderecoRepository = new EnderecoRepository();
+                EnderecoService enderecoService = new EnderecoService();
+                Endereco endereco = enderecoRepository.pegarEnderecoPorId(professorEscolhido.getIdEndereco());
+                enderecoService.atualizarEndereco(endereco);
             }
         } catch (SQLException e) {
             e.getCause();

@@ -1,7 +1,9 @@
 package service;
 
 import models.Aluno;
+import models.Endereco;
 import repository.AlunoRepository;
+import repository.EnderecoRepository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -29,6 +31,7 @@ public class AlunoService {
         int controleNome = 0;
         int controleTelefone = 0;
         int controleEmail = 0;
+        int controleEndereco = 0;
         Integer escolhaAluno = 0;
         listarAlunos();
         escolhaAluno = Integer.parseInt(scanner.nextLine());
@@ -60,6 +63,14 @@ public class AlunoService {
                 alunoEscolhido.setEmail(scanner.nextLine());
             } else {
                 System.out.println("E-mail atual: " + alunoEscolhido.getEmail());
+            }
+            System.out.println("Atualizar endereço? [1 - Sim / 2 - Não]");
+            controleEndereco = Integer.parseInt(scanner.nextLine());
+            if (controleEndereco == 1) {
+                EnderecoRepository enderecoRepository = new EnderecoRepository();
+                EnderecoService enderecoService = new EnderecoService();
+                Endereco endereco = enderecoRepository.pegarEnderecoPorId(alunoEscolhido.getIdEndereco());
+                enderecoService.atualizarEndereco(endereco);
             }
                 alunoRepository.editar(alunoEscolhido.getIdAluno(), alunoEscolhido);
             } catch (SQLException e) {
