@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class Aluno extends Pessoa{
     private Integer idAluno, matricula, idCurso, idEndereco;
 
+
     public Aluno() {}
     public Aluno(String nome) {
         super(nome);
