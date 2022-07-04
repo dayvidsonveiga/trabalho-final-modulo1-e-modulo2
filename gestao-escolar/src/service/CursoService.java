@@ -77,7 +77,6 @@ public class CursoService {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            e.getCause();
         }
     }
 
@@ -142,7 +141,7 @@ public class CursoService {
                 opcao = Integer.parseInt(scanner.nextLine());
             }
         } catch (SQLException e) {
-            e.getCause();
+            e.printStackTrace();
         }
     }
 

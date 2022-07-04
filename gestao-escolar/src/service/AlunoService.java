@@ -35,7 +35,7 @@ public class AlunoService {
 
             notaService.adicionerNotasAluno(idCursoEscolhido, aluno1.getIdAluno());
         } catch (SQLException e) {
-            e.getCause();
+            e.printStackTrace();
         }
     }
 
@@ -88,7 +88,7 @@ public class AlunoService {
             }
             alunoRepository.editar(alunoEscolhido.getIdAluno(), alunoEscolhido);
         } catch (SQLException e) {
-            e.getCause();
+            e.printStackTrace();
         }
     }
 
@@ -134,7 +134,7 @@ public class AlunoService {
             System.out.println(alunos.get(escolhaAluno));
             System.out.println(enderecoRepository.pegarEnderecoPorId(alunos.get(escolhaAluno).getIdEndereco()));
         } catch (SQLException e) {
-            e.getCause();
+            e.printStackTrace();
         }
     }
 }

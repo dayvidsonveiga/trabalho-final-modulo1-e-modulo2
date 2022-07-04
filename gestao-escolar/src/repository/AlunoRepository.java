@@ -1,5 +1,6 @@
 package repository;
 
+import exceptions.DBException;
 import models.Colaborador;
 import models.Disciplina;
 import repository.ConexaoBancoDeDados;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class AlunoRepository implements Repositorio<Integer, Aluno>{
     @Override
-    public Integer getProximoId(Connection connection) throws SQLException{
+    public Integer getProximoId(Connection connection) throws DBException{
         try {
             String sql = "SELECT VEMSER_JEAN.SEQ_ALUNO.nextval mysequence FROM DUAL";
             Statement statement = connection.createStatement();
@@ -24,11 +25,11 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             }
             return null;
         } catch (SQLException e) {
-            throw new SQLException(e.getCause());
+            throw new DBException(e.getCause());
         }
     }
 
-    public Integer getProximoMatricula(Connection connection) throws SQLException {
+    public Integer getProximoMatricula(Connection connection) throws DBException {
         try {
             String sql = "SELECT VEMSER_JEAN.SEQ_ALUNO_MATRICULA.nextval mysequence FROM DUAL";
             Statement statement = connection.createStatement();
@@ -39,12 +40,12 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             }
             return null;
         } catch (SQLException e) {
-            throw new SQLException(e.getCause());
+            throw new DBException(e.getCause());
         }
     }
 
     @Override
-    public Aluno adicionar(Aluno aluno) throws SQLException {
+    public Aluno adicionar(Aluno aluno) throws DBException {
         Connection con = null;
         Integer index = 1;
         int posicao = 0;
@@ -90,7 +91,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             return aluno;
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new SQLException(e.getCause());
+            throw new DBException(e.getCause());
         } finally {
             try {
                 if (con != null) {
@@ -103,7 +104,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
     }
 
     @Override
-    public boolean remover(Integer id) throws SQLException {
+    public boolean remover(Integer id) throws DBException {
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
@@ -115,7 +116,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
 
             return statement.execute();
         } catch (SQLException e) {
-            throw new SQLException(e.getCause());
+            throw new DBException(e.getCause());
         } finally {
             try {
                 if (con != null) {
@@ -128,7 +129,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
     }
 
     @Override
-    public boolean editar(Integer id, Aluno aluno) throws SQLException {
+    public boolean editar(Integer id, Aluno aluno) throws DBException {
         Integer index = 1;
         Connection con = null;
         try {
@@ -153,7 +154,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
 
             return res > 0;
         } catch (SQLException e) {
-            throw new SQLException(e.getCause());
+            throw new DBException(e.getCause());
         } finally {
             try {
                 if (con != null) {
@@ -166,7 +167,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
     }
 
     @Override
-    public List<Aluno> listar() throws SQLException {
+    public List<Aluno> listar() throws DBException {
         List<Aluno> alunos = new ArrayList<>();
 
         Connection con = null;
@@ -182,7 +183,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             }
             return alunos.stream().sorted(Comparator.comparing(Aluno::getNome)).toList();
         } catch (SQLException e) {
-            throw new SQLException(e.getCause());
+            throw new DBException(e.getCause());
         } finally {
             try {
                 if (con != null) {
@@ -205,7 +206,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
         return aluno;
     }
 
-    public List<Aluno> conferirAlunosComIdEndereco(Integer id) throws SQLException{
+    public List<Aluno> conferirAlunosComIdEndereco(Integer id) throws DBException{
         List<Aluno> quantidadeAlunos = new ArrayList<>();
         Connection con = null;
         try {
@@ -223,7 +224,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             }
             return quantidadeAlunos;
         } catch (SQLException e) {
-            throw new SQLException(e.getCause());
+            throw new DBException(e.getCause());
         } finally {
             try {
                 if (con != null) {
@@ -235,7 +236,7 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
         }
     }
 
-    public void removerPorIdCurso(Integer id) throws SQLException {
+    public void removerPorIdCurso(Integer id) throws DBException {
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
@@ -247,14 +248,14 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
 
             statement.execute();
         } catch (SQLException e) {
-            throw new SQLException(e.getCause());
+            throw new DBException(e.getCause());
         } finally {
             try {
                 if (con != null) {
                     con.close();
                 }
             } catch (SQLException e) {
-                e.getCause();
+                e.printStackTrace();
             }
         }
     }
