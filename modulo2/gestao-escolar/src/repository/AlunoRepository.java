@@ -147,7 +147,6 @@ public class AlunoRepository implements Repositorio<Integer, Aluno>{
             stmt.setString(index++, aluno.getNome());
             stmt.setString(index++, aluno.getTelefone());
             stmt.setString(index++, aluno.getEmail());
-            stmt.setInt(index++, aluno.getMatricula());
             stmt.setInt(index++, aluno.getIdAluno());
 
             int res = stmt.executeUpdate();

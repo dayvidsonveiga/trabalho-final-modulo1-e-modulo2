@@ -50,9 +50,9 @@ public class AlunoService {
         int controleEmail = 0;
         int controleEndereco = 0;
         Integer escolhaAluno = 0;
-        listarAlunos();
+        List<Aluno> alunos = listarAlunos();
         escolhaAluno = Integer.parseInt(scanner.nextLine());
-        Aluno alunoEscolhido = listarAlunos().get(escolhaAluno - 1);
+        Aluno alunoEscolhido = alunos.get(escolhaAluno - 1);
 
         try {
             System.out.println("Atualizar nome do aluno? [1 - Sim / 2 - Não]");

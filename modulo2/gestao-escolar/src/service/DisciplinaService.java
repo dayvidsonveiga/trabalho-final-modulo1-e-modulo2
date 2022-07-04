@@ -57,9 +57,9 @@ public class DisciplinaService {
         int controleNome = 0;
         int controleProfessor = 0;
         Integer escolhaDisciplina = 0;
-        listarDisciplina();
+        List<Disciplina> disciplinas = listarDisciplina();
         escolhaDisciplina = Integer.parseInt(scanner.nextLine());
-        Disciplina disciplinaEscolhida = listarDisciplina().get(escolhaDisciplina - 1);
+        Disciplina disciplinaEscolhida = disciplinas.get(escolhaDisciplina - 1);
 
         try {
             if (disciplinaRepository.conferirIdDisciplina(disciplinaEscolhida.getIdDisciplina())) {
