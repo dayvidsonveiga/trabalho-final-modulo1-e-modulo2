@@ -4,11 +4,11 @@ public class Nota {
     private Integer idNota;
     private Integer idDisciplina;
     private Integer idAluno;
-    private Integer nota1;
-    private Integer nota2;
-    private Integer nota3;
-    private Integer nota4;
-    private Integer media;
+    private Double nota1;
+    private Double nota2;
+    private Double nota3;
+    private Double nota4;
+    private Double media;
 
     public Nota() {
     }
@@ -43,44 +43,45 @@ public class Nota {
         this.idAluno = idAluno;
     }
 
-    public Integer getNota1() {
+    public Double getNota1() {
         return nota1;
     }
 
-    public void setNota1(Integer nota1) {
+    public void setNota1(Double nota1) {
         this.nota1 = nota1;
     }
 
-    public Integer getNota2() {
+    public Double getNota2() {
         return nota2;
     }
 
-    public void setNota2(Integer nota2) {
+    public void setNota2(Double nota2) {
         this.nota2 = nota2;
     }
 
-    public Integer getNota3() {
+    public Double getNota3() {
         return nota3;
     }
 
-    public void setNota3(Integer nota3) {
+    public void setNota3(Double nota3) {
         this.nota3 = nota3;
     }
 
-    public Integer getNota4() {
+    public Double getNota4() {
         return nota4;
     }
 
-    public void setNota4(Integer nota4) {
+    public void setNota4(Double nota4) {
         this.nota4 = nota4;
     }
 
-    public Integer getMedia() {
+    public Double getMedia() {
         return media;
     }
 
-    public void setMedia(Integer media) {
+    public void setMedia(Double media) {
         this.media = media;
     }
+
 
 }
