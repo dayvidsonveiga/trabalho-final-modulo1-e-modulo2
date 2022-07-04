@@ -116,7 +116,7 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
 
 
     @Override
-    public boolean editar(Integer id, Colaborador endereco) throws SQLException {
+    public boolean editar(Integer id, Colaborador colaborador) throws SQLException {
         return false;
     }
 

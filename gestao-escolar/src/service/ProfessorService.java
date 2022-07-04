@@ -1,5 +1,6 @@
 package service;
 
+import models.Aluno;
 import models.Colaborador;
 import repository.DisciplinaRepository;
 import repository.EnderecoRepository;
@@ -51,5 +52,54 @@ public class ProfessorService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void editarProfessor(){
+        Scanner scanner = new Scanner(System.in);
+
+        int controle = 0;
+
+        Integer escolhaProfessor = 0;
+
+
+
+        try {
+            System.out.println("Qual professor deseja atualizar os dados: ");
+            List<Colaborador> professores = listarProfessores();
+            escolhaProfessor = Integer.parseInt(scanner.nextLine());
+            Colaborador professorEscolhido = professores.get(escolhaProfessor);
+
+            System.out.println("Atualizar nome do professor? [1 - Sim / 2 - Não]");
+            controle = Integer.parseInt(scanner.nextLine());
+            if (controle == 1) {
+                System.out.println("Nome: ");
+                professorEscolhido.setNome(scanner.nextLine());
+            } else {
+                System.out.println("Nome atual da disciplina: " + professorEscolhido.getNome());
+            }
+            System.out.println("Atualizar o telefone do professor? [1 - Sim / 2 - Não]");
+            controle = Integer.parseInt(scanner.nextLine());
+            if (controle == 1) {
+                System.out.println("Telefone: ");
+                professorEscolhido.setTelefone(scanner.nextLine());
+            }
+
+            System.out.println("Atualizar o e-mail do aluno? [1 - Sim / 2 - Não]");
+            controle = Integer.parseInt(scanner.nextLine());
+            if (controle == 1) {
+                System.out.println("E-mail: ");
+                professorEscolhido.setEmail(scanner.nextLine());
+            }
+            this.professorRepository.editar(professorEscolhido.getIdColaborador(), professorEscolhido);
+
+            System.out.println("Atualizar endereço? [1 - Sim / 2 - Não]");
+            controle = Integer.parseInt(scanner.nextLine());
+            if (controle == 1) {
+                System.out.println("E-mail: ");
+                professorEscolhido.setEmail(scanner.nextLine());
+            }
+        } catch (SQLException e) {
+            e.getCause();
+        }
     }
 }

@@ -231,4 +231,29 @@ public class EnderecoRepository implements Repositorio<Integer, Endereco> {
             }
         }
     }
+
+    public Endereco pegarEnderecoPorId(Integer id) throws SQLException{
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM ENDERECO WHERE ID_ENDERECO = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet res = statement.executeQuery();
+            Endereco endereco = getEnderecoFromResultSet(res);
+            return endereco;
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
