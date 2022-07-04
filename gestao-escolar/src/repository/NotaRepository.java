@@ -1,5 +1,6 @@
 package repository;
 
+import models.Disciplina;
 import models.DisciplinaXCurso;
 import models.Nota;
 
@@ -61,7 +62,108 @@ public class NotaRepository {
         }
     }
 
+    public boolean atualizarNotasDisciplina(Integer id, Nota nota) throws SQLException {
+        Connection con = null;
+        try {
+            StringBuilder sql = new StringBuilder();
+            int index = 1;
+            int res = 0;
+            con = ConexaoBancoDeDados.getConnection();
 
+            sql.append("UPDATE NOTAS \nSET");
+
+            if (nota.getNota1() != null) {
+                sql.append(" N1 = ?");
+            }
+
+            if (nota.getNota2() != null) {
+                sql.append(", N2 = ? \n");
+            }
+
+            if (nota.getNota3() != null) {
+                sql.append(", N3 = ? \n");
+            }
+
+            if (nota.getNota4() != null) {
+                sql.append(", N4 = ? \n");
+            }
+
+            if (nota.getMedia() != null) {
+                sql.append(", MEDIA = ?");
+            }
+
+
+            sql.append(" WHERE ID_NOTAS = ? ");
+
+            PreparedStatement statement = con.prepareStatement(sql.toString());
+
+            if (nota.getNota1() != null) {
+                statement.setDouble(index++, nota.getNota1());
+            }
+
+            if (nota.getNota2() != null) {
+                statement.setDouble(index++, nota.getNota2());
+            }
+
+            if (nota.getNota3() != null) {
+                statement.setDouble(index++, nota.getNota3());
+            }
+
+            if (nota.getNota4() != null) {
+                statement.setDouble(index++, nota.getNota4());
+            }
+
+            if (nota.getMedia() != null) {
+                statement.setDouble(index++, nota.getMedia());
+            }
+
+            statement.setInt(index++, id);
+
+            res = statement.executeUpdate();
+
+            return res > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public Nota listarPorDisciplina(Integer idDisciplina, Integer idAluno) throws SQLException {
+
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM NOTAS WHERE ID_DISCIPLINA = ? AND ID_ALUNO = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, idDisciplina);
+            statement.setInt(2, idAluno);
+
+            ResultSet res = statement.executeQuery();
+            res.next();
+
+            return getFromResultSet(res);
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public List<Nota> listarPorAluno(Integer idAluno) throws SQLException {
         List<Nota> notas = new ArrayList<>();
@@ -155,7 +257,6 @@ public class NotaRepository {
             }
         }
     }
-
 
 
 }

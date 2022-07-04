@@ -9,6 +9,7 @@ import repository.DisciplinaXCursoRepository;
 import repository.NotaRepository;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -51,6 +52,7 @@ public class NotaService {
         Integer escolhaDisciplina;
         Integer idAluno;
         Integer idCursoEscolhaAluno;
+        Integer idDisciplina;
         DisciplinaXCursoRepository disciplinaXCursoRepository = new DisciplinaXCursoRepository();
 
         System.out.println("Deseja alterar notas de qual aluno? ");
@@ -59,25 +61,63 @@ public class NotaService {
         idAluno = alunos.get(escolhaAluno - 1).getIdAluno();
         idCursoEscolhaAluno = alunos.get(escolhaAluno - 1).getIdCurso();
 
-        System.out.println("Escolha a disciplina: ");
         try {
+            System.out.println("Escolha a disciplina: ");
             DisciplinaRepository disciplinaRepository = new DisciplinaRepository();
             List<Disciplina> listaDisciplina = disciplinaRepository.listarPorId(disciplinaXCursoRepository.listarPorCurso(idCursoEscolhaAluno));
             for (int i = 0; i < listaDisciplina.size(); i++) {
                 System.out.println((i + 1) + " - " + listaDisciplina.get(i).getNome());
             }
-
-
-//            for (Disciplina disciplina : listaDisciplina) {
-//                System.out.println();
-//            }
+            escolhaDisciplina = Integer.parseInt(scanner.nextLine());
+            idDisciplina = listaDisciplina.get(escolhaDisciplina - 1).getIdDisciplina();
+            Nota nota = notaRepository.listarPorDisciplina(idDisciplina, idAluno);
+            System.out.println("Qual nota deseja adicionar: [1 - N1 | 2 - N2 | 3 - N3 | 4 - N4]");
+            int opcao = Integer.parseInt(scanner.nextLine());
+            switch (opcao) {
+                case 1 -> {
+                    System.out.println("Informe a Nota 1: ");
+                    nota.setNota1(Double.parseDouble(scanner.nextLine()));
+                }
+                case 2 -> {
+                    System.out.println("Informe a Nota 2: ");
+                    nota.setNota2(Double.parseDouble(scanner.nextLine()));
+                }
+                case 3 -> {
+                    System.out.println("Informe a Nota 3: ");
+                    nota.setNota3(Double.parseDouble(scanner.nextLine()));
+                }
+                case 4 -> {
+                    System.out.println("Informe a Nota 4: ");
+                    nota.setNota4(Double.parseDouble(scanner.nextLine()));
+                }
+                default -> {
+                    System.out.println("Informe uma opção válida.");
+                }
+            }
+            List<Double> notas = new ArrayList<>();
+            if (nota.getNota1() != null && nota.getNota1() != 0) {
+                notas.add(nota.getNota1());
+            }
+            if (nota.getNota2() != null && nota.getNota2() != 0) {
+                notas.add(nota.getNota2());
+            }
+            if (nota.getNota3() != null && nota.getNota3() != 0) {
+                notas.add(nota.getNota3());
+            }
+            if (nota.getNota4() != null && nota.getNota4() != 0) {
+                notas.add(nota.getNota4());
+            }
+            double media = 0;
+            for (int i = 0; i < notas.size(); i++) {
+                media += notas.get(i);
+            }
+            nota.setMedia(media/notas.size());
+            notaRepository.atualizarNotasDisciplina(nota.getIdNota(), nota);
 
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
         }
-        escolhaDisciplina = Integer.parseInt(scanner.nextLine());
-        System.out.println(escolhaDisciplina);
 
 
 //        try {
