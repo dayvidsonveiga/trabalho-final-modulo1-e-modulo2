@@ -3,10 +3,7 @@ package service;
 import models.Colaborador;
 import models.Curso;
 import models.Disciplina;
-import repository.DisciplinaRepository;
-import repository.DisciplinaXCursoRepository;
-import repository.NotaRepository;
-import repository.ProfessorRepository;
+import repository.*;
 import service.factory.CursoDisciplinaFactory;
 
 import java.sql.PreparedStatement;
@@ -122,12 +119,19 @@ public class DisciplinaService {
         //Em construção
         Integer escolhaDisciplina = 0;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Sobre qual disciplina deseja saber? ");
-        listarDisciplina();
-        escolhaDisciplina = Integer.parseInt(scanner.nextLine());
-        Disciplina disciplina = listarDisciplina().get(escolhaDisciplina - 1);
-        System.out.println(disciplina.getIdProfessor());
-        System.out.println(disciplina.getNome());
+        ProfessorRepository professorRepository = new ProfessorRepository();
+
+
+        try {
+            System.out.println("Sobre qual disciplina deseja saber? ");
+            List<Disciplina> disciplinas = listarDisciplina();
+            escolhaDisciplina = Integer.parseInt(scanner.nextLine());
+            Disciplina disciplina = disciplinas.get(escolhaDisciplina - 1);
+            System.out.println("\nDisciplina: " + disciplina.getNome());
+            System.out.println("Professor: \n" + professorRepository.professorPorId(disciplina.getIdProfessor()));
+        } catch (SQLException e) {
+            e.getCause();
+        }
     }
 
     public List<Disciplina> listarDisciplina() {

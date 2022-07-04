@@ -1,7 +1,6 @@
 package repository;
 
 import models.Colaborador;
-import models.Endereco;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -225,6 +224,32 @@ public class ProfessorRepository implements Repositorio<Integer, Colaborador> {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    public Colaborador professorPorId(Integer id) throws SQLException {
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM PROFESSOR WHERE ID_PROFESSOR = ?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet res = statement.executeQuery();
+            res.next();
+
+            return getColaboradorFromResultSet(res);
+        } catch (SQLException e) {
+            throw new SQLException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.getCause();
             }
         }
     }

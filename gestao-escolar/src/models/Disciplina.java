@@ -42,7 +42,7 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        return this.nome;
+        return "Disciplina:  " + this.nome;
     }
 
 }
