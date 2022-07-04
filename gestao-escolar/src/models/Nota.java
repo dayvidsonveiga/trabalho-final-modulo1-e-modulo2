@@ -82,4 +82,5 @@ public class Nota {
     public void setMedia(Integer media) {
         this.media = media;
     }
+
 }
