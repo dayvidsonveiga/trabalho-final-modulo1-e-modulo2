@@ -66,7 +66,7 @@ public class Menu {
                 break;
             }
             case 1 -> {
-//                gestaoAluno.imprimirInformacoes();
+                notaService.imprimirNotas();
                 System.out.println("---------------------------");
                 menuPortalDoAluno();
 

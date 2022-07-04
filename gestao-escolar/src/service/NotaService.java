@@ -118,26 +118,33 @@ public class NotaService {
             e.printStackTrace();
             e.getCause();
         }
+    }
+    public void imprimirNotas(){
+        Scanner scanner = new Scanner(System.in);
+        AlunoService alunoService = new AlunoService();
+        Integer escolhaAluno;
+        Integer idAluno;
+        Integer idCursoEscolhaAluno;
+        Integer idDisciplina;
+        DisciplinaXCursoRepository disciplinaXCursoRepository = new DisciplinaXCursoRepository();
+        DisciplinaRepository disciplinaRepository = new DisciplinaRepository();
 
-
-//        try {
-//            List<DisciplinaXCurso> listaDiciplinaXCurso = disciplinaXCursoRepository.listarPorCurso(idCursoEscolhaAluno);
-//
-//            for (DisciplinaXCurso itemDisciplinaXCurso : listaDiciplinaXCurso) {
-//                Nota nota = new Nota();
-//                nota.setIdDisciplina(itemDisciplinaXCurso.getIdDisciplina());
-//                nota.setIdAluno(idAluno);
-//                nota.setNota1(0.0);
-//                nota.setNota2(0.0);
-//                nota.setNota3(0.0);
-//                nota.setNota4(0.0);
-//                nota.setMedia(0.0);
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            e.getCause();
-//        }
-//    }
+        try {
+            System.out.println("Escolha o aluno: ");
+            List<Aluno> alunos = alunoService.listarAlunos();
+            escolhaAluno = Integer.parseInt(scanner.nextLine());
+            idAluno = alunos.get(escolhaAluno - 1).getIdAluno();
+            idCursoEscolhaAluno = alunos.get(escolhaAluno - 1).getIdCurso();
+            List<Disciplina> listaDisciplina = disciplinaRepository.listarPorId(disciplinaXCursoRepository.listarPorCurso(idCursoEscolhaAluno));
+            for (int i = 0; i < listaDisciplina.size(); i++) {
+                System.out.println((i + 1) + " - " + listaDisciplina.get(i).getNome());
+                idDisciplina = listaDisciplina.get(i).getIdDisciplina();
+                Nota nota = notaRepository.listarPorDisciplina(idDisciplina, idAluno);
+                System.out.println("N1: " + nota.getNota1() + "| N2: " + nota.getNota2() + "| N3: " + nota.getNota3() + "| N4: " + nota.getNota4() );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 }
